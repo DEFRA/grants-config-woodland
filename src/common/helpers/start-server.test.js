@@ -1,4 +1,7 @@
 import hapi from '@hapi/hapi'
+import { storeConfigVersionAndInformBroker } from '@defra/grants-config-utils'
+
+vi.mock('@defra/grants-config-utils')
 
 describe('#startServer', () => {
   let createServerSpy
@@ -25,6 +28,7 @@ describe('#startServer', () => {
 
       expect(createServerSpy).toHaveBeenCalled()
       expect(hapiServerSpy).toHaveBeenCalled()
+      expect(storeConfigVersionAndInformBroker).toHaveBeenCalled()
     })
   })
 
