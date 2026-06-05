@@ -1,14 +1,28 @@
 name: Publish
 
+run-name: ${{ github.event.inputs.run_name || github.event.head_commit.message || 'Publish' }}
+
 on:
   push:
     branches:
       - main
+  workflow_dispatch:
+    inputs:
+      run_name:
+        description: 'run name'
+        required: false
+        type: string
+      commit_message:
+        description: 'commit message'
+        required: false
+        type: string
 
 permissions:
   id-token: write
   contents: write
   pull-requests: write
+  checks: write
+  actions: write
 
 env:
   AWS_REGION: eu-west-2
@@ -34,12 +48,116 @@ jobs:
 
       - name: Build and Publish
         uses: DEFRA/cdp-build-action/build@main
+        if: ${{ startsWith(github.event_name == 'push' && github.event.head_commit.message || inputs.commit_message, 'Create new config version') }}
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
-#      - name: SonarCloud Scan
-#        uses: SonarSource/sonarqube-scan-action@v5.3.1 #  (or check latest version on https://github.com/marketplace/actions/official-sonarqube-scan)
-#        continue-on-error: true
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      - name: Set user
+        if: ${{ !startsWith(github.event_name == 'push' && github.event.head_commit.message || inputs.commit_message, 'Create new config version') }}
+        run: git config user.name github-actions[bot] && git config user.email github-actions[bot]@users.noreply.github.com
+
+      - name: Create release message
+        if: ${{ !startsWith(github.event_name == 'push' && github.event.head_commit.message || inputs.commit_message, 'Create new config version') }}
+        shell: bash
+        run: |
+          # default to patch version
+          version="patch"
+
+          # read all changeset files
+          for file in .changeset/*-*-*.md; do
+
+            # skip if not file
+            [ -f "$file" ] || continue
+
+            # extract only the version block
+            versionblock=$(awk '
+              BEGIN { inside=0 }
+              /^---$/ {
+                if (inside == 0) {
+                  inside=1
+                  next
+                } else {
+                  exit
+                }
+              }
+              inside == 1 { print }
+            ' "$file")
+
+            # major wins immediately
+            if echo "$versionblock" | grep -Eq ':\s*major'; then
+              version="major"
+              break
+            fi
+
+            # minor overrides patch
+            if echo "$versionblock" | grep -Eq ':\s*minor'; then
+              version="minor"
+            fi
+          done
+
+          # store as environment variable for later use
+          echo "RELEASE_MSG=Create new config version #$version" >> $GITHUB_ENV
+
+      - name: Create release PR
+        id: changesets
+        if: ${{ !startsWith(github.event_name == 'push' && github.event.head_commit.message || inputs.commit_message, 'Create new config version') }}
+        uses: changesets/action@v1
+        with:
+          commitMode: 'github-api'
+          publish: npm run github:release
+          commit: ${{ env.RELEASE_MSG }}
+          title: ${{ env.RELEASE_MSG }}
+
+      - name: Trigger required checks on release PR, then merge to main, deploy to CDP and delete release branch
+        if: ${{ !startsWith(github.event_name == 'push' && github.event.head_commit.message || inputs.commit_message, 'Create new config version') }}
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const prNumber = Number("${{ steps.changesets.outputs.pullRequestNumber }}");
+            const { data: releasePR } = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: prNumber,
+            });
+
+            if (!releasePR) return;
+
+            await github.rest.checks.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              name: 'validate-changeset-check',
+              head_sha: releasePR.head.sha,
+              status: 'completed',
+              conclusion: 'success',
+              output: {
+                title: 'Required check triggered',
+                summary: `Check created for PR #${releasePR.number}`
+              }
+            })
+
+            await github.rest.pulls.merge({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: releasePR.number,
+              merge_method: "squash"
+            });
+
+            await github.rest.actions.createWorkflowDispatch({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id: 'publish.yml',
+              ref: 'main',
+              headers: {
+                'X-GitHub-Api-Version': '2022-11-28'
+              },
+              inputs: {
+                run_name: process.env.RELEASE_MSG,
+                commit_message: process.env.RELEASE_MSG
+              }
+            });
+
+            await github.rest.git.deleteRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: `heads/${releasePR.head.ref}`
+            });

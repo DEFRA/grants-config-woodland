@@ -1,0 +1,27 @@
+name: PR check changeset check
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+
+jobs:
+  validate-changeset-check:
+    runs-on: ubuntu-latest
+    if: github.ref != 'changeset-release/main'
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Check changeset check
+        shell: bash
+        run: |
+          if ! find .changeset -maxdepth 1 -type f -name "*-*-*.md" | grep -q .; then
+            echo "PR must include at least one changeset file in .changeset/"
+            exit 1
+          fi
+
+          echo "Changeset file(s) found:"
+          find .changeset -maxdepth 1 -type f -name "*-*-*.md"
