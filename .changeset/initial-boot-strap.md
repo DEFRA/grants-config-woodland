@@ -2,4 +2,4 @@
 'grants-config-woodland': minor
 ---
 
-Convert repository to grant configuration bootstrap
+Add grant configuration support to the repository
