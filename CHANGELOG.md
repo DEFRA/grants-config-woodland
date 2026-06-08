@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 0.2.0
+
+### Minor Changes
+
+- ce7edd1: remove temp change
+
 ## 0.1.1
 
 ### Patch Changes
