@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 0.3.0
+
+### Minor Changes
+
+- a5872ed: minor version bump to help align with existing config repo
+
 ## 0.2.0
 
 ### Minor Changes
