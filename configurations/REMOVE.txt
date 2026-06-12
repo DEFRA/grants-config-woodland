@@ -1,1 +1,0 @@
-Remove this file once your first grant config folder has been added.
