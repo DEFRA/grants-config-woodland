@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 0.4.0
+
+### Minor Changes
+
+- 17ed49e: feat(GRAN-8): import configuration from old config repo
+
 ## 0.3.0
 
 ## Below is copied in from the old config repo, see: https://github.com/DEFRA/grant-config-woodland
