@@ -2,6 +2,12 @@ engine: V2
 name: Woodland Management Plan
 metadata:
   id: 95e92559-968d-44ae-8666-2b1ad3dffd38
+  description: Create or improve a woodland management plan for your woodland.
+  urls:
+    dev: https://grants-ui.dev.cdp-int.defra.cloud/woodland
+    test: https://grants-ui.test.cdp-int.defra.cloud/woodland
+    ext-test: https://grants-ui.ext-test.cdp-int.defra.cloud/woodland
+    prod: https://grants.defra.gov.uk/woodland
   enabledInProd: true
   whitelistCrnEnvVar: WOODLAND_WHITELIST_CRNS
   whitelistSbiEnvVar: WOODLAND_WHITELIST_SBIS
