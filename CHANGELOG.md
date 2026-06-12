@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 0.5.0
+
+### Minor Changes
+
+- a44eddc: Adding config for new allowlist endpoint
+
 ## 0.4.0
 
 ### Minor Changes
