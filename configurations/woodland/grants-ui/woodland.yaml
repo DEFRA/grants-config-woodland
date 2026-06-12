@@ -7,6 +7,7 @@ metadata:
     dev: https://grants-ui.dev.cdp-int.defra.cloud/woodland
     test: https://grants-ui.test.cdp-int.defra.cloud/woodland
     ext-test: https://grants-ui.ext-test.cdp-int.defra.cloud/woodland
+    perf-test: https://grants-ui.perf-test.cdp-int.defra.cloud/woodland
     prod: https://grants.defra.gov.uk/woodland
   enabledInProd: true
   whitelistCrnEnvVar: WOODLAND_WHITELIST_CRNS
