@@ -1,0 +1,5 @@
+services:
+
+  woodland-grant-journey-tests:
+    volumes:
+      - ${PWD}/test/testconfig:/app/test/schemas:ro
