@@ -7,9 +7,9 @@ if [ "$currentUser" != "github-actions[bot]" ]; then
       echo "❌ Pushing to main is not allowed!"
       exit 1
     fi
-    if git diff --name-only origin/HEAD...HEAD >/dev/null; then
+    if git diff --name-only origin/HEAD...HEAD | grep -q '^configurations/'; then
         if ! compgen -G ".changeset/*-*-*.md" > /dev/null; then
-            echo "❌ Make sure you have added a changeset file"
+            echo "❌ Changes in configurations/ require a changeset"
             echo "Run: npm run version"
             exit 1
         fi
