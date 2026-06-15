@@ -3,6 +3,8 @@ name: PR check changeset check
 on:
   pull_request:
     types: [opened, edited, synchronize, reopened]
+    paths:
+      - 'configurations/**'
 
 jobs:
   validate-changeset-check:
