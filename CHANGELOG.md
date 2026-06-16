@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 0.5.1
+
+### Patch Changes
+
+- ec0d128: Remove details component from task list page
+
 ## 0.5.0
 
 ### Minor Changes
