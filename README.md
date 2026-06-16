@@ -3,6 +3,9 @@
 Core delivery platform Node.js Backend Template.
 
 - [Grant Configuration](#grant-configuration)
+  - [Create new](#create-new)
+  - [Update existing](#update-existing)
+  - [Non-configuration changes](#non-configuration-changes)
 - [Requirements](#requirements)
   - [Node.js](#nodejs)
 - [Local development](#local-development)
@@ -28,7 +31,7 @@ Core delivery platform Node.js Backend Template.
 
 ## Grant Configuration
 
-### Creating a New Grant
+### Create new
 
 Each directory within the `configurations` folder represents a separate grant.
 
@@ -65,7 +68,7 @@ To create a new grant:
    git push
    ```
 
-### Updating an Existing Grant
+### Update existing
 
 To update the configuration for an existing grant:
 
@@ -89,6 +92,12 @@ To update the configuration for an existing grant:
    ```bash
    git push
    ```
+
+### Non-configuration changes
+
+Any change that does not modify the contents of the `configurations` directory is considered a **non-configuration change**.
+
+Do **not** create a changeset for these changes. Non-configuration changes do not trigger service publication when merged into `main`.
 
 ## Requirements
 
