@@ -3,27 +3,37 @@ name: PR check changeset check
 on:
   pull_request:
     types: [opened, edited, synchronize, reopened]
-    paths:
-      - 'configurations/**'
 
 jobs:
   validate-changeset-check:
     runs-on: ubuntu-latest
-    if: github.ref != 'changeset-release/main'
 
     steps:
       - name: Check out code
-        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 #v6
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 #6.0.3
         with:
           fetch-depth: 0
 
-      - name: Check changeset check
+      - name: Ensure changeset exists only when configurations are modified
+        if: github.ref != 'changeset-release/main'
         shell: bash
         run: |
-          if ! find .changeset -maxdepth 1 -type f -name "*-*-*.md" | grep -q .; then
-            echo "PR must include at least one changeset file in .changeset/"
-            exit 1
-          fi
+          BASE_REF="${{ github.event.pull_request.base.ref }}"
+          if git diff --name-only "origin/${BASE_REF}...HEAD" | grep -q '^configurations/'; then
+            echo "Changes made to configurations, checking changeset(s) exist.."
 
-          echo "Changeset file(s) found:"
-          find .changeset -maxdepth 1 -type f -name "*-*-*.md"
+            if ! find .changeset -maxdepth 1 -type f -name "*-*-*.md" | grep -q .; then
+              echo "PR changes files in configurations, so must include at least one changeset file."
+              exit 1
+            fi
+
+            echo "Changeset file(s) found:"
+            find .changeset -maxdepth 1 -type f -name "*-*-*.md"
+          else
+            echo "No changes made to configurations, checking changeset(s) don't exist.."
+
+            if find .changeset -maxdepth 1 -type f -name "*-*-*.md" | grep -q .; then
+              echo "PR does not change files in configurations, so must not include any changeset files."
+              exit 1
+            fi
+          fi
