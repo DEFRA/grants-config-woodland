@@ -11,10 +11,10 @@ ARG PORT_DEBUG
 ENV PORT=${PORT}
 EXPOSE ${PORT} ${PORT_DEBUG}
 
-COPY --chown=node:node package*.json ./
+COPY --chown=node:node --chmod=755 package*.json ./
 RUN npm install
-COPY --chown=node:node ./src ./src
-COPY --chown=node:node ./configurations ./configurations
+COPY --chown=node:node --chmod=755 ./src ./src
+COPY --chown=node:node --chmod=755 ./configurations ./configurations
 
 CMD [ "npm", "run", "docker:dev" ]
 
