@@ -33,7 +33,7 @@
   "author": "Defra DDTS",
   "license": "OGL-UK-3.0",
   "dependencies": {
-    "@defra/cdp-auditing": "0.6.0",
+    "@defra/cdp-auditing": "0.6.1",
     "@defra/cdp-metrics": "0.6.0",
     "@defra/grants-config-utils": "0.2.1",
     "@defra/hapi-secure-context": "0.4.0",
