@@ -246,12 +246,11 @@ Mock AWS resources can be created when Floci starts up by editing the scripts in
 
 ### Dependabot
 
-We have added an example dependabot configuration file to the repository. You can enable it by renaming
-the [.github/example.dependabot.yml](.github/example.dependabot.yml) to `.github/dependabot.yml`
+Dependabot is enabled in this repository.
 
 ### SonarCloud
 
-Instructions for setting up SonarCloud can be found in [sonar-project.properties](./sonar-project.properties)
+SonarCloud is enabled in this repository.
 
 ## Licence
 
