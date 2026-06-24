@@ -25,6 +25,7 @@
     "test:watch": "TZ=UTC vitest",
     "github:release": "npx cdp-github-release grants-config-woodland",
     "version:changed": "changeset version",
+    "build": "node scripts/merge-refs.js",
     "version": "changeset"
   },
   "imports": {
