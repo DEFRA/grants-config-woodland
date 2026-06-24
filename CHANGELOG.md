@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 0.6.0
+
+### Minor Changes
+
+- df5e424: Add confirmation page
+
 ## 0.5.1
 
 ### Patch Changes
