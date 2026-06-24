@@ -21,6 +21,7 @@ fi
 mkdir -p test/testconfig
 cp -r configurations/woodland/ test/testconfig/woodland@0.0.0
 cp $(dirname "$0")/release.yml test/testconfig/
-cp configurations/woodland/gas/gas.json test/testconfig/gas.schema.json
+npm run build
+cp dist/configurations/woodland/gas/gas.json test/testconfig/gas.schema.json
 
 "$(dirname "$0")/docker-compose-smoke-test.sh"
