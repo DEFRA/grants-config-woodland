@@ -50,6 +50,25 @@ jobs:
           npm ci
           npm test
 
+      - name: Read version from package.json
+        if: ${{ startsWith(github.event_name == 'push' && github.event.head_commit.message || inputs.commit_message, 'Create new config version') }}
+        run: |
+          echo "CONFIG_VERSION=$(jq -r '.version' package.json)" >> "$GITHUB_ENV"
+
+          echo "✅ Config version read"
+
+      - name: Check if version already exists
+        if: ${{ startsWith(github.event_name == 'push' && github.event.head_commit.message || inputs.commit_message, 'Create new config version') }}
+        run: |
+          git fetch --tags
+
+          if git rev-parse "refs/tags/${CONFIG_VERSION}" >/dev/null 2>&1; then
+            echo "❌ Version ${CONFIG_VERSION} already exists as a git tag"
+            exit 1
+          fi
+
+          echo "✅ Version ${CONFIG_VERSION} is available"
+
       - name: Build and Publish
         if: ${{ startsWith(github.event_name == 'push' && github.event.head_commit.message || inputs.commit_message, 'Create new config version') }}
         uses: DEFRA/cdp-build-action/build@main
