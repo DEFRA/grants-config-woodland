@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 0.7.1
+
+### Patch Changes
+
+- b5bed17: Add exclusion path for print submitted application page
+
 ## 0.7.0
 
 ### Minor Changes
