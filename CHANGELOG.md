@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 0.7.0
+
+### Minor Changes
+
+- c62ac1a: Add print submitted application controller
+
 ## 0.6.0
 
 ### Minor Changes
