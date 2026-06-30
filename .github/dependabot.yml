@@ -6,6 +6,8 @@ updates:
   - package-ecosystem: npm
     directory: /
     open-pull-requests-limit: 10
+    cooldown:
+      default-days: 7
     # Group packages into a shared PR
     groups:
       lint:
@@ -30,6 +32,7 @@ updates:
       - dependency-name: 'eslint'
     schedule:
       interval: weekly
+      day: monday
       time: '10:30'
       timezone: 'Europe/London'
 
@@ -44,6 +47,7 @@ updates:
     directory: /
     schedule:
       interval: weekly
+      day: monday
       time: '10:30'
       timezone: 'Europe/London'
 
@@ -52,5 +56,6 @@ updates:
     directory: /
     schedule:
       interval: weekly
+      day: monday
       time: '10:30'
       timezone: 'Europe/London'
