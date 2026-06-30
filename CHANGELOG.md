@@ -1,11 +1,5 @@
 # grants-config-woodland
 
-## 0.7.2
-
-### Patch Changes
-
-- 70c5707: Changed titles from "Woodland Management Plan" to "Apply for a woodland management plan (WMP)"
-
 ## 0.7.1
 
 ### Patch Changes
