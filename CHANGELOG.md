@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.0.1
+
+### Patch Changes
+
+- b696b4b: Changed "Woodland Management Plan" to "Apply for a woodland management plan (WMP)"
+
 ## 1.0.0
 
 ### Major Changes
