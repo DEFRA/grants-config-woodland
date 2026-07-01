@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.2.0
+
+### Minor Changes
+
+- d8cf08f: Adding description and urls for grant config
+
 ## 1.1.0
 
 ### Minor Changes
