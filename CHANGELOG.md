@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.0.0
+
+### Major Changes
+
+- e22d5bc: Migrate to config broker
+
 ## 0.7.1
 
 ### Patch Changes
