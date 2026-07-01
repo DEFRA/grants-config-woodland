@@ -1,5 +1,5 @@
 engine: V2
-name: Woodland Management Plan
+name: Apply for a woodland management plan (WMP)
 metadata:
   id: 95e92559-968d-44ae-8666-2b1ad3dffd38
   description: Create or improve a woodland management plan for your woodland.
@@ -25,11 +25,11 @@ metadata:
         toGrantsStatus: REOPENED
         toPath: /tasks
 
-      # Offer sent, withdrawn, accepted -> agreements service
+      # Agreement in progress/completed GAS statuses -> agreements service
       - fromGrantsStatus: 'SUBMITTED'
-        gasStatus: 'OFFER_SENT,OFFER_WITHDRAWN,OFFER_ACCEPTED'
+        gasStatus: 'STATUS_AGREEMENT_OFFERED,STATUS_APPLICATION_COMPLETED'
         toGrantsStatus: 'SUBMITTED'
-        toPath: /agreements
+        toPath: /agreement
 
       # Reopened
       - fromGrantsStatus: REOPENED
@@ -48,6 +48,20 @@ metadata:
         gasStatus: default
         toGrantsStatus: SUBMITTED
         toPath: /confirmation
+    excludedPaths: ['print-submitted-application']
+  permissions:
+    enforce: true
+    resource: csApplications
+    pageAccess:
+      default: amend
+      rules:
+        - paths:
+            - declaration
+          permission: submit
+        - paths:
+            - print-submitted-application
+            - confirmation
+          permission: view
   supportEmail: ruralpayments@defra.gov.uk
   detailsPage:
     confirmationFieldName: businessDetailsUpToDate
@@ -170,13 +184,20 @@ metadata:
     completeInOrder: true
     returnAfterSection: true
     showCompletionStatus: false
+    showQuestions: false
     statuses:
       cannotStart:
         text: 'Cannot start yet'
         classes: 'govuk-tag--grey'
       notStarted:
         text: 'Not started'
+        classes: 'govuk-tag--yellow'
+      inProgress:
+        text: 'In progress'
         classes: 'govuk-tag--blue'
+      cannotContinue:
+        text: 'On hold'
+        classes: 'govuk-tag--purple'
       completed:
         text: 'Completed'
         classes: 'govuk-tag--green'
@@ -228,21 +249,10 @@ pages:
     id: a24cb35f-a359-4934-b8c8-56ff92cb3df1
 
   # Task list page
-  - title: Woodland Management Plan
+  - title: Apply for a woodland management plan (WMP)
     id: fd1c8e7c-9b0a-4c3b-9c5a-2f8e5a9f8b6d
     path: /tasks
     controller: TaskListPageController
-    components:
-      - name: taskListGuidance
-        id: 184a3b28-53a2-4154-a544-f7d641106dc0
-        type: Details
-        title: Help with your application
-        content: |
-          <p class="govuk-body">This task list helps you track your progress through the application. Each section contains one or more tasks that must be completed.</p>
-          <p class="govuk-body">Tasks will show as 'Completed' as they are populated. You must complete all sections before you can submit your application.</p>
-          <p class="govuk-body">If you need to change any information you have already provided, you can go back to any completed section and update your answers. The status will update automatically as you progress through the application.</p>
-        options:
-          position: above
 
   # ==========================================
   # Section 1: Check your eligibility
@@ -659,6 +669,14 @@ pages:
     view: woodland-declaration-page.html
     section: 52a9d09a-a977-4993-aa40-8eb77a4cd200
     controller: DeclarationPageController
+  - title: Confirmation
+    path: /confirmation
+    controller: ConfirmationPageController
+    id: 9817cd3a-c9ae-49f1-8a95-076a82504d45
+  - title: PrintSubmittedApplication
+    path: /print-submitted-application
+    controller: PrintSubmittedApplicationController
+    id: 9817cd3a-c9ae-49f1-8a95-076a82504d41
 
 lists:
   - title: Forestry commission team list

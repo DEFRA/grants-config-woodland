@@ -1,12 +1,24 @@
 name: Publish Hot Fix
 
+run-name: >-
+  Publish Hot Fix - ${{ github.ref_name }}${{
+    inputs.description && format(' - {0}', inputs.description) || ''
+  }}
+
 on:
   workflow_dispatch:
+    inputs:
+      description:
+        description: 'description'
+        required: true
+        type: string
 
 permissions:
   id-token: write
   contents: write
   pull-requests: write
+  checks: write
+  actions: write
 
 env:
   AWS_REGION: eu-west-2
@@ -17,28 +29,181 @@ jobs:
     name: CDP-build-hotfix-workflow
     runs-on: ubuntu-latest
     steps:
-      - name: Check out code
-        uses: actions/checkout@v6
-        with:
-          fetch-depth: 0 # Depth 0 is required for branch-based versioning
+      - name: Validate hotfix branch for manual dispatch
+        shell: bash
+        run: |
+          branch="${{ github.ref_name }}"
 
-      - uses: actions/setup-node@v6
+          if [[ "$branch" != hotfix-releases/* ]]; then
+            echo "❌ This workflow can only be run manually against hotfix-releases/* branches."
+            exit 1
+          fi
+
+          echo "✅ Valid hotfix branch"
+
+      - name: Check out code
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 #7.0.0
+        with:
+          fetch-depth: 0
+
+      - name: Test code and Create Test Coverage Reports
+        uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e #6.4.0
         with:
           node-version-file: .nvmrc
           cache: npm
+      - run: |
+          npm ci
+          npm test
 
-      # Ensure tests pass. Add more checks if required
-      - run: npm ci
-      - run: npm test
+      - name: Ensure changeset exists
+        if: ${{ !startsWith(inputs.description, 'Create new hotfix config version') }}
+        shell: bash
+        run: |
+          if ! find .changeset -maxdepth 1 -type f -name "*-*-*.md" | grep -q .; then
+            echo "❌ Hotfix releases must include at least one changeset file."
+            exit 1
+          fi
+
+          echo "✅ Changeset exists"
+
+      - name: Read hotfix version from package.json
+        if: ${{ startsWith(inputs.description, 'Create new hotfix config version') }}
+        run: |
+          echo "HOTFIX_VERSION=$(jq -r '.version' package.json)" >> "$GITHUB_ENV"
+
+          echo "✅ Hotfix version read"
+
+      - name: Check if version already exists
+        if: ${{ startsWith(inputs.description, 'Create new hotfix config version') }}
+        run: |
+          git fetch --tags
+
+          if git rev-parse "refs/tags/${HOTFIX_VERSION}" >/dev/null 2>&1; then
+            echo "❌ Version ${HOTFIX_VERSION} already exists as a git tag"
+            exit 1
+          fi
+
+          echo "✅ Version ${HOTFIX_VERSION} is available"
 
       - name: Publish Hot Fix
+        if: ${{ startsWith(inputs.description, 'Create new hotfix config version') }}
         uses: DEFRA/cdp-build-action/build-hotfix@main
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
-#     - run: npm install && npm test
-#     - name: SonarCloud Scan
-#       uses: SonarSource/sonarqube-scan-action@v5.3.1 #  (or check latest version on https://github.com/marketplace/actions/official-sonarqube-scan)
-#       env:
-#         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      - name: Set user
+        run: git config user.name github-actions[bot] && git config user.email github-actions[bot]@users.noreply.github.com
+
+      - name: Validate changesets are patch releases only
+        shell: bash
+        run: |
+          # default to patch version
+          version="patch"
+
+          # read all changeset files
+          for file in .changeset/*-*-*.md; do
+
+            # skip if not file
+            [ -f "$file" ] || continue
+
+            # extract only the version block
+            versionblock=$(awk '
+              BEGIN { inside=0 }
+              /^---$/ {
+                if (inside == 0) {
+                  inside=1
+                  next
+                } else {
+                  exit
+                }
+              }
+              inside == 1 { print }
+            ' "$file")
+
+            if echo "$versionblock" | grep -Eq ':\s*major'; then
+              echo "❌ Hotfix releases must use patch version changes only. Major version changes are not allowed."
+              echo "ℹ️ All major and minor changeset files must be removed before a hotfix release can be created."
+              echo "Found in: $file"
+              exit 1
+            fi
+
+            if echo "$versionblock" | grep -Eq ':\s*minor'; then
+              echo "❌ Hotfix releases must use patch version changes only. Minor version changes are not allowed."
+              echo "ℹ️ All major and minor changeset files must be removed before a hotfix release can be created."
+              echo "Found in: $file"
+              exit 1
+            fi
+          done
+
+          echo "RELEASE_MSG=Create new hotfix config version #patch" >> "$GITHUB_ENV"
+
+          echo "✅ Changeset is patch only"
+
+      - name: Create Release PR or GitHub Release
+        id: changesets
+        uses: changesets/action@a45c4d594aa4e2c509dc14a9f2b3b67ba3780d0d #1.9.0
+        with:
+          commitMode: 'github-api'
+          publish: npm run github:release
+          commit: ${{ env.RELEASE_MSG }}
+          title: ${{ env.RELEASE_MSG }}
+
+      - name: Trigger required checks on release PR, then merge to hotfix branch, deploy to CDP and delete release branch
+        if: ${{ !startsWith(inputs.description, 'Create new hotfix config version') }}
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 #9.0.0
+        with:
+          script: |
+            const prNumber = Number("${{ steps.changesets.outputs.pullRequestNumber }}");
+            const { data: releasePR } = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: prNumber,
+            });
+
+            if (!releasePR) return;
+
+            await github.rest.checks.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              name: 'validate-changeset-check',
+              head_sha: releasePR.head.sha,
+              status: 'completed',
+              conclusion: 'success',
+              output: {
+                title: 'Required check triggered',
+                summary: `Check created for PR #${releasePR.number}`
+              }
+            })
+
+            await github.rest.pulls.merge({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: releasePR.number,
+              merge_method: "squash"
+            });
+
+            await github.rest.actions.createWorkflowDispatch({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id: 'publish-hotfix.yml',
+              ref: context.ref.replace('refs/heads/', ''),
+              headers: {
+                'X-GitHub-Api-Version': '2022-11-28'
+              },
+              inputs: {
+                description: process.env.RELEASE_MSG
+              }
+            });
+
+            await github.rest.git.deleteRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: `heads/${releasePR.head.ref}`
+            });
+
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarqube-scan-action@713881670b6b3676cda39549040e2d88c70d582e #8.2.0
+        continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

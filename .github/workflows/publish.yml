@@ -6,6 +6,8 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'configurations/**'
   workflow_dispatch:
     inputs:
       run_name:
@@ -35,10 +37,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
-        uses: actions/checkout@v6
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 #7.0.0
+        with:
+          fetch-depth: 0
 
       - name: Test code and Create Test Coverage Reports
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e #6.4.0
         with:
           node-version-file: .nvmrc
           cache: npm
@@ -46,18 +50,35 @@ jobs:
           npm ci
           npm test
 
-      - name: Build and Publish
-        uses: DEFRA/cdp-build-action/build@main
+      - name: Read version from package.json
         if: ${{ startsWith(github.event_name == 'push' && github.event.head_commit.message || inputs.commit_message, 'Create new config version') }}
+        run: |
+          echo "CONFIG_VERSION=$(jq -r '.version' package.json)" >> "$GITHUB_ENV"
+
+          echo "✅ Config version read"
+
+      - name: Check if version already exists
+        if: ${{ startsWith(github.event_name == 'push' && github.event.head_commit.message || inputs.commit_message, 'Create new config version') }}
+        run: |
+          git fetch --tags
+
+          if git rev-parse "refs/tags/${CONFIG_VERSION}" >/dev/null 2>&1; then
+            echo "❌ Version ${CONFIG_VERSION} already exists as a git tag"
+            exit 1
+          fi
+
+          echo "✅ Version ${CONFIG_VERSION} is available"
+
+      - name: Build and Publish
+        if: ${{ startsWith(github.event_name == 'push' && github.event.head_commit.message || inputs.commit_message, 'Create new config version') }}
+        uses: DEFRA/cdp-build-action/build@main
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set user
-        if: ${{ !startsWith(github.event_name == 'push' && github.event.head_commit.message || inputs.commit_message, 'Create new config version') }}
         run: git config user.name github-actions[bot] && git config user.email github-actions[bot]@users.noreply.github.com
 
       - name: Create release message
-        if: ${{ !startsWith(github.event_name == 'push' && github.event.head_commit.message || inputs.commit_message, 'Create new config version') }}
         shell: bash
         run: |
           # default to patch version
@@ -98,10 +119,9 @@ jobs:
           # store as environment variable for later use
           echo "RELEASE_MSG=Create new config version #$version" >> $GITHUB_ENV
 
-      - name: Create release PR
+      - name: Create Release PR or GitHub Release
         id: changesets
-        if: ${{ !startsWith(github.event_name == 'push' && github.event.head_commit.message || inputs.commit_message, 'Create new config version') }}
-        uses: changesets/action@v1
+        uses: changesets/action@a45c4d594aa4e2c509dc14a9f2b3b67ba3780d0d #1.9.0
         with:
           commitMode: 'github-api'
           publish: npm run github:release
@@ -110,7 +130,7 @@ jobs:
 
       - name: Trigger required checks on release PR, then merge to main, deploy to CDP and delete release branch
         if: ${{ !startsWith(github.event_name == 'push' && github.event.head_commit.message || inputs.commit_message, 'Create new config version') }}
-        uses: actions/github-script@v7
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 #9.0.0
         with:
           script: |
             const prNumber = Number("${{ steps.changesets.outputs.pullRequestNumber }}");
@@ -161,3 +181,10 @@ jobs:
               repo: context.repo.repo,
               ref: `heads/${releasePR.head.ref}`
             });
+
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarqube-scan-action@713881670b6b3676cda39549040e2d88c70d582e #8.2.0
+        continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

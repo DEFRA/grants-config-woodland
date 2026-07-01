@@ -1,5 +1,47 @@
 # grants-config-woodland
 
+## 1.1.0
+
+### Minor Changes
+
+- d690dae: Updating latest sbi/crns from cdp-app-config
+
+## 1.0.1
+
+### Patch Changes
+
+- b696b4b: Changed "Woodland Management Plan" to "Apply for a woodland management plan (WMP)"
+
+## 1.0.0
+
+### Major Changes
+
+- e22d5bc: Migrate to config broker
+
+## 0.7.1
+
+### Patch Changes
+
+- b5bed17: Add exclusion path for print submitted application page
+
+## 0.7.0
+
+### Minor Changes
+
+- c62ac1a: Add print submitted application controller
+
+## 0.6.0
+
+### Minor Changes
+
+- df5e424: Add confirmation page
+
+## 0.5.1
+
+### Patch Changes
+
+- ec0d128: Remove details component from task list page
+
 ## 0.5.0
 
 ### Minor Changes
