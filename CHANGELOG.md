@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.1.0
+
+### Minor Changes
+
+- d690dae: Updating latest sbi/crns from cdp-app-config
+
 ## 1.0.1
 
 ### Patch Changes
