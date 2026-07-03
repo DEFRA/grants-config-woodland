@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.3.0
+
+### Minor Changes
+
+- 23bbb26: Adding new sbi/crn entries to woodland allowlist config file
+
 ## 1.2.0
 
 ### Minor Changes
