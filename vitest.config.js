@@ -6,6 +6,9 @@ export default defineConfig({
     environment: 'node',
     clearMocks: true,
     fileParallelism: false,
+    // The GAS integration suite boots Docker and runs via its own config
+    // (npm run test:gas); keep it out of the default unit-test run.
+    exclude: [...configDefaults.exclude, 'test/gas/**'],
     coverage: {
       provider: 'v8',
       reportsDirectory: './coverage',

@@ -1,0 +1,44 @@
+{
+  "businessDetailsUpToDate": true,
+  "landRegisteredWithRpa": true,
+  "guidanceRead": true,
+  "applicationConfirmation": true,
+  "landManagementControl": true,
+  "publicBodyTenant": false,
+  "landHasGrazingRights": false,
+  "appLandHasExistingWmp": false,
+  "intendToApplyHigherTier": false,
+  "includedAllEligibleWoodland": true,
+  "woodlandName": "Boundary Copse",
+  "totalHectaresForSelectedParcels": 0.5,
+  "hectaresTenOrOverYearsOld": 0.4,
+  "hectaresUnderTenYearsOld": 0,
+  "centreGridReference": "SE123456",
+  "fcTeamCode": "YORKSHIRE_AND_NORTH_EAST",
+  "detailsConfirmedAt": "2025-01-01T00:00:00.000Z",
+  "applicant": {
+    "business": {
+      "sbi": "000000001"
+    },
+    "customer": {}
+  },
+  "landParcels": [
+    { "parcelId": "SE1234-0001", "areaHa": 0.01 }
+  ],
+  "totalAgreementPaymentPence": 1,
+  "payments": {
+    "agreement": [
+      {
+        "code": "WD1",
+        "description": "Minimum boundary payment",
+        "activePaymentTier": 0,
+        "quantityInActiveTier": 0,
+        "activeTierRatePence": 0,
+        "activeTierFlatRatePence": 0,
+        "quantity": 0,
+        "agreementTotalPence": 0,
+        "unit": "ha"
+      }
+    ]
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "businessDetailsUpToDate": true,
+  "landRegisteredWithRpa": true,
+  "guidanceRead": true,
+  "applicationConfirmation": true,
+  "landManagementControl": true,
+  "publicBodyTenant": true,
+  "landHasGrazingRights": true,
+  "appLandHasExistingWmp": true,
+  "intendToApplyHigherTier": true,
+  "includedAllEligibleWoodland": false,
+  "woodlandName": "Council Estate Copse",
+  "totalHectaresForSelectedParcels": 7.3,
+  "hectaresTenOrOverYearsOld": 5.1,
+  "hectaresUnderTenYearsOld": 2.2,
+  "centreGridReference": "TQ334791",
+  "fcTeamCode": "SOUTH_EAST_AND_LONDON",
+  "detailsConfirmedAt": "2025-09-30T23:59:59.999Z",
+  "applicant": {
+    "business": {
+      "sbi": "555000111",
+      "name": "London Borough of Greenwood",
+      "address": {
+        "line1": "Municipal Offices",
+        "line2": "High Street",
+        "town": "Bromley",
+        "county": "Greater London",
+        "postcode": "BR1 1AA"
+      }
+    },
+    "customer": {
+      "id": "cust-pub-0042",
+      "firstName": "David",
+      "lastName": "Chaudhry",
+      "email": "d.chaudhry@greenwood.gov.uk",
+      "phone": "020 8123 4567"
+    }
+  },
+  "landParcels": [
+    { "parcelId": "TQ3347-0001", "areaHa": 4.1 },
+    { "parcelId": "TQ3347-0002", "areaHa": 3.2 }
+  ],
+  "totalAgreementPaymentPence": 583500,
+  "payments": {
+    "agreement": [
+      {
+        "code": "WD3",
+        "description": "Higher tier woodland management",
+        "activePaymentTier": 2,
+        "quantityInActiveTier": 7.3,
+        "activeTierRatePence": 8000,
+        "activeTierFlatRatePence": 5000,
+        "quantity": 7.3,
+        "agreementTotalPence": 583500,
+        "unit": "ha"
+      }
+    ]
+  }
+}

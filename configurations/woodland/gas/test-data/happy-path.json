@@ -1,0 +1,60 @@
+{
+  "businessDetailsUpToDate": true,
+  "landRegisteredWithRpa": true,
+  "guidanceRead": true,
+  "applicationConfirmation": true,
+  "landManagementControl": true,
+  "publicBodyTenant": false,
+  "landHasGrazingRights": false,
+  "appLandHasExistingWmp": false,
+  "intendToApplyHigherTier": false,
+  "includedAllEligibleWoodland": true,
+  "woodlandName": "Oakenhead Wood",
+  "totalHectaresForSelectedParcels": 12.5,
+  "hectaresTenOrOverYearsOld": 8.2,
+  "hectaresUnderTenYearsOld": 4.3,
+  "centreGridReference": "ST556432",
+  "fcTeamCode": "SOUTH_WEST",
+  "detailsConfirmedAt": "2025-03-15T10:30:00.000Z",
+  "applicant": {
+    "business": {
+      "sbi": "123456789",
+      "name": "Greenacre Farming Ltd",
+      "address": {
+        "line1": "Manor Farm",
+        "line2": "Long Lane",
+        "town": "Trowbridge",
+        "county": "Wiltshire",
+        "postcode": "BA14 0AA"
+      }
+    },
+    "customer": {
+      "id": "cust-7e4f2a1b",
+      "firstName": "Margaret",
+      "lastName": "Thornton",
+      "email": "m.thornton@greenacrefarming.co.uk",
+      "phone": "01380 123456"
+    }
+  },
+  "landParcels": [
+    { "parcelId": "ST5564-0001", "areaHa": 5.2 },
+    { "parcelId": "ST5564-0002", "areaHa": 4.8 },
+    { "parcelId": "ST5564-0003", "areaHa": 2.5 }
+  ],
+  "totalAgreementPaymentPence": 875000,
+  "payments": {
+    "agreement": [
+      {
+        "code": "WD2",
+        "description": "Woodland management plan preparation and implementation",
+        "activePaymentTier": 1,
+        "quantityInActiveTier": 12.5,
+        "activeTierRatePence": 7000,
+        "activeTierFlatRatePence": 0,
+        "quantity": 12.5,
+        "agreementTotalPence": 875000,
+        "unit": "ha"
+      }
+    ]
+  }
+}

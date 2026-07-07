@@ -1,0 +1,21 @@
+{
+  "businessDetailsUpToDate": true,
+  "landRegisteredWithRpa": true,
+  "guidanceRead": true,
+  "applicationConfirmation": true,
+  "landManagementControl": true,
+  "publicBodyTenant": false,
+  "landHasGrazingRights": false,
+  "appLandHasExistingWmp": false,
+  "intendToApplyHigherTier": false,
+  "includedAllEligibleWoodland": true,
+  "woodlandName": "Spinney Wood",
+  "totalHectaresForSelectedParcels": 2.1,
+  "hectaresTenOrOverYearsOld": 1.8,
+  "hectaresUnderTenYearsOld": 0.3,
+  "centreGridReference": "TL234567",
+  "fcTeamCode": "EAST_AND_EAST_MIDLANDS",
+  "landParcels": [
+    { "parcelId": "TL2345-0001", "areaHa": 2.1 }
+  ]
+}

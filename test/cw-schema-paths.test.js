@@ -16,7 +16,8 @@ function extractAnswerPaths(obj, found = new Set()) {
     return found
   }
   if (Array.isArray(obj)) obj.forEach((v) => extractAnswerPaths(v, found))
-  else if (obj && typeof obj === 'object') Object.values(obj).forEach((v) => extractAnswerPaths(v, found))
+  else if (obj && typeof obj === 'object')
+    {Object.values(obj).forEach((v) => extractAnswerPaths(v, found))}
   return found
 }
 
@@ -35,7 +36,9 @@ function resolveSchemaPath(schemaNode, dotPath) {
   return node
 }
 
-const schema = loadJson('configurations/woodland/schemas/woodland-application.schema.json')
+const schema = loadJson(
+  'configurations/woodland/gas/woodland-application.schema.json'
+)
 
 describe('cw.json answer path references', () => {
   const cw = loadJson('configurations/woodland/cw/cw.json')
@@ -45,7 +48,13 @@ describe('cw.json answer path references', () => {
     expect(paths.length).toBeGreaterThan(0)
   })
 
-  test.each(paths)('$.payload.answers.%s exists in application schema', (path) => {
-    expect(resolveSchemaPath(schema, path), `"${path}" not found in woodland-application.schema.json`).toBeDefined()
-  })
+  test.each(paths)(
+    '$.payload.answers.%s exists in application schema',
+    (path) => {
+      expect(
+        resolveSchemaPath(schema, path),
+        `"${path}" not found in woodland-application.schema.json`
+      ).toBeDefined()
+    }
+  )
 })

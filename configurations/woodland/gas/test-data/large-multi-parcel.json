@@ -1,0 +1,83 @@
+{
+  "businessDetailsUpToDate": true,
+  "landRegisteredWithRpa": true,
+  "guidanceRead": true,
+  "applicationConfirmation": true,
+  "landManagementControl": true,
+  "publicBodyTenant": false,
+  "landHasGrazingRights": true,
+  "appLandHasExistingWmp": false,
+  "intendToApplyHigherTier": false,
+  "includedAllEligibleWoodland": true,
+  "woodlandName": "Northmoor Estate Woodlands",
+  "totalHectaresForSelectedParcels": 160.0,
+  "hectaresTenOrOverYearsOld": 120.0,
+  "hectaresUnderTenYearsOld": 40.0,
+  "centreGridReference": "SJ456789",
+  "fcTeamCode": "NORTH_WEST_AND_WEST_MIDLANDS",
+  "detailsConfirmedAt": "2025-06-01T09:00:00.000Z",
+  "applicant": {
+    "business": {
+      "sbi": "987654321",
+      "name": "Northmoor Estate Management Co.",
+      "address": {
+        "line1": "The Estate Office",
+        "line2": "Northmoor Park",
+        "town": "Macclesfield",
+        "county": "Cheshire",
+        "postcode": "SK11 9AA"
+      }
+    },
+    "customer": {
+      "id": "cust-a1b2c3d4",
+      "firstName": "Charles",
+      "lastName": "Northmoor",
+      "email": "c.northmoor@northmoorestate.co.uk"
+    }
+  },
+  "landParcels": [
+    { "parcelId": "SJ4567-0001", "areaHa": 8.5 },
+    { "parcelId": "SJ4567-0002", "areaHa": 12.3 },
+    { "parcelId": "SJ4567-0003", "areaHa": 6.7 },
+    { "parcelId": "SJ4567-0004", "areaHa": 15.2 },
+    { "parcelId": "SJ4567-0005", "areaHa": 9.1 },
+    { "parcelId": "SJ4567-0006", "areaHa": 11.8 },
+    { "parcelId": "SJ4567-0007", "areaHa": 7.4 },
+    { "parcelId": "SJ4567-0008", "areaHa": 14.6 },
+    { "parcelId": "SJ4567-0009", "areaHa": 5.9 },
+    { "parcelId": "SJ4567-0010", "areaHa": 13.2 },
+    { "parcelId": "SJ4567-0011", "areaHa": 8.8 },
+    { "parcelId": "SJ4567-0012", "areaHa": 10.5 },
+    { "parcelId": "SJ4567-0013", "areaHa": 6.3 },
+    { "parcelId": "SJ4567-0014", "areaHa": 9.7 },
+    { "parcelId": "SJ4567-0015", "areaHa": 12.1 },
+    { "parcelId": "SJ4567-0016", "areaHa": 7.9 }
+  ],
+  "totalAgreementPaymentPence": 11560000,
+  "payments": {
+    "agreement": [
+      {
+        "code": "WD2",
+        "description": "Woodland management plan preparation and implementation",
+        "activePaymentTier": 1,
+        "quantityInActiveTier": 160.0,
+        "activeTierRatePence": 7000,
+        "activeTierFlatRatePence": 0,
+        "quantity": 160.0,
+        "agreementTotalPence": 11200000,
+        "unit": "ha"
+      },
+      {
+        "code": "WC3",
+        "description": "Restoration of open ground habitat within woodland",
+        "activePaymentTier": 1,
+        "quantityInActiveTier": 10,
+        "activeTierRatePence": 36000,
+        "activeTierFlatRatePence": 0,
+        "quantity": 10,
+        "agreementTotalPence": 360000,
+        "unit": "%"
+      }
+    ]
+  }
+}

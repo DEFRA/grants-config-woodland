@@ -16,7 +16,7 @@
       "description": "Pre-award phase",
       "questions": {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
-        "$ref": "../schemas/woodland-application.schema.json",
+        "$ref": "./woodland-application.schema.json",
         "if": {
           "properties": {
             "appLandHasExistingWmp": {
