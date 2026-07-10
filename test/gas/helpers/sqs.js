@@ -6,6 +6,7 @@ import {
 } from '@aws-sdk/client-sqs'
 import { setTimeout as delay } from 'node:timers/promises'
 import { env } from 'node:process'
+import { info } from './progress.js'
 
 // Mirrors fg-gas-backend/test/helpers/sqs.js — the LocalStack SQS client and
 // the queue-readiness / receive / purge helpers used by the integration tests.
@@ -29,7 +30,8 @@ export const ensureQueues = async (queueUrls, attempt = 1) => {
   const data = await sqs.send(new ListQueuesCommand({ MaxResults: 1000 }))
   const found = getQueueNames(data.QueueUrls || [])
 
-  if (queues.every((name) => found.includes(name))) {
+  const missing = queues.filter((name) => !found.includes(name))
+  if (missing.length === 0) {
     return
   }
 
@@ -37,6 +39,9 @@ export const ensureQueues = async (queueUrls, attempt = 1) => {
     throw new Error(`SQS queues not available after ${maxRetries} attempts`)
   }
 
+  info(
+    `SQS not ready (attempt ${attempt}/${maxRetries}); still waiting for: ${missing.join(', ')}`
+  )
   await delay(retryDelay)
   return ensureQueues(queueUrls, attempt + 1)
 }

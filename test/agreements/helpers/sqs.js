@@ -8,6 +8,7 @@ import {
 import { randomUUID } from 'node:crypto'
 import { setTimeout as delay } from 'node:timers/promises'
 import { env } from 'node:process'
+import { info } from './progress.js'
 
 // floci is LocalStack-compatible on :4566.
 const sqs = new SQSClient({
@@ -27,7 +28,8 @@ export const ensureQueues = async (queueUrls, attempt = 1) => {
   const data = await sqs.send(new ListQueuesCommand({ MaxResults: 1000 }))
   const found = getQueueNames(data.QueueUrls || [])
 
-  if (queues.every((name) => found.includes(name))) {
+  const missing = queues.filter((name) => !found.includes(name))
+  if (missing.length === 0) {
     return
   }
 
@@ -35,6 +37,9 @@ export const ensureQueues = async (queueUrls, attempt = 1) => {
     throw new Error(`SQS queues not available after ${maxRetries} attempts`)
   }
 
+  info(
+    `SQS not ready (attempt ${attempt}/${maxRetries}); still waiting for: ${missing.join(', ')}`
+  )
   await delay(retryDelay)
   return ensureQueues(queueUrls, attempt + 1)
 }

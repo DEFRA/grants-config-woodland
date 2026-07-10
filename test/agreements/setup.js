@@ -4,6 +4,7 @@ import * as path from 'node:path'
 import { styleText } from 'node:util'
 import { DockerComposeEnvironment, Wait } from 'testcontainers'
 import { ensureQueues } from './helpers/sqs.js'
+import { step, info, ok } from './helpers/progress.js'
 
 // Boots farming-grants-agreements-api with floci (SQS/SNS/S3) + replica-set
 // MongoDB from a local checkout. No published image exists, so the app is built
@@ -21,6 +22,11 @@ export const setup = async ({ globalConfig }) => {
   const { env } = globalConfig
   const repoPath = process.env.AGREEMENTS_REPO_PATH || defaultRepo
 
+  step(
+    'Booting agreements stack (agreements-api + MongoDB + floci) — this can take a while on first build…'
+  )
+  info(`Agreements repo: ${repoPath}`)
+
   environment = await new DockerComposeEnvironment(repoPath, 'compose.yml')
     .withProfiles('full') // the app service is gated behind this profile
     .withBuild()
@@ -36,11 +42,15 @@ export const setup = async ({ globalConfig }) => {
     // automatically as depends_on of the app.
     .up(['floci', 'mongodb', SERVICE])
 
+  ok('floci, MongoDB and agreements-api are up and healthy (/health on :3555)')
+
   // Queues the harness sends to / reads from must exist before tests run.
+  step('Waiting for floci SQS queues to be provisioned…')
   await ensureQueues([
     env.CREATE_AGREEMENT_QUEUE_URL,
     env.AGREEMENT_STATUS_QUEUE_URL
   ])
+  ok('All SQS queues ready')
 
   // Stream app logs to a file so rejected-case tests can assert the WMP
   // validation error (event ingestion is async — there's no HTTP response).
@@ -54,8 +64,12 @@ export const setup = async ({ globalConfig }) => {
       process.stdout.write(styleText('gray', line))
     }
   })
+  info(`Streaming agreements-api logs to ${env.APP_LOG_FILE}`)
+  step('Starting test run')
 }
 
 export const teardown = async () => {
+  step('Tearing down agreements stack…')
   await environment?.down()
+  ok('Agreements stack stopped')
 }

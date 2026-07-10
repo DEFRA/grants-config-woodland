@@ -12,7 +12,7 @@ expect.extend({
           messages = messages.concat(await receiveMessages(queueUrl))
           return messages.some((msg) => this.equals(msg, expectedMessage))
         },
-        { timeout: 15000, interval: 250 }
+        { timeout: 3000, interval: 250 }
       )
       .then(() => true)
       .catch(() => false)
