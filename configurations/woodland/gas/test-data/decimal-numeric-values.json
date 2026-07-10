@@ -1,0 +1,60 @@
+{
+  "businessDetailsUpToDate": true,
+  "landRegisteredWithRpa": true,
+  "guidanceRead": true,
+  "applicationConfirmation": true,
+  "landManagementControl": true,
+  "publicBodyTenant": false,
+  "landHasGrazingRights": true,
+  "appLandHasExistingWmp": false,
+  "intendToApplyHigherTier": true,
+  "includedAllEligibleWoodland": true,
+  "woodlandName": "Fernbrook Copse",
+  "totalHectaresForSelectedParcels": 18.375,
+  "hectaresTenOrOverYearsOld": 11.625,
+  "hectaresUnderTenYearsOld": 6.75,
+  "centreGridReference": "SO789213",
+  "fcTeamCode": "NORTH_WEST_AND_WEST_MIDLANDS",
+  "detailsConfirmedAt": "2025-05-22T14:07:33.500Z",
+  "applicant": {
+    "business": {
+      "sbi": "987654321",
+      "name": "Willowdale Estates Ltd",
+      "address": {
+        "line1": "Willowdale House",
+        "line2": "Brook Lane",
+        "town": "Ludlow",
+        "county": "Shropshire",
+        "postcode": "SY8 1AB"
+      }
+    },
+    "customer": {
+      "id": "cust-3c9d5f8a",
+      "firstName": "Edward",
+      "lastName": "Fernley",
+      "email": "e.fernley@willowdaleestates.co.uk",
+      "phone": "01584 654321"
+    }
+  },
+  "landParcels": [
+    { "parcelId": "SO7892-0001", "areaHa": 7.125 },
+    { "parcelId": "SO7892-0002", "areaHa": 6.55 },
+    { "parcelId": "SO7892-0003", "areaHa": 4.7 }
+  ],
+  "totalAgreementPaymentPence": 1286437.5,
+  "payments": {
+    "agreement": [
+      {
+        "code": "WD2",
+        "description": "Woodland management plan preparation and implementation",
+        "activePaymentTier": 1.5,
+        "quantityInActiveTier": 18.375,
+        "activeTierRatePence": 7002.25,
+        "activeTierFlatRatePence": 0.5,
+        "quantity": 18.375,
+        "agreementTotalPence": 1286437.5,
+        "unit": "ha"
+      }
+    ]
+  }
+}

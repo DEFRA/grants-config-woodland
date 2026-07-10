@@ -10,5 +10,6 @@
     "errorContains": "must have required property 'existingWmps'"
   },
   "large-multi-parcel.json": { "accepted": true },
-  "optional-fields-omitted.json": { "accepted": true }
+  "optional-fields-omitted.json": { "accepted": true },
+  "decimal-numeric-values.json": { "accepted": true }
 }

@@ -19,5 +19,9 @@
   "optional-fields-omitted.json": {
     "accepted": true,
     "errorContains": "answers.payments\" is required"
+  },
+  "decimal-numeric-values.json": {
+    "accepted": true,
+    "errorContains": "answers.applicant.customer.name\" is required"
   }
 }
