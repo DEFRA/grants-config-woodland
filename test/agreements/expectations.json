@@ -1,0 +1,23 @@
+{
+  "_comment": "Per-fixture expectations for the agreements (WMP) harness. Key = filename in configurations/woodland/gas/test-data/. accepted:false => the WMP handler rejects the event (no agreement created, no status event); errorContains asserts the specific rejection reason appears in the app log. accepted:true => a 'versions' doc (status 'offered', agreementNumber starting 'WMP-') is created AND an agreement_status_updated event is emitted. NOTE: with strict-verbatim wrapping, all current woodland fixtures are rejected because the agreements WMP schema requires applicant.customer.name.{first,last} (the test-data uses customer.firstName/lastName); boundary-minimum-values also lacks business.name, and optional-fields-omitted lacks applicant/payments/totalAgreementPaymentPence. See README.",
+  "happy-path.json": {
+    "accepted": true,
+    "errorContains": "answers.applicant.customer.name\" is required"
+  },
+  "boundary-minimum-values.json": {
+    "accepted": true,
+    "errorContains": "answers.applicant.business.name\" is required"
+  },
+  "complex-eligibility-flags.json": {
+    "accepted": true,
+    "errorContains": "answers.applicant.customer.name\" is required"
+  },
+  "large-multi-parcel.json": {
+    "accepted": true,
+    "errorContains": "answers.applicant.customer.name\" is required"
+  },
+  "optional-fields-omitted.json": {
+    "accepted": true,
+    "errorContains": "answers.payments\" is required"
+  }
+}
