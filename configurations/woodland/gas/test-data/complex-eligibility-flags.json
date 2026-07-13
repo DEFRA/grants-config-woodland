@@ -30,8 +30,11 @@
     },
     "customer": {
       "id": "cust-pub-0042",
-      "firstName": "David",
-      "lastName": "Chaudhry",
+      "name": {
+        "title": "Mr",
+        "first": "David",
+        "last": "Chaudhry"
+      },
       "email": "d.chaudhry@greenwood.gov.uk",
       "phone": "020 8123 4567"
     }

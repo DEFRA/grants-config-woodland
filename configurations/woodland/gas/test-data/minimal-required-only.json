@@ -1,0 +1,46 @@
+{
+  "businessDetailsUpToDate": true,
+  "landRegisteredWithRpa": true,
+  "guidanceRead": true,
+  "applicationConfirmation": true,
+  "landManagementControl": true,
+  "publicBodyTenant": false,
+  "landHasGrazingRights": false,
+  "appLandHasExistingWmp": false,
+  "intendToApplyHigherTier": false,
+  "includedAllEligibleWoodland": true,
+  "woodlandName": "Minimal Wood",
+  "totalHectaresForSelectedParcels": 1.0,
+  "hectaresTenOrOverYearsOld": 0.4,
+  "hectaresUnderTenYearsOld": 0.4,
+  "centreGridReference": "ST556432",
+  "fcTeamCode": "SOUTH_WEST",
+  "applicant": {
+    "business": {
+      "name": "Minimal Farm Ltd"
+    },
+    "customer": {
+      "name": {
+        "first": "Min",
+        "last": "Imal"
+      }
+    }
+  },
+  "landParcels": [{ "parcelId": "ST5564-0001", "areaHa": 1.0 }],
+  "totalAgreementPaymentPence": 70000,
+  "payments": {
+    "agreement": [
+      {
+        "code": "WD2",
+        "description": "Woodland management plan preparation and implementation",
+        "activePaymentTier": 1,
+        "quantityInActiveTier": 1,
+        "activeTierRatePence": 70000,
+        "activeTierFlatRatePence": 0,
+        "quantity": 1,
+        "agreementTotalPence": 70000,
+        "unit": "ha"
+      }
+    ]
+  }
+}

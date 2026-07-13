@@ -30,8 +30,11 @@
     },
     "customer": {
       "id": "cust-3c9d5f8a",
-      "firstName": "Edward",
-      "lastName": "Fernley",
+      "name": {
+        "title": "Mr",
+        "first": "Edward",
+        "last": "Fernley"
+      },
       "email": "e.fernley@willowdaleestates.co.uk",
       "phone": "01584 654321"
     }

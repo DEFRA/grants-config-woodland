@@ -1,4 +1,5 @@
 import {
+  DeleteMessageCommand,
   ListQueuesCommand,
   PurgeQueueCommand,
   ReceiveMessageCommand,
@@ -57,6 +58,13 @@ export const sendEvent = async (queueUrl, event, groupId) =>
 
 // Reads messages, unwrapping the SNS Notification envelope that floci adds when
 // a message arrives via an SNS topic → SQS subscription.
+//
+// Each read message is deleted immediately. The app publishes every
+// agreement_status_updated event with the same FIFO MessageGroupId (its
+// serviceName), so an un-deleted, in-flight message blocks the whole group and
+// starves later fixtures of their events (floci's PurgeQueue does not evict
+// in-flight FIFO messages). Deleting on read — as a real consumer would — keeps
+// the group unblocked between tests.
 export const receiveMessages = async (queueUrl) => {
   const data = await sqs.send(
     new ReceiveMessageCommand({
@@ -69,6 +77,19 @@ export const receiveMessages = async (queueUrl) => {
   if (!data.Messages) {
     return []
   }
+
+  await Promise.all(
+    data.Messages.map((message) =>
+      sqs
+        .send(
+          new DeleteMessageCommand({
+            QueueUrl: queueUrl,
+            ReceiptHandle: message.ReceiptHandle
+          })
+        )
+        .catch(() => {})
+    )
+  )
 
   return data.Messages.map((message) => {
     const body = JSON.parse(message.Body)

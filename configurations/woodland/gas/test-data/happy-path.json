@@ -30,8 +30,11 @@
     },
     "customer": {
       "id": "cust-7e4f2a1b",
-      "firstName": "Margaret",
-      "lastName": "Thornton",
+      "name": {
+        "title": "Mrs",
+        "first": "Margaret",
+        "last": "Thornton"
+      },
       "email": "m.thornton@greenacrefarming.co.uk",
       "phone": "01380 123456"
     }

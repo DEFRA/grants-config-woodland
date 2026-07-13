@@ -27,6 +27,7 @@
     "test:gas:verbose": "PRINT_LOGS=1 vitest run --config test/gas/vitest.gas.config.js",
     "test:agreements": "vitest run --config test/agreements/vitest.agreements.config.js",
     "test:agreements:verbose": "PRINT_LOGS=1 vitest run --config test/agreements/vitest.agreements.config.js",
+    "test:pipeline": "npm run test:gas && npm run test:agreements",
     "github:release": "npx cdp-github-release grants-config-woodland",
     "version:changed": "changeset version",
     "build": "node scripts/merge-refs.js",

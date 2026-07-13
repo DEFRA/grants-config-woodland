@@ -18,9 +18,15 @@
   "detailsConfirmedAt": "2025-01-01T00:00:00.000Z",
   "applicant": {
     "business": {
-      "sbi": "000000001"
+      "sbi": "000000001",
+      "name": "Boundary Smallholding"
     },
-    "customer": {}
+    "customer": {
+      "name": {
+        "first": "Ada",
+        "last": "Minimal"
+      }
+    }
   },
   "landParcels": [
     { "parcelId": "SE1234-0001", "areaHa": 0.01 }

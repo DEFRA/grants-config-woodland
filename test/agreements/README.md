@@ -1,13 +1,21 @@
-# Agreements (WMP) integration tests
+# Agreements (WMP) integration tests — downstream half of the pipeline invariant
 
 Boots [farming-grants-agreements-api](../../../farming-grants-agreements-api) with its dependencies
-mocked by **floci** (SQS/SNS/S3) + replica-set MongoDB, sends each woodland `test-data/*.json`
-fixture as a **`create_agreement` CloudEvent** (the way GAS forwards approved applications), and
-checks the outputs — the persisted agreement in MongoDB **and** the emitted `agreement_status_updated`
-event.
+mocked by **floci** (SQS/SNS/S3) + replica-set MongoDB, and enforces the cross-service contract for
+this downstream service:
 
-It complements `test/gas/` (which submits the same fixtures to GAS over HTTP). Here the service
-ingests **by event**, asynchronously, so outcomes are observed rather than returned in a response.
+> **Every application GAS accepts must be accepted by agreements.**
+
+GAS forwards the answers verbatim, so a rejection here is a stuck-in-production incident. The suite
+therefore sends **only the GAS-accepted fixtures** (`gasAcceptedFixtures` from
+`test/pipeline/fixtures.js`) as a **`create_agreement` CloudEvent** (the way GAS forwards approved
+applications) and asserts each is **accepted** — a persisted `offered` agreement in MongoDB **and** an
+emitted `agreement_status_updated` event. Any rejection fails with a `CONTRACT VIOLATION` message.
+
+It is the downstream counterpart to `test/gas/` (which asserts GAS's verdicts). See
+`test/pipeline/README.md` for the shared source of truth and the invariant. GAS-rejected fixtures
+never reach agreements in production, so they are not exercised here; agreements' own negative
+validation lives in its own repo.
 
 ## Prerequisites
 
@@ -36,36 +44,22 @@ ports (floci `:4566`, mongo `:27017`, app `:3555`) — nothing else should occup
   top-level `identifiers` (`sbi` derived from `applicant.business.sbi`, others defaulted) are
   synthesised — these are transport concerns, not answer content.
 
-## Setting expectations
+## Which fixtures run
 
-`expectations.json` is keyed by fixture filename:
+The suite reads `gasAcceptedFixtures` from `test/pipeline/fixtures.js` — the fixtures whose GAS
+verdict is `accept` in `test/pipeline/expectations.json`. Each must produce a `versions` document
+(`status: "offered"`, `agreementNumber` starting `WMP`) **and** an emitted `agreement_status_updated`
+event (`data.status: "offered"`, `code: "woodland"`). There is no per-fixture accept/reject file here
+by design — the rule is fixed ("GAS-accept ⟹ agreements accepts"), so a gap can only surface as a
+failure, never be declared away.
 
-- `accepted: true` — a `versions` document is created (`status: "offered"`, `agreementNumber`
-  starting `WMP-`) **and** an `agreement_status_updated` event is emitted (`data.status: "offered"`,
-  `code: "woodland"`).
-- `accepted: false` — the WMP handler rejects the event: the app log contains `errorContains`
-  (default `"Invalid WMP create-agreement payload"`, which the handler prefixes onto every
-  validation failure), and **no** agreement version is persisted.
+Currently GAS accepts `happy-path` and `large-multi-parcel`; both must be accepted here. The canonical
+accepted shape is
+`farming-grants-agreements-api/src/api/common/helpers/sample-data/wmp-agreement.js`.
 
-Because ingestion is async, rejected cases are confirmed via the captured app-container log (proving
-the event was received and refused) plus absence of a persisted version.
+## Closing gaps
 
-## Current findings
-
-With strict-verbatim wrapping, **all five woodland fixtures are rejected** — the woodland test-data
-does not satisfy the agreements WMP contract:
-
-- **`applicant.customer` shape** — the fixtures use `customer.firstName/lastName`, but the WMP schema
-  (`farming-grants-agreements-api/src/api/agreement/helpers/schemas/wmp-create-agreement.schema.js`)
-  requires `customer.name.{first,last}`. This affects `happy-path`, `boundary-minimum-values`,
-  `complex-eligibility-flags`, and `large-multi-parcel`.
-- **`optional-fields-omitted.json`** additionally omits `applicant`, `payments`, and
-  `totalAgreementPaymentPence`, all required by WMP.
-
-This is a genuine GAS→agreements contract gap (GAS forwards raw answers unchanged): either the
-woodland answers should carry `customer.name.{first,last}`, or the agreements WMP schema should accept
-the GAS shape. The harness documents it per fixture and is the regression guard once it's reconciled.
-
-To prove the `accepted` path, add a correctly-shaped fixture (see
-`farming-grants-agreements-api/src/api/common/helpers/sample-data/wmp-agreement.js`) and set it to
-`{ "accepted": true }`.
+If a fixture GAS accepts is rejected here, do **not** relax agreements or add an exception — tighten
+the GAS gate (the shared schema in `configurations/woodland/gas/woodland-application.schema.json` or
+the `gas.json` cross-field rules) so GAS stops accepting it. That is how the former
+`applicant`/`payments`/`totalAgreementPaymentPence` gap was closed.

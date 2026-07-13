@@ -31,38 +31,52 @@ The suite is excluded from the default `npm test` (which is Docker-free). The
 first run builds the GAS image (a few minutes); later runs reuse the stack and
 replace the grant via `PUT /tmp/grants/woodland`.
 
-## Setting expectations
+## Expectations
 
-`expectations.json` is keyed by fixture filename:
+The GAS verdict for each fixture comes from the shared source of truth,
+`test/pipeline/expectations.json` (see `test/pipeline/README.md`), keyed by
+fixture filename:
 
 ```jsonc
 {
-  "happy-path.json": { "accepted": true },
+  "happy-path.json": { "gas": "accept" },
   "some-invalid.json": {
-    "accepted": false,
+    "gas": "reject",
     "errorContains": "fgSumMin validation failed"
   }
 }
 ```
 
-- `accepted: true` — expect `204` and a matching `grant_application_created`
+- `gas: "accept"` — expect `204` and a matching `grant_application_created`
   event (`data: { clientRef, code: "woodland", status }`, where `status` is the
-  grant's initial `phase:stage:status`, derived from the built config).
-- `accepted: false` — expect `400`; `errorContains` asserts a substring of the
+  grant's initial `phase:stage:status`, derived from the built config). By the
+  cross-service invariant, every such fixture must also be accepted by every
+  downstream suite.
+- `gas: "reject"` — expect `400`; `errorContains` asserts a substring of the
   validation message, and no event must be emitted.
 
-Every fixture must have an entry (a guard test enforces this).
+`test/pipeline/expectations.test.js` guards that every fixture has an entry.
 
 ## Current findings
 
-Two curated fixtures are **valid against the raw schema but rejected by GAS's
-cross-field rules**, and are therefore currently marked `accepted: false`:
+Four curated fixtures are rejected by GAS:
 
 - **`boundary-minimum-values.json`** — `hectaresTenOrOverYearsOld` +
   `hectaresUnderTenYearsOld` = 0.4 (`fgSumMin` requires ≥ 0.5), and
   Σ `landParcels[].areaHa` ≠ `totalHectaresForSelectedParcels` (`fgSumEquals`).
+  These are cross-field rules in `gas.json` the raw schema cannot express.
 - **`complex-eligibility-flags.json`** — `appLandHasExistingWmp: true` but the
   conditionally-required `existingWmps` field is missing.
+- **`decimal-numeric-values.json`** — non-integer pence, rejected by the shared
+  schema's `type: integer` constraint.
+- **`missing-required-fields.json`** — omits `applicant`, `payments` and
+  `totalAgreementPaymentPence`, now required by the shared schema so GAS gates
+  everything the downstream agreements service needs.
 
-If these fixtures are meant to be accepted, reconcile the data (or the `gas.json`
-rules) and flip the expectations to `accepted: true`.
+## No accepted cross-service gaps
+
+GAS forwards answers verbatim, so anything GAS accepts must be accepted by every
+downstream service. The shared schema was tightened (the required
+`applicant`/`payments`/`totalAgreementPaymentPence` above) to close the one former
+gap. The invariant is now enforced structurally — see `test/pipeline/README.md`
+and `docs/downstream-schema-verification.md`.

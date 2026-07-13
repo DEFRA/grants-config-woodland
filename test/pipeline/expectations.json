@@ -1,0 +1,22 @@
+{
+  "_comment": "Single source of truth for the cross-service pipeline suites. Key = filename in configurations/woodland/gas/test-data/. Declares ONLY the GAS verdict for each fixture: { gas: 'accept' } or { gas: 'reject', errorContains: '<substring of the 400 body>' }. The invariant 'GAS-accept => every downstream service accepts' is enforced in code (see test/pipeline/README.md), not here: the GAS suite (test/gas) asserts GAS matches this verdict; each downstream suite (test/agreements, and future services) reuses gasAcceptedFixtures from fixtures.js and asserts that service accepts every GAS-accepted fixture. There is deliberately NO per-downstream accept/reject file, so a gap cannot be declared away.",
+  "happy-path.json": { "gas": "accept" },
+  "large-multi-parcel.json": { "gas": "accept" },
+  "minimal-required-only.json": { "gas": "accept" },
+  "complex-eligibility-flags.json": {
+    "gas": "reject",
+    "errorContains": "must have required property 'existingWmps'"
+  },
+  "boundary-minimum-values.json": {
+    "gas": "reject",
+    "errorContains": "fgSumMin validation failed"
+  },
+  "decimal-numeric-values.json": {
+    "gas": "reject",
+    "errorContains": "must be integer"
+  },
+  "missing-required-fields.json": {
+    "gas": "reject",
+    "errorContains": "must have required property"
+  }
+}

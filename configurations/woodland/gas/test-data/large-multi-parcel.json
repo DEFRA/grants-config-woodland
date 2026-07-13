@@ -30,8 +30,11 @@
     },
     "customer": {
       "id": "cust-a1b2c3d4",
-      "firstName": "Charles",
-      "lastName": "Northmoor",
+      "name": {
+        "title": "Mr",
+        "first": "Charles",
+        "last": "Northmoor"
+      },
       "email": "c.northmoor@northmoorestate.co.uk"
     }
   },

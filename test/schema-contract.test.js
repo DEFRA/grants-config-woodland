@@ -37,7 +37,29 @@ const VALID_APPLICATION = {
   centreGridReference: 'SU123456',
   fcTeamCode: 'SOUTH_WEST',
   applicationConfirmation: true,
-  landParcels: [{ parcelId: 'parcel-1', areaHa: 1.5 }]
+  landParcels: [{ parcelId: 'parcel-1', areaHa: 1.5 }],
+  // applicant / payments / totalAgreementPaymentPence are required so GAS gates
+  // everything the downstream agreements service requires (no cross-service gap).
+  applicant: {
+    business: { name: 'Test Farm Ltd' },
+    customer: { name: { first: 'Test', last: 'Applicant' } }
+  },
+  totalAgreementPaymentPence: 70000,
+  payments: {
+    agreement: [
+      {
+        code: 'WD2',
+        description: 'Woodland management plan',
+        activePaymentTier: 1,
+        quantityInActiveTier: 1,
+        activeTierRatePence: 70000,
+        activeTierFlatRatePence: 0,
+        quantity: 1,
+        agreementTotalPence: 70000,
+        unit: 'ha'
+      }
+    ]
+  }
 }
 
 // ─── Contract tests ───────────────────────────────────────────────────────────
@@ -80,11 +102,53 @@ describe('woodland application schema contract', () => {
       })
     ).toBe(false)
   })
+
+  test('totalAgreementPaymentPence must be an integer (pence)', () => {
+    expect(
+      validate({ ...VALID_APPLICATION, totalAgreementPaymentPence: 1.5 })
+    ).toBe(false)
+  })
+
+  test('applicant.customer requires a name.{first,last}', () => {
+    expect(
+      validate({
+        ...VALID_APPLICATION,
+        applicant: {
+          business: { name: 'Acme Farms Ltd' },
+          customer: {}
+        }
+      })
+    ).toBe(false)
+  })
+
+  test('applicant.business requires a name', () => {
+    expect(
+      validate({
+        ...VALID_APPLICATION,
+        applicant: {
+          business: {},
+          customer: { name: { first: 'Ada', last: 'Lovelace' } }
+        }
+      })
+    ).toBe(false)
+  })
 })
 
 // ─── Fixture validation ───────────────────────────────────────────────────────
-// Every file in test-data/ (except generated-random.json) must be a valid
-// application. This catches accidental schema drift in the curated examples.
+// Every file in test-data/ must be a valid application, except:
+//  - generated-random.json: fuzzing output, not a curated example.
+//  - decimal-numeric-values.json: deliberate negative — non-integer pence, which
+//    the shared schema rejects (GAS rejects it too, see test/pipeline).
+//  - missing-required-fields.json: deliberate negative — omits the now-required
+//    applicant / payments / totalAgreementPaymentPence, so GAS gates everything
+//    the downstream agreements service needs.
+// This catches accidental schema drift in the curated examples.
+
+const SCHEMA_INVALID_FIXTURES = new Set([
+  'generated-random.json',
+  'decimal-numeric-values.json',
+  'missing-required-fields.json'
+])
 
 const testDataDir = resolve(root, 'configurations/woodland/gas/test-data')
 
@@ -92,7 +156,7 @@ describe('test-data fixtures all conform to schema', () => {
   let files
   try {
     files = readdirSync(testDataDir).filter(
-      (f) => f.endsWith('.json') && f !== 'generated-random.json'
+      (f) => f.endsWith('.json') && !SCHEMA_INVALID_FIXTURES.has(f)
     )
   } catch {
     files = []
@@ -107,4 +171,33 @@ describe('test-data fixtures all conform to schema', () => {
     const valid = validate(fixture)
     expect(valid, JSON.stringify(validate.errors, null, 2)).toBe(true)
   })
+
+  test('decimal-numeric-values.json is rejected (non-integer pence)', () => {
+    const fixture = loadJson(
+      'configurations/woodland/gas/test-data/decimal-numeric-values.json'
+    )
+    expect(validate(fixture)).toBe(false)
+  })
+
+  test('missing-required-fields.json is rejected (missing applicant/payments/total)', () => {
+    const fixture = loadJson(
+      'configurations/woodland/gas/test-data/missing-required-fields.json'
+    )
+    expect(validate(fixture)).toBe(false)
+  })
+})
+
+// ─── Downstream-required fields are gated by GAS ───────────────────────────────
+// applicant, payments and totalAgreementPaymentPence are required downstream
+// (agreements), and GAS forwards answers verbatim — so the shared schema must
+// require them too, or GAS would accept applications agreements rejects.
+describe('shared schema requires the downstream-required fields', () => {
+  test.each(['applicant', 'payments', 'totalAgreementPaymentPence'])(
+    'omitting %s is rejected',
+    (field) => {
+      const fixture = { ...VALID_APPLICATION }
+      delete fixture[field]
+      expect(validate(fixture)).toBe(false)
+    }
+  )
 })
