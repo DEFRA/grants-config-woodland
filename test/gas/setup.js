@@ -1,42 +1,30 @@
-import { copyFileSync, existsSync } from 'node:fs'
 import * as path from 'node:path'
 import { styleText } from 'node:util'
 import { DockerComposeEnvironment, Wait } from 'testcontainers'
 import { ensureQueues } from './helpers/sqs.js'
 import { step, info, ok } from './helpers/progress.js'
 
-// Boots the real GAS stack (gas + replica-set MongoDB + LocalStack SNS/SQS)
-// from a local fg-gas-backend checkout. There is no published GAS image, so the
-// harness builds it from source. Override the checkout location with GAS_REPO_PATH.
-const defaultGasRepo = path.resolve(
-  import.meta.dirname,
-  '../../../fg-gas-backend'
-)
+// Boots the real GAS stack (gas + replica-set MongoDB + LocalStack SNS/SQS) from
+// the self-contained compose files vendored in ./compose. There is no published
+// GAS image, so the gas service is built directly from the public repo's `main`
+// via a Docker remote git context (see ./compose/compose.yml) — no local
+// fg-gas-backend checkout is required.
+const composeDir = path.join(import.meta.dirname, 'compose')
 
 let environment
 
 export const setup = async ({ globalConfig }) => {
   const { env } = globalConfig
-  const gasRepoPath = process.env.GAS_REPO_PATH || defaultGasRepo
 
   step(
     'Booting GAS stack (gas + MongoDB + LocalStack) — this can take a while on first build…'
   )
-  info(`GAS repo: ${gasRepoPath}`)
+  info('Building gas image from github.com/DEFRA/fg-gas-backend#main')
   info(
     `Ports — gas:${env.GAS_PORT} mongo:${env.MONGO_PORT} localstack:${env.LOCALSTACK_PORT}`
   )
 
-  // The gas service's compose declares `env_file: .env`. A fresh checkout may
-  // not have one (it's normally created by GAS's own `npm install`), so seed it
-  // from .env.example to keep the harness self-contained.
-  const gasEnv = path.join(gasRepoPath, '.env')
-  const gasEnvExample = path.join(gasRepoPath, '.env.example')
-  if (!existsSync(gasEnv) && existsSync(gasEnvExample)) {
-    copyFileSync(gasEnvExample, gasEnv)
-  }
-
-  environment = await new DockerComposeEnvironment(gasRepoPath, 'compose.yml')
+  environment = await new DockerComposeEnvironment(composeDir, 'compose.yml')
     .withBuild()
     .withEnvironment({
       GAS_PORT: env.GAS_PORT,

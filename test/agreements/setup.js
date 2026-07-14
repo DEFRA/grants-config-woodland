@@ -7,12 +7,11 @@ import { ensureQueues } from './helpers/sqs.js'
 import { step, info, ok } from './helpers/progress.js'
 
 // Boots farming-grants-agreements-api with floci (SQS/SNS/S3) + replica-set
-// MongoDB from a local checkout. No published image exists, so the app is built
-// from source. Override the checkout with AGREEMENTS_REPO_PATH.
-const defaultRepo = path.resolve(
-  import.meta.dirname,
-  '../../../farming-grants-agreements-api'
-)
+// MongoDB from the self-contained compose files vendored in ./compose. No
+// published image exists, so the app is built directly from the public repo's
+// `main` via a Docker remote git context (see ./compose/compose.yml) — no local
+// farming-grants-agreements-api checkout is required.
+const composeDir = path.join(import.meta.dirname, 'compose')
 
 const SERVICE = 'farming-grants-agreements-api'
 
@@ -20,14 +19,15 @@ let environment
 
 export const setup = async ({ globalConfig }) => {
   const { env } = globalConfig
-  const repoPath = process.env.AGREEMENTS_REPO_PATH || defaultRepo
 
   step(
     'Booting agreements stack (agreements-api + MongoDB + floci) — this can take a while on first build…'
   )
-  info(`Agreements repo: ${repoPath}`)
+  info(
+    'Building agreements-api image from github.com/DEFRA/farming-grants-agreements-api#main'
+  )
 
-  environment = await new DockerComposeEnvironment(repoPath, 'compose.yml')
+  environment = await new DockerComposeEnvironment(composeDir, 'compose.yml')
     .withProfiles('full') // the app service is gated behind this profile
     .withBuild()
     .withEnvironment({ SEED_DB: 'false' })

@@ -7,9 +7,14 @@ export default defineConfig({
     clearMocks: true,
     fileParallelism: false,
     // The Docker-based integration suites boot containers and run via their own
-    // configs (npm run test:gas / test:agreements); keep them out of the
-    // default unit-test run.
-    exclude: [...configDefaults.exclude, 'test/gas/**', 'test/agreements/**'],
+    // configs (npm run test:gas / test:agreements / test:cw); keep them out of
+    // the default unit-test run.
+    exclude: [
+      ...configDefaults.exclude,
+      'test/gas/**',
+      'test/agreements/**',
+      'test/cw/**'
+    ],
     coverage: {
       provider: 'v8',
       reportsDirectory: './coverage',

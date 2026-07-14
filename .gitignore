@@ -9,5 +9,11 @@ coverage
 .cache
 .eslintcache
 .env
+# Vendored integration-test env fixtures (placeholder secrets only) are committed
+# so the Docker suites are self-contained; keep them out of the global .env ignore.
+!test/gas/compose/.env
+!test/cw/compose/.env
 test/testconfig
 test/agreements/.tmp
+# LocalStack writable mount created by the vendored gas/cw compose at runtime.
+test/*/compose/tmp/

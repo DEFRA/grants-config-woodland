@@ -1,0 +1,100 @@
+# Self-contained GAS stack for the integration suite. Vendored into this repo so
+# the tests no longer depend on a sibling fg-gas-backend checkout. The app image
+# is built directly from the public repo's `main` (Docker remote git context);
+# everything else (infra images, provisioning scripts, .env) lives alongside this
+# file. Flattened from fg-gas-backend's compose.yml + compose/compose.gas.yml.
+services:
+  localstack:
+    image: localstack/localstack:4.3.0
+    ports:
+      - "${LOCALSTACK_PORT:-4566}:4566"
+    env_file:
+      - "aws.env"
+    environment:
+      DEBUG: 1
+      LS_LOG: DEBUG
+      SERVICES: sqs,sns
+      LOCALSTACK_HOST: 127.0.0.1
+    volumes:
+      - ./tmp/localstack:/var/lib/localstack
+      - ./start-localstack.sh:/etc/localstack/init/ready.d/start-localstack.sh
+    networks:
+      - cdp-tenant
+
+  mongodb:
+    image: mongo:6.0.13
+    networks:
+      - cdp-tenant
+    ports:
+      - "${MONGO_PORT:-27017}:27017"
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "mongosh --quiet --eval 'db.runCommand({ping:1}).ok' || exit 1",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    command:
+      ["mongod", "--replSet", "mongoRepl", "--bind_ip", "localhost,mongodb"]
+    volumes:
+      - mongodb-data:/data/db
+      - mongodb-config:/data/configdb
+    restart: always
+
+  mongo-ready:
+    image: mongo:6.0.13
+    networks: [cdp-tenant]
+    environment:
+      PRIMARY: "mongodb:27017"
+      REPLSET: "mongoRepl"
+    volumes:
+      - ./wait-for-replicaset.sh:/wait-for-replicaset.sh:ro
+    entrypoint: ["/bin/bash", "/wait-for-replicaset.sh"]
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "mongosh 'mongodb://mongodb:27017/?directConnection=true' --quiet --eval 'db.hello().isWritablePrimary' | grep -q true || exit 1",
+        ]
+      interval: 5s
+      timeout: 3s
+      retries: 60
+
+  gas:
+    build:
+      context: https://github.com/DEFRA/fg-gas-backend.git#main
+    networks:
+      - cdp-tenant
+    ports:
+      - "${GAS_PORT:-3102}:3102"
+    links:
+      - "localstack:localstack"
+      - "mongodb:mongodb"
+      - "mongo-ready:mongo-ready"
+    env_file:
+      - .env
+    environment:
+      PORT: 3102
+      MONGO_URI: mongodb://mongodb:27017/?replicaSet=mongoRepl
+      AWS_ENDPOINT_URL: "http://localstack:4566"
+      OUTBOX_POLL_MS: "${OUTBOX_POLL_MS}"
+      INBOX_POLL_MS: "${INBOX_POLL_MS}"
+    depends_on:
+      mongo-ready:
+        condition: service_healthy
+      mongodb:
+        condition: service_healthy
+      localstack:
+        condition: service_healthy
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+volumes:
+  mongodb-data:
+  mongodb-config:
+
+networks:
+  cdp-tenant:
+    driver: bridge
