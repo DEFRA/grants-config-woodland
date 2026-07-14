@@ -3,9 +3,6 @@ name: Apply for a woodland management plan (WMP)
 metadata:
   id: 95e92559-968d-44ae-8666-2b1ad3dffd38
   description: Create or improve a woodland management plan for your woodland.
-  enabledInProd: true
-  whitelistCrnEnvVar: WOODLAND_WHITELIST_CRNS
-  whitelistSbiEnvVar: WOODLAND_WHITELIST_SBIS
   referenceNumberPrefix: WMP
   submission:
     grantCode: woodland
@@ -21,9 +18,9 @@ metadata:
 
       # Awaiting amendments
       - fromGrantsStatus: SUBMITTED
-        gasStatus: APPLICATION_AMEND
+        gasStatus: STATUS_RETURNED_TO_CUSTOMER
         toGrantsStatus: REOPENED
-        toPath: /tasks
+        toPath: /returned-to-customer
 
       # Agreement in progress/completed GAS statuses -> agreements service
       - fromGrantsStatus: 'SUBMITTED'
@@ -35,7 +32,7 @@ metadata:
       - fromGrantsStatus: REOPENED
         gasStatus: default
         toGrantsStatus: REOPENED
-        toPath: /tasks
+        toPath: /summary
 
       # Submitted -> confirmation (default for most GAS statuses)
       - fromGrantsStatus: SUBMITTED
@@ -677,6 +674,20 @@ pages:
     path: /print-submitted-application
     controller: PrintSubmittedApplicationController
     id: 9817cd3a-c9ae-49f1-8a95-076a82504d41
+
+  - title: Your application has been returned to you to make amendments
+    id: 7d221505-fba7-4761-b511-28a12946c9e7
+    path: /returned-to-customer
+    controller: LandingPageController
+    components:
+      - name: returnedToCustomerHtml
+        id: b8a49e23-620d-477b-8d45-7cafdff00784
+        type: Html
+        content: |
+          <p class="govuk-body">You can review and change the answers you previously submitted.</p>
+          <p class="govuk-body">If you change an answer, you may be required to answer additional questions.</p>
+    next:
+      - path: /summary
 
 lists:
   - title: Forestry commission team list
