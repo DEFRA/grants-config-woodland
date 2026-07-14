@@ -77,7 +77,8 @@
     "prettier": "3.8.4",
     "testcontainers": "11.11.0",
     "vitest": "4.1.8",
-    "vitest-fetch-mock": "0.4.5"
+    "vitest-fetch-mock": "0.4.5",
+    "yaml": "2.9.0"
   },
   "publishConfig": {
     "access": "public"

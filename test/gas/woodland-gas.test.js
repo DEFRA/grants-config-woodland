@@ -6,6 +6,7 @@ import { env } from 'node:process'
 import { beforeAll, describe, expect, it } from 'vitest'
 import './matchers.js'
 import { postGrant, putGrant, submitApplication } from './helpers/http.js'
+import { withReleaseVersion } from './helpers/config-broker.js'
 import { purgeQueue } from './helpers/sqs.js'
 import { wrapAnswers } from './envelope.js'
 import { step, info, ok } from './helpers/progress.js'
@@ -36,9 +37,18 @@ beforeAll(async () => {
   // inlined — GAS cannot resolve the relative ref.
   step('Building woodland config (npm run build)…')
   execFileSync('npm', ['run', 'build'], { cwd: root, stdio: 'inherit' })
-  const builtConfig = loadJson('dist/configurations/woodland/gas/gas.json')
+
+  // Stand in for the config broker: attach the release.yml version the way GAS
+  // would receive it in production. Without a version GAS stores the grant as
+  // version:null, which the app-submission path (findByCode default "0.0.0")
+  // never reads. See helpers/config-broker.js.
+  const builtConfig = withReleaseVersion(
+    loadJson('dist/configurations/woodland/gas/gas.json')
+  )
   expectedStatus = initialStatus(builtConfig)
-  ok(`Config built; initial application status = ${expectedStatus}`)
+  ok(
+    `Config built (version ${builtConfig.version}); initial application status = ${expectedStatus}`
+  )
 
   // Upload the config. On a re-run against a persisted Mongo volume the grant
   // already exists (409) — replace it so we always test the latest config.
