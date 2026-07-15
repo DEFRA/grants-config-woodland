@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.4.0
+
+### Minor Changes
+
+- cce8f90: Add return to customer redirect and landing page
+
 ## 1.3.1
 
 ### Patch Changes
