@@ -1,7 +1,4 @@
 {
-  "_id": {
-    "$oid": "69c474992307ce057cfe6911"
-  },
   "code": "woodland",
   "requiredRoles": {
     "allOf": ["ROLE_WMP"],
@@ -10,7 +7,7 @@
   "templates": {},
   "definitions": {
     "agreementsService": {
-      "internalUrl": "https://fg-cw-frontend.dev.cdp-int.defra.cloud/agreement/{agreementRef}"
+      "internalUrl": "https://fg-cw-frontend.%ENVIRONMENT%.cdp-int.defra.cloud/agreement/{agreementRef}"
     }
   },
   "endpoints": [],
