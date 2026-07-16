@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.6.0
+
+### Minor Changes
+
+- 77e1f02: fixing environment variable issue
+
 ## 1.5.0
 
 ### Minor Changes
