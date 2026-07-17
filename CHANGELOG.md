@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.7.0
+
+### Minor Changes
+
+- f4ee73a: updating gas and cw config version
+
 ## 1.6.0
 
 ### Minor Changes
