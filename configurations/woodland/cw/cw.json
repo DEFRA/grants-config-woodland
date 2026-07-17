@@ -23,7 +23,7 @@
           "summary": {
             "scheme": {
               "label": "Scheme",
-              "text": "$.payload.answers.scheme",
+              "text": "Woodland Management Plan",
               "type": "string"
             },
             "applicationId": {
@@ -44,6 +44,434 @@
           }
         },
         "tabs": {
+          "case-details": {
+            "link": {
+              "id": "case-details",
+              "href": {
+                "urlTemplate": "/cases/{caseId}/case-details",
+                "params": {
+                  "caseId": "$._id"
+                }
+              },
+              "text": "Application",
+              "index": 1
+            },
+            "content": [
+              {
+                "id": "title",
+                "component": "heading",
+                "text": "Application",
+                "level": 2,
+                "classes": "govuk-!-margin-top-6 govuk-!-margin-bottom-1"
+              },
+              {
+                "id": "submittedDate",
+                "component": "container",
+                "classes": "govuk-body",
+                "items": [
+                  {
+                    "text": "Application submitted:",
+                    "classes": "govuk-!-font-weight-regular"
+                  },
+                  {
+                    "text": "$.payload.submittedAt",
+                    "classes": "govuk-!-font-weight-bold",
+                    "format": "formatDate"
+                  }
+                ]
+              },
+              {
+                "component": "accordion",
+                "id": "case-events",
+                "items": [
+                  {
+                    "heading": [
+                      {
+                        "text": "Customer details"
+                      }
+                    ],
+                    "expanded": true,
+                    "content": [
+                      {
+                        "component": "summary-list",
+                        "rows": [
+                          {
+                            "label": "Name",
+                            "text": "$.payload.answers.applicant.customer.name.title $.payload.answers.applicant.customer.name.first $.payload.answers.applicant.customer.name.middle $.payload.answers.applicant.customer.name.last"
+                          },
+                          {
+                            "label": "Business name",
+                            "text": "$.payload.answers.applicant.business.name"
+                          },
+                          {
+                            "label": "Address",
+                            "text": [
+                              {
+                                "component": "text",
+                                "text": "$.payload.answers.applicant.business.address.line1"
+                              },
+                              {
+                                "component": "line-break"
+                              },
+                              {
+                                "component": "conditional",
+                                "condition": "$.payload.answers.applicant.business.address.line2",
+                                "whenTrue": {
+                                  "component": "container",
+                                  "items": [
+                                    {
+                                      "component": "text",
+                                      "text": "$.payload.answers.applicant.business.address.line2"
+                                    },
+                                    {
+                                      "component": "line-break"
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "component": "conditional",
+                                "condition": "$.payload.answers.applicant.business.address.line3",
+                                "whenTrue": {
+                                  "component": "container",
+                                  "items": [
+                                    {
+                                      "component": "text",
+                                      "text": "$.payload.answers.applicant.business.address.line3"
+                                    },
+                                    {
+                                      "component": "line-break"
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "component": "conditional",
+                                "condition": "$.payload.answers.applicant.business.address.line4",
+                                "whenTrue": {
+                                  "component": "container",
+                                  "items": [
+                                    {
+                                      "component": "text",
+                                      "text": "$.payload.answers.applicant.business.address.line4"
+                                    },
+                                    {
+                                      "component": "line-break"
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "component": "conditional",
+                                "condition": "$.payload.answers.applicant.business.address.line5",
+                                "whenTrue": {
+                                  "component": "container",
+                                  "items": [
+                                    {
+                                      "component": "text",
+                                      "text": "$.payload.answers.applicant.business.address.line5"
+                                    },
+                                    {
+                                      "component": "line-break"
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "component": "conditional",
+                                "condition": "$.payload.answers.applicant.business.address.city",
+                                "whenTrue": {
+                                  "component": "container",
+                                  "items": [
+                                    {
+                                      "component": "text",
+                                      "text": "$.payload.answers.applicant.business.address.city"
+                                    },
+                                    {
+                                      "component": "line-break"
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "component": "text",
+                                "text": "$.payload.answers.applicant.business.address.postalCode"
+                              }
+                            ]
+                          },
+                          {
+                            "label": "SBI number",
+                            "text": "$.payload.identifiers.sbi"
+                          },
+                          {
+                            "component": "conditional",
+                            "condition": "$.payload.answers.applicant.business.email.address",
+                            "whenTrue": {
+                              "label": "Email address",
+                              "text": "$.payload.answers.applicant.business.email.address"
+                            }
+                          },
+                          {
+                            "component": "conditional",
+                            "condition": "$.payload.answers.applicant.business.phone.landline",
+                            "whenTrue": {
+                              "label": "Telephone",
+                              "text": "$.payload.answers.applicant.business.phone.landline"
+                            }
+                          },
+                          {
+                            "component": "conditional",
+                            "condition": "$.payload.answers.applicant.business.phone.mobile",
+                            "whenTrue": {
+                              "label": "Mobile",
+                              "text": "$.payload.answers.applicant.business.phone.mobile"
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "heading": [
+                      {
+                        "text": "Eligibility declarations"
+                      }
+                    ],
+                    "content": [
+                      {
+                        "component": "summary-list",
+                        "rows": [
+                          {
+                            "label": "Business details are up to date",
+                            "text": "$.payload.answers.businessDetailsUpToDate",
+                            "format": "yesNo"
+                          },
+                          {
+                            "label": "Land is registered with RPA",
+                            "text": "$.payload.answers.landRegisteredWithRpa",
+                            "format": "yesNo"
+                          },
+                          {
+                            "label": "Has management control of the land",
+                            "text": "$.payload.answers.landManagementControl",
+                            "format": "yesNo"
+                          },
+                          {
+                            "label": "Public body tenant",
+                            "text": "$.payload.answers.publicBodyTenant",
+                            "format": "yesNo"
+                          },
+                          {
+                            "label": "Land has grazing rights",
+                            "text": "$.payload.answers.landHasGrazingRights",
+                            "format": "yesNo"
+                          },
+                          {
+                            "label": "Guidance read",
+                            "text": "$.payload.answers.guidanceRead",
+                            "format": "yesNo"
+                          },
+                          {
+                            "label": "Application declaration confirmed",
+                            "text": "$.payload.answers.applicationConfirmation",
+                            "format": "yesNo"
+                          },
+                          {
+                            "label": "Existing woodland management plan",
+                            "text": "$.payload.answers.appLandHasExistingWmp",
+                            "format": "yesNo"
+                          },
+                          {
+                            "component": "conditional",
+                            "condition": "$.payload.answers.appLandHasExistingWmp",
+                            "whenTrue": {
+                              "component": "conditional",
+                              "condition": "$.payload.answers.existingWmps",
+                              "whenTrue": {
+                                "label": "Existing woodland management plan details",
+                                "text": "$.payload.answers.existingWmps"
+                              }
+                            }
+                          },
+                          {
+                            "label": "Intends to apply for Higher Tier",
+                            "text": "$.payload.answers.intendToApplyHigherTier",
+                            "format": "yesNo"
+                          },
+                          {
+                            "component": "conditional",
+                            "condition": "$.payload.answers.detailsConfirmedAt",
+                            "whenTrue": {
+                              "label": "Details confirmed",
+                              "text": "$.payload.answers.detailsConfirmedAt",
+                              "format": "formatDateTime"
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "heading": [
+                      {
+                        "text": "Woodland details"
+                      }
+                    ],
+                    "content": [
+                      {
+                        "component": "summary-list",
+                        "rows": [
+                          {
+                            "component": "conditional",
+                            "condition": "$.payload.answers.woodlandName",
+                            "whenTrue": {
+                              "label": "Woodland name",
+                              "text": "$.payload.answers.woodlandName"
+                            }
+                          },
+                          {
+                            "label": "Total hectares for selected parcels",
+                            "text": "$.payload.answers.totalHectaresForSelectedParcels ha"
+                          },
+                          {
+                            "label": "Woodland 10 years or older",
+                            "text": "$.payload.answers.hectaresTenOrOverYearsOld ha"
+                          },
+                          {
+                            "label": "Woodland under 10 years old",
+                            "text": "$.payload.answers.hectaresUnderTenYearsOld ha"
+                          },
+                          {
+                            "label": "Centre grid reference",
+                            "text": "$.payload.answers.centreGridReference"
+                          },
+                          {
+                            "label": "Forestry commission team code",
+                            "text": "$.payload.answers.fcTeamCode"
+                          },
+                          {
+                            "label": "Included all eligible woodland",
+                            "text": "$.payload.answers.includedAllEligibleWoodland",
+                            "format": "yesNo"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "heading": [
+                      {
+                        "text": "Land parcels"
+                      }
+                    ],
+                    "content": [
+                      {
+                        "component": "table",
+                        "rowsRef": "$.payload.answers.landParcels[*]",
+                        "head": [
+                          {
+                            "component": "text",
+                            "text": "Parcel ID"
+                          },
+                          {
+                            "component": "text",
+                            "text": "Area (ha)",
+                            "format": "numeric"
+                          }
+                        ],
+                        "rows": [
+                          {
+                            "text": "@.parcelId"
+                          },
+                          {
+                            "text": "@.areaHa",
+                            "format": "numeric"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "heading": [
+                      {
+                        "text": "Payment details"
+                      }
+                    ],
+                    "content": [
+                      {
+                        "component": "conditional",
+                        "condition": "$.payload.answers.payments.agreement[0]",
+                        "whenTrue": {
+                          "component": "container",
+                          "items": [
+                            {
+                              "component": "repeat",
+                              "itemsRef": "$.payload.answers.payments.agreement[*]",
+                              "items": [
+                                {
+                                  "component": "heading",
+                                  "text": "@.code",
+                                  "level": 3,
+                                  "classes": "govuk-heading-m govuk-!-margin-bottom-1"
+                                },
+                                {
+                                  "component": "paragraph",
+                                  "text": "@.description",
+                                  "classes": "govuk-body govuk-!-margin-bottom-4"
+                                },
+                                {
+                                  "component": "summary-list",
+                                  "rows": [
+                                    {
+                                      "label": "Active payment tier",
+                                      "text": "@.activePaymentTier"
+                                    },
+                                    {
+                                      "label": "Quantity in active tier",
+                                      "text": "@.quantityInActiveTier @.unit"
+                                    },
+                                    {
+                                      "label": "Active tier rate",
+                                      "text": [
+                                        {
+                                          "text": "@.activeTierRatePence",
+                                          "format": "penniesToPounds"
+                                        },
+                                        {
+                                          "text": " per "
+                                        },
+                                        {
+                                          "text": "@.unit"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "label": "Active tier flat rate",
+                                      "text": "@.activeTierFlatRatePence",
+                                      "format": "penniesToPounds"
+                                    },
+                                    {
+                                      "label": "Total payment",
+                                      "text": "@.agreementTotalPence",
+                                      "format": "penniesToPounds"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        "whenFalse": {
+                          "component": "paragraph",
+                          "text": "There are no agreement level actions."
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
           "agreements": {
             "link": {
               "id": "agreements",
@@ -75,12 +503,14 @@
                         "component": "status",
                         "text": "jsonata:$sort($.supplementaryData.agreements, function($l, $r) { $l.createdAt < $r.createdAt })[0].agreementStatus",
                         "themeMap": {
-                          "OFFERED": "NOTICE",
-                          "ACCEPTED": "INFO",
-                          "AGREEMENT_DRAFTED": "INFO",
                           "AGREEMENT_GENERATING": "INFO",
+                          "AGREEMENT_DRAFTED": "INFO",
+                          "OFFERED": "NOTICE",
+                          "ACCEPTED": "SUCCESS",
                           "WITHDRAWN": "WARN",
-                          "REJECTED": "ERROR"
+                          "REJECTED": "ERROR",
+                          "TERMINATED": "ERROR",
+                          "CANCELLED": "WARN"
                         },
                         "labelsMap": {
                           "AGREEMENT_GENERATING": "Agreement generating",
@@ -88,7 +518,9 @@
                           "OFFERED": "Offered",
                           "ACCEPTED": "Accepted",
                           "WITHDRAWN": "Withdrawn",
-                          "REJECTED": "Rejected"
+                          "REJECTED": "Rejected",
+                          "TERMINATED": "Terminated",
+                          "CANCELLED": "Cancelled"
                         }
                       }
                     ]
@@ -104,11 +536,15 @@
                   },
                   {
                     "label": "Date accepted",
-                    "text": "jsonata:$sort($.supplementaryData.agreements, function($l, $r) { $l.createdAt < $r.createdAt })[0].agreementStatus = 'ACCEPTED' ? $formatTime($toMillis($sort($.supplementaryData.agreements, function($l, $r) { $l.createdAt < $r.createdAt })[0].acceptedAt), '[D] [MNn] [Y]') : 'Not accepted'"
+                    "text": "jsonata:$exists($max($.supplementaryData.agreements[agreementStatus='ACCEPTED'].$toMillis(acceptedDate))) ? $fromMillis($max($.supplementaryData.agreements[agreementStatus='ACCEPTED'].$toMillis(acceptedDate)), '[D] [MNn,*-3] [Y]') : 'Not accepted'"
                   },
                   {
                     "label": "Start date",
-                    "text": "jsonata:$sort($.supplementaryData.agreements, function($l, $r) { $l.createdAt < $r.createdAt })[0].startDate ? $formatTime($toMillis($sort($.supplementaryData.agreements,function($l, $r) { $l.createdAt < $r.createdAt })[0].startDate), '[D] [MNn] [Y]') : 'Not started'"
+                    "text": "jsonata:$exists($max($.supplementaryData.agreements[agreementStatus='ACCEPTED'].$toMillis(startDate))) ? $fromMillis($max($.supplementaryData.agreements[agreementStatus='ACCEPTED'].$toMillis(startDate)), '[D] [MNn,*-3] [Y]') : 'Not started'"
+                  },
+                  {
+                    "label": "End date",
+                    "text": "jsonata:$exists($max($.supplementaryData.agreements[agreementStatus='ACCEPTED'].$toMillis(endDate))) ? $fromMillis($max($.supplementaryData.agreements[agreementStatus='ACCEPTED'].$toMillis(endDate)), '[D] [MNn,*-3] [Y]') : 'Not started'"
                   },
                   {
                     "label": "View",
@@ -128,72 +564,6 @@
                     ]
                   }
                 ]
-              },
-              {
-                "component": "conditional",
-                "condition": "jsonata:$count($.supplementaryData.agreements) > 1",
-                "whenTrue": {
-                  "component": "container",
-                  "items": [
-                    {
-                      "id": "version-history-title",
-                      "component": "heading",
-                      "text": "Version history",
-                      "level": 3,
-                      "classes": "govuk-!-margin-top-6"
-                    },
-                    {
-                      "type": "array",
-                      "component": "table",
-                      "rowsRef": "jsonata:$filter($sort($.supplementaryData.agreements, function($l, $r) { $l.createdAt < $r.createdAt }), function($v, $i) { $i > 0 })",
-                      "rows": [
-                        {
-                          "label": "Reference",
-                          "text": "@.agreementRef"
-                        },
-                        {
-                          "label": "Date",
-                          "text": "@.createdAt",
-                          "format": "formatDate"
-                        },
-                        {
-                          "label": "Status",
-                          "component": "status",
-                          "text": "@.agreementStatus",
-                          "themeMap": {
-                            "OFFERED": "NOTICE",
-                            "ACCEPTED": "INFO",
-                            "AGREEMENT_DRAFTED": "INFO",
-                            "AGREEMENT_GENERATING": "INFO",
-                            "WITHDRAWN": "WARN",
-                            "REJECTED": "ERROR"
-                          },
-                          "labelsMap": {
-                            "AGREEMENT_GENERATING": "Agreement generating",
-                            "AGREEMENT_DRAFTED": "Agreement drafted",
-                            "OFFERED": "Offered",
-                            "ACCEPTED": "Accepted",
-                            "WITHDRAWN": "Withdrawn",
-                            "REJECTED": "Rejected"
-                          }
-                        },
-                        {
-                          "label": "",
-                          "component": "url",
-                          "text": "View this version",
-                          "href": {
-                            "urlTemplate": "$.definitions.agreementsService.internalUrl",
-                            "params": {
-                              "agreementRef": "@.agreementRef"
-                            }
-                          },
-                          "target": "_blank",
-                          "rel": "noopener"
-                        }
-                      ]
-                    }
-                  ]
-                }
               }
             ]
           }
@@ -208,7 +578,7 @@
       "stages": [
         {
           "code": "STAGE_REVIEWING_APPLICATION",
-          "name": "Reviewing Application",
+          "name": "Application received",
           "description": "Review the woodland management plan application",
           "statuses": [
             {
@@ -219,10 +589,10 @@
               "interactive": false,
               "transitions": [
                 {
-                  "targetPosition": "PHASE_PRE_AWARD:STAGE_REVIEWING_APPLICATION:STATUS_IN_REVIEW",
+                  "targetPosition": "PHASE_PRE_AWARD:STAGE_REVIEWING_APPLICATION:STATUS_APPLICATION_IN_REVIEW",
                   "checkTasks": false,
                   "action": {
-                    "code": "ACTION_START",
+                    "code": "ACTION_START_REVIEW",
                     "name": "Start",
                     "checkTasks": false,
                     "comment": null
@@ -231,110 +601,26 @@
               ]
             },
             {
-              "code": "STATUS_IN_REVIEW",
+              "code": "STATUS_APPLICATION_IN_REVIEW",
               "name": "In Review",
               "theme": "INFO",
               "description": "Application is being reviewed",
               "interactive": true,
               "transitions": [
                 {
-                  "targetPosition": "PHASE_PRE_AWARD:STAGE_AWAITING_FC:STATUS_AWAITING_FC_REVIEW",
-                  "checkTasks": true,
-                  "action": {
-                    "code": "ACTION_ASSIGN_TO_FC",
-                    "name": "Assign to Forestry Commission",
-                    "checkTasks": true,
-                    "comment": {
-                      "label": "Explain this decision",
-                      "helpText": "You must include an explanation for auditing purposes.",
-                      "mandatory": true
-                    }
-                  }
-                }
-              ]
-            }
-          ],
-          "taskGroups": [
-            {
-              "code": "MANUAL_REVIEW_TASKS",
-              "name": "Application review tasks",
-              "description": "Tasks to be completed during the initial review of the application",
-              "tasks": [
-                {
-                  "code": "TASK_CREATED_CRM_RECORD",
-                  "name": "Created CRM record",
-                  "mandatory": true,
-                  "description": [
-                    {
-                      "component": "heading",
-                      "text": "Created CRM record",
-                      "level": 2,
-                      "classes": "govuk-!-margin-bottom-3"
-                    },
-                    {
-                      "component": "paragraph",
-                      "text": "Confirm that a CRM record has been created for this application.",
-                      "classes": "govuk-!-margin-bottom-6"
-                    }
-                  ],
-                  "statusOptions": [
-                    {
-                      "code": "NOT_DONE",
-                      "name": "Not done",
-                      "theme": "NOTICE",
-                      "altName": "Not done",
-                      "completes": false
-                    },
-                    {
-                      "code": "DONE",
-                      "name": "Done",
-                      "theme": "NONE",
-                      "altName": "Done",
-                      "completes": true
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "code": "STAGE_AWAITING_FC",
-          "name": "Awaiting Forestry Commission",
-          "description": "Awaiting Forestry Commission review of the application",
-          "statuses": [
-            {
-              "code": "STATUS_AWAITING_FC_REVIEW",
-              "name": "Awaiting FC Review",
-              "theme": "INFO",
-              "description": "Application is awaiting Forestry Commission review",
-              "interactive": true,
-              "transitions": [
-                {
-                  "targetPosition": "PHASE_PRE_AWARD:STAGE_AWAITING_FC:STATUS_AGREEMENT_GENERATING",
-                  "checkTasks": true,
-                  "action": {
-                    "code": "ACTION_APPROVE_FOR_FC",
-                    "name": "Approve",
-                    "checkTasks": true,
-                    "comment": {
-                      "label": "Explain this decision",
-                      "helpText": "You must include an explanation for auditing purposes.",
-                      "mandatory": true
-                    }
-                  }
-                },
-                {
-                  "targetPosition": "PHASE_PRE_AWARD:STAGE_AWAITING_FC:STATUS_REJECTED_BY_FC",
+                  "targetPosition": "PHASE_PRE_AWARD:STAGE_REVIEWING_APPLICATION:STATUS_AGREEMENT_GENERATING",
                   "checkTasks": false,
                   "action": {
-                    "code": "ACTION_REJECT_FOR_FC",
-                    "name": "Reject",
+                    "code": "ACTION_APPROVE_APPLICATION",
+                    "name": "Continue",
                     "checkTasks": false,
                     "comment": {
-                      "label": "Explain this decision",
-                      "helpText": "You must include an explanation for auditing purposes.",
-                      "mandatory": true
+                      "label": {
+                        "text": "Comment",
+                        "classes": "govuk-visually-hidden"
+                      },
+                      "helpText": "Add comment for auditing purposes.",
+                      "mandatory": false
                     }
                   }
                 }
@@ -344,206 +630,364 @@
               "code": "STATUS_AGREEMENT_GENERATING",
               "name": "Agreement Generating",
               "theme": "NEUTRAL",
-              "description": "Agreement is being generated",
+              "description": "The agreement is being generated",
               "interactive": false,
               "transitions": [
                 {
-                  "targetPosition": "PHASE_PRE_AWARD:STAGE_AGREEMENT_GENERATED:STATUS_AGREEMENT_GENERATED",
+                  "targetPosition": "PHASE_PRE_AWARD:STAGE_PREPARING_AGREEMENT:STATUS_AGREEMENT_READY_FOR_APPLICANT",
                   "checkTasks": false,
                   "action": null
                 }
               ]
-            },
-            {
-              "code": "STATUS_REJECTED_BY_FC",
-              "name": "Rejected by FC",
-              "theme": "ERROR",
-              "description": "Application has been rejected by the Forestry Commission",
-              "interactive": false,
-              "transitions": []
             }
           ],
-          "taskGroups": [
+          "taskGroups": [],
+          "beforeContent": [
             {
-              "code": "FC_REVIEW_TASKS",
-              "name": "FC review tasks",
-              "description": "Tasks to be completed during the Forestry Commission review",
-              "tasks": [
+              "renderIf": "jsonata:$.position.statusCode = 'STATUS_APPLICATION_IN_REVIEW'",
+              "content": [
                 {
-                  "code": "TASK_FC_APPROVED",
-                  "name": "FC approved",
-                  "mandatory": true,
-                  "description": [
-                    {
-                      "component": "heading",
-                      "text": "FC approved",
-                      "level": 2,
-                      "classes": "govuk-!-margin-bottom-3"
-                    },
-                    {
-                      "component": "paragraph",
-                      "text": "Confirm that the Forestry Commission has approved this application.",
-                      "classes": "govuk-!-margin-bottom-6"
-                    }
-                  ],
-                  "statusOptions": [
-                    {
-                      "code": "NO",
-                      "name": "No",
-                      "theme": "NOTICE",
-                      "altName": "No",
-                      "completes": false
-                    },
-                    {
-                      "code": "YES",
-                      "name": "Yes",
-                      "theme": "NONE",
-                      "altName": "Yes",
-                      "completes": true
-                    }
-                  ]
+                  "component": "heading",
+                  "level": 3,
+                  "text": "Generate draft agreement"
                 },
                 {
-                  "code": "TASK_FC_RESPONSE_MATCHES_APPLICATION",
-                  "name": "FC response matches application",
-                  "mandatory": true,
-                  "description": [
-                    {
-                      "component": "heading",
-                      "text": "FC response matches application",
-                      "level": 2,
-                      "classes": "govuk-!-margin-bottom-3"
-                    },
-                    {
-                      "component": "paragraph",
-                      "text": "Confirm that the Forestry Commission response matches the application details.",
-                      "classes": "govuk-!-margin-bottom-6"
+                  "component": "paragraph",
+                  "text": "Select 'Continue' to generate the draft agreement."
+                }
+              ]
+            },
+            {
+              "renderIf": "jsonata:$.position.statusCode = 'STATUS_APPLICATION_RECEIVED'",
+              "content": [
+                {
+                  "component": "heading",
+                  "level": 3,
+                  "text": "Reviewing application"
+                },
+                {
+                  "component": "paragraph",
+                  "text": "Select 'Start' to begin working on this application."
+                }
+              ]
+            },
+            {
+              "renderIf": "jsonata:$.position.statusCode = 'STATUS_AGREEMENT_GENERATING'",
+              "content": [
+                {
+                  "component": "heading",
+                  "level": 3,
+                  "text": "Generating draft agreement"
+                },
+                {
+                  "component": "paragraph",
+                  "text": "The draft agreement is being generated and will be available when you refresh the page."
+                },
+                {
+                  "component": "url",
+                  "text": "Refresh page",
+                  "href": {
+                    "urlTemplate": "/cases/{caseId}",
+                    "params": {
+                      "caseId": "$._id"
                     }
-                  ],
-                  "statusOptions": [
-                    {
-                      "code": "NO",
-                      "name": "No",
-                      "theme": "NOTICE",
-                      "altName": "No",
-                      "completes": false
-                    },
-                    {
-                      "code": "YES",
-                      "name": "Yes",
-                      "theme": "NONE",
-                      "altName": "Yes",
-                      "completes": true
-                    }
-                  ]
+                  },
+                  "classes": "govuk-button"
                 }
               ]
             }
           ]
         },
         {
-          "code": "STAGE_AGREEMENT_GENERATED",
-          "name": "Agreement Generated",
-          "description": "Agreement has been generated by the Agreements Service",
+          "name": "Agreement ready for applicant",
+          "code": "STAGE_PREPARING_AGREEMENT",
+          "description": "Send the Agreement to applicant",
           "statuses": [
             {
-              "code": "STATUS_AGREEMENT_GENERATED",
-              "name": "Agreement Generated",
-              "theme": "SUCCESS",
-              "description": "The agreement has been generated by the Agreements Service",
-              "interactive": false,
-              "transitions": [
-                {
-                  "targetPosition": "PHASE_PRE_AWARD:STAGE_SENDING_AGREEMENT:STATUS_AWAITING_SEND_AGREEMENT",
-                  "checkTasks": false,
-                  "action": null
-                }
-              ]
-            }
-          ],
-          "taskGroups": []
-        },
-        {
-          "code": "STAGE_SENDING_AGREEMENT",
-          "name": "Sending Agreement",
-          "description": "Agreement has been generated and is ready to send to the customer",
-          "statuses": [
-            {
-              "code": "STATUS_AWAITING_SEND_AGREEMENT",
-              "name": "Awaiting Send Agreement",
-              "theme": "INFO",
-              "description": "Agreement is ready to be sent to the customer",
+              "name": "Agreement ready for applicant",
+              "code": "STATUS_AGREEMENT_READY_FOR_APPLICANT",
+              "theme": "NEUTRAL",
+              "description": "The agreement is ready to be sent to the applicant",
               "interactive": true,
               "transitions": [
                 {
-                  "targetPosition": "PHASE_PRE_AWARD:STAGE_SENDING_AGREEMENT:STATUS_AGREEMENT_WITH_CUSTOMER",
+                  "targetPosition": "PHASE_PRE_AWARD:STAGE_AGREEMENT_WITH_APPLICANT:STATUS_AGREEMENT_OFFERED",
                   "checkTasks": true,
                   "action": {
-                    "code": "ACTION_SEND_AGREEMENT",
-                    "name": "Send Agreement",
+                    "code": "ACTION_CONFIRM_AGREEMENT_SENT",
+                    "name": "Confirm agreement sent",
                     "checkTasks": true,
-                    "comment": null
+                    "comment": {
+                      "label": {
+                        "text": "Comment",
+                        "classes": "govuk-visually-hidden"
+                      },
+                      "helpText": "Add comment for auditing purposes.",
+                      "mandatory": false
+                    }
                   }
-                }
-              ]
-            },
-            {
-              "code": "STATUS_AGREEMENT_WITH_CUSTOMER",
-              "name": "Agreement With Customer",
-              "theme": "INFO",
-              "description": "Agreement has been sent to the customer for review",
-              "interactive": false,
-              "transitions": [
-                {
-                  "targetPosition": "PHASE_MONITORING:STAGE_MONITORING:STATUS_AGREEMENT_ACCEPTED",
-                  "checkTasks": false,
-                  "action": null
-                },
-                {
-                  "targetPosition": "PHASE_PRE_AWARD:STAGE_REJECTED_BY_APPLICANT:STATUS_REJECTED_BY_APPLICANT",
-                  "checkTasks": false,
-                  "action": null
                 }
               ]
             }
           ],
           "taskGroups": [
             {
-              "code": "SEND_AGREEMENT_TASKS",
-              "name": "Send agreement tasks",
-              "description": "Tasks to be completed before sending the agreement to the customer",
+              "name": "Tasks",
+              "code": "TASK_GROUP_AGREEMENT_PREPARATION",
               "tasks": [
                 {
-                  "code": "TASK_AGREEMENT_SENT",
-                  "name": "Agreement sent",
-                  "mandatory": true,
+                  "name": "Notify customer that draft agreement is ready",
+                  "code": "TASK_AGREEMENT_DELIVERY_TO_APPLICANT",
                   "description": [
                     {
                       "component": "heading",
-                      "text": "Agreement sent",
+                      "text": "Notify customer that draft agreement is ready",
+                      "level": 2
+                    },
+                    {
+                      "component": "paragraph",
+                      "text": "Send the draft agreement link to the customer or explain why this is not possible."
+                    },
+                    {
+                      "component": "heading",
+                      "text": "Confirm the draft agreement link has been sent",
+                      "level": 3
+                    }
+                  ],
+                  "mandatory": true,
+                  "statusOptions": [
+                    {
+                      "name": "Sent",
+                      "code": "STATUS_AGREEMENT_SENT_TO_APPLICANT",
+                      "theme": "SUCCESS",
+                      "altName": "Sent to customer",
+                      "completes": true,
+                      "comment": {
+                        "label": "Explanation",
+                        "helpText": "Enter the CRM reference number to confirm the draft agreement has been sent.",
+                        "mandatory": true
+                      }
+                    },
+                    {
+                      "name": "Not sent",
+                      "code": "STATUS_AGREEMENT_NOT_SENT_TO_APPLICANT",
+                      "theme": "ERROR",
+                      "altName": "Could not send to customer",
+                      "completes": false,
+                      "comment": {
+                        "label": "Explanation",
+                        "helpText": "Explain why the draft agreement link could not be sent.",
+                        "mandatory": true
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "beforeContent": [
+            {
+              "renderIf": "jsonata:$.position.statusCode = 'STATUS_AGREEMENT_READY_FOR_APPLICANT'",
+              "content": [
+                {
+                  "component": "heading",
+                  "level": 3,
+                  "text": "Preparing agreement"
+                },
+                {
+                  "component": "paragraph",
+                  "text": "The draft agreement is ready and you need to notify the customer."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Agreement with applicant",
+          "code": "STAGE_AGREEMENT_WITH_APPLICANT",
+          "description": "The id a DESCRIPTION",
+          "beforeContent": [
+            {
+              "content": [
+                {
+                  "component": "heading",
+                  "level": 3,
+                  "text": "Withdrawing the agreement"
+                },
+                {
+                  "component": "paragraph",
+                  "text": "The agreement can be withdrawn as long as the customer has not already accepted or rejected it."
+                },
+                {
+                  "component": "paragraph",
+                  "text": "You might need to withdraw it if the customer:"
+                },
+                {
+                  "component": "unordered-list",
+                  "items": [
+                    {
+                      "component": "text",
+                      "text": "needs to update their application"
+                    },
+                    {
+                      "component": "text",
+                      "text": "has not responded to the agreement offer within 20 working days"
+                    },
+                    {
+                      "component": "text",
+                      "text": "there is an error in the agreement"
+                    }
+                  ]
+                }
+              ],
+              "renderIf": "jsonata:$.position.statusCode = 'STATUS_AGREEMENT_OFFERED'"
+            }
+          ],
+          "taskGroups": [],
+          "statuses": [
+            {
+              "name": "Agreement offered",
+              "code": "STATUS_AGREEMENT_OFFERED",
+              "theme": "NEUTRAL",
+              "interactive": true,
+              "devComment": "we will have extra transitions below for withdraw and return to customer",
+              "transitions": [
+                {
+                  "targetPosition": "PHASE_PRE_AWARD:STAGE_AGREEMENT_ACCEPTED:STATUS_AGREEMENT_ACCEPTED",
+                  "checkTasks": false,
+                  "action": null,
+                  "comment": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Agreement accepted",
+          "code": "STAGE_AGREEMENT_ACCEPTED",
+          "description": "Forward to Forestry Commission",
+          "statuses": [
+            {
+              "name": "Agreement accepted",
+              "code": "STATUS_AGREEMENT_ACCEPTED",
+              "theme": "NEUTRAL",
+              "description": "Ready to forward to Forestry Commission",
+              "interactive": true,
+              "transitions": [
+                {
+                  "targetPosition": "PHASE_PRE_AWARD:STAGE_FC_REVIEWING:STATUS_APPLICATION_AWAITING_FC",
+                  "checkTasks": true,
+                  "action": {
+                    "code": "ACTION_FORWARD_TO_FC",
+                    "name": "Forestry Commission has been notified",
+                    "checkTasks": true,
+                    "comment": {
+                      "label": {
+                        "text": "Comment",
+                        "classes": "govuk-visually-hidden"
+                      },
+                      "helpText": "Add comment for auditing purposes.",
+                      "mandatory": false
+                    }
+                  }
+                }
+              ]
+            }
+          ],
+          "taskGroups": [
+            {
+              "name": "Tasks",
+              "code": "TASK_GROUP_CRM_RECORD",
+              "tasks": [
+                {
+                  "name": "Create CRM record",
+                  "code": "TASK_CRM_RECORD_CREATION",
+                  "description": [
+                    {
+                      "component": "heading",
+                      "text": "Create CRM record",
                       "level": 2,
                       "classes": "govuk-!-margin-bottom-3"
                     },
                     {
                       "component": "paragraph",
-                      "text": "Confirm that the agreement has been sent to the customer.",
-                      "classes": "govuk-!-margin-bottom-6"
-                    }
-                  ],
-                  "statusOptions": [
-                    {
-                      "code": "NOT_SENT",
-                      "name": "Not sent",
-                      "theme": "NOTICE",
-                      "altName": "Not sent",
-                      "completes": false
+                      "text": "Follow these steps to create the CRM record:"
                     },
                     {
-                      "code": "SENT",
-                      "name": "Sent",
-                      "theme": "NONE",
-                      "altName": "Sent",
-                      "completes": true
+                      "component": "ordered-list",
+                      "items": [
+                        {
+                          "component": "container",
+                          "items": [
+                            {
+                              "component": "text",
+                              "text": "Go to the "
+                            },
+                            {
+                              "component": "url",
+                              "text": "Application tab",
+                              "href": {
+                                "urlTemplate": "/cases/{caseId}/case-details",
+                                "params": {
+                                  "caseId": "$._id"
+                                }
+                              }
+                            },
+                            {
+                              "component": "text",
+                              "text": " to view submitted details."
+                            }
+                          ]
+                        },
+                        {
+                          "component": "text",
+                          "text": "Print or save the application details to a PDF"
+                        },
+                        {
+                          "component": "text",
+                          "text": "Copy the relevant details in to the CRM"
+                        },
+                        {
+                          "component": "text",
+                          "text": "Upload the PDF of the application in to the CRM"
+                        },
+                        {
+                          "component": "text",
+                          "text": "Come back to this page and confirm when the task is complete"
+                        }
+                      ]
+                    },
+                    {
+                      "component": "heading",
+                      "text": "Confirm CRM record has been created",
+                      "level": 3
+                    }
+                  ],
+                  "mandatory": true,
+                  "statusOptions": [
+                    {
+                      "name": "Created",
+                      "code": "STATUS_CRM_RECORD_CREATED",
+                      "theme": "SUCCESS",
+                      "altName": "Created",
+                      "completes": true,
+                      "comment": {
+                        "label": "Enter more information",
+                        "helpText": "You must include an explanation for auditing purposes.",
+                        "mandatory": true
+                      }
+                    },
+                    {
+                      "name": "Not created",
+                      "code": "STATUS_CRM_RECORD_NOT_CREATED",
+                      "theme": "ERROR",
+                      "altName": "Not created",
+                      "completes": false,
+                      "comment": {
+                        "label": "Enter more information",
+                        "helpText": "You must include an explanation for auditing purposes.",
+                        "mandatory": true
+                      }
                     }
                   ]
                 }
@@ -552,37 +996,99 @@
           ]
         },
         {
-          "code": "STAGE_REJECTED_BY_APPLICANT",
-          "name": "Rejected by Applicant",
-          "description": "Application has been rejected by the applicant",
+          "name": "Forestry Commission review",
+          "code": "STAGE_FC_REVIEWING",
+          "description": "Forestry Commission review of the application",
           "statuses": [
             {
-              "code": "STATUS_REJECTED_BY_APPLICANT",
-              "name": "Rejected by Applicant",
-              "theme": "ERROR",
-              "description": "The applicant has rejected the agreement offer",
-              "interactive": false,
-              "transitions": []
+              "name": "Awaiting Forestry Commission review",
+              "code": "STATUS_APPLICATION_AWAITING_FC",
+              "theme": "NEUTRAL",
+              "description": "The application has been sent to the Forestry Commission for review",
+              "interactive": true,
+              "transitions": [
+                {
+                  "targetPosition": "PHASE_PRE_AWARD:STAGE_APPLICATION_COMPLETED:STATUS_APPLICATION_COMPLETED",
+                  "checkTasks": true,
+                  "action": {
+                    "code": "ACTION_APPROVE_FC_REVIEW",
+                    "name": "Approve Forestry Commission review",
+                    "checkTasks": true,
+                    "comment": {
+                      "label": {
+                        "text": "Comment",
+                        "classes": "govuk-visually-hidden"
+                      },
+                      "helpText": "Add comment for auditing purposes.",
+                      "mandatory": false
+                    }
+                  }
+                }
+              ]
             }
           ],
-          "taskGroups": []
-        }
-      ]
-    },
-    {
-      "code": "PHASE_MONITORING",
-      "name": "Monitoring",
-      "stages": [
+          "beforeContent": [
+            {
+              "content": [
+                {
+                  "component": "paragraph",
+                  "text": "The agreement has been offered and you don't need to do anything else."
+                }
+              ],
+              "renderIf": "jsonata:$.position.statusCode = 'STATUS_APPLICATION_AWAITING_FC'"
+            }
+          ],
+          "taskGroups": [
+            {
+              "name": "Tasks",
+              "code": "TASK_GROUP_FC_REVIEW",
+              "tasks": [
+                {
+                  "name": "Record Forestry Commission outcome",
+                  "code": "TASK_FC_REVIEW_OUTCOME",
+                  "description": "Record Forestry Commission outcome",
+                  "mandatory": true,
+                  "statusOptions": [
+                    {
+                      "name": "Accepted",
+                      "code": "STATUS_FC_REVIEW_SUCCESSFUL",
+                      "theme": "SUCCESS",
+                      "altName": "Accepted",
+                      "completes": true,
+                      "comment": {
+                        "label": "Explanation",
+                        "helpText": "Add comment for auditing purposes.",
+                        "mandatory": true
+                      }
+                    },
+                    {
+                      "name": "Rejected",
+                      "code": "STATUS_FC_REVIEW_UNSUCCESSFUL",
+                      "theme": "ERROR",
+                      "altName": "Rejected",
+                      "completes": false,
+                      "comment": {
+                        "label": "Explanation",
+                        "helpText": "Add comment for auditing purposes.",
+                        "mandatory": true
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
         {
-          "code": "STAGE_MONITORING",
-          "name": "Monitoring",
-          "description": "Agreement monitoring",
+          "name": "Application completed",
+          "code": "STAGE_APPLICATION_COMPLETED",
+          "description": "The application is  complete",
           "statuses": [
             {
-              "code": "STATUS_AGREEMENT_ACCEPTED",
-              "name": "Agreement Accepted",
-              "theme": "SUCCESS",
-              "description": "Customer has accepted the agreement",
+              "name": "Application completed",
+              "code": "STATUS_APPLICATION_COMPLETED",
+              "theme": "NEUTRAL",
+              "description": "The application is complete",
               "interactive": false,
               "transitions": []
             }
@@ -591,5 +1097,6 @@
         }
       ]
     }
-  ]
+  ],
+  "version": "0.0.0"
 }
