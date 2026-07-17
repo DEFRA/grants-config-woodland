@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.7.1
+
+### Patch Changes
+
+- 6aca86f: Persist returned-to-customer page for steady state REOPENED status
+
 ## 1.7.0
 
 ### Minor Changes
