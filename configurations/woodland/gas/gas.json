@@ -1,8 +1,10 @@
 {
   "code": "woodland",
   "metadata": {
-    "description": "Apply for a woodland management plan (WMP)",
-    "startDate": "2100-01-01T00:10:00.000Z"
+    "description": "Woodland Management Plan",
+    "startDate": {
+      "$date": "2100-01-01T00:00:00Z"
+    }
   },
   "actions": [],
   "amendablePositions": [],
@@ -72,7 +74,10 @@
                 "type": "object"
               }
             },
-            "required": ["business", "customer"]
+            "required": [
+              "business",
+              "customer"
+            ]
           },
           "detailsConfirmedAt": {
             "type": "string",
@@ -106,12 +111,15 @@
                   "exclusiveMinimum": 0
                 }
               },
-              "required": ["parcelId", "areaHa"]
+              "required": [
+                "parcelId",
+                "areaHa"
+              ]
             },
             "minItems": 1
           },
           "totalAgreementPaymentPence": {
-            "type": "number",
+            "type": "integer",
             "exclusiveMinimum": 0
           },
           "payments": {
@@ -137,11 +145,11 @@
                       "minimum": 0
                     },
                     "activeTierRatePence": {
-                      "type": "number",
+                      "type": "integer",
                       "minimum": 0
                     },
                     "activeTierFlatRatePence": {
-                      "type": "number",
+                      "type": "integer",
                       "minimum": 0
                     },
                     "quantity": {
@@ -149,12 +157,15 @@
                       "minimum": 0
                     },
                     "agreementTotalPence": {
-                      "type": "number",
+                      "type": "integer",
                       "minimum": 0
                     },
                     "unit": {
                       "type": "string",
-                      "enum": ["ha", "%"]
+                      "enum": [
+                        "ha",
+                        "%"
+                      ]
                     }
                   },
                   "required": [
@@ -200,7 +211,9 @@
           }
         },
         "then": {
-          "required": ["existingWmps"],
+          "required": [
+            "existingWmps"
+          ],
           "properties": {
             "existingWmps": {
               "type": "string"
@@ -213,90 +226,77 @@
           }
         },
         "fgSumMax": {
-          "fields": ["hectaresTenOrOverYearsOld", "hectaresUnderTenYearsOld"],
+          "fields": [
+            "hectaresTenOrOverYearsOld",
+            "hectaresUnderTenYearsOld"
+          ],
           "targetField": "totalHectaresForSelectedParcels"
         },
         "fgSumMin": {
-          "fields": ["hectaresTenOrOverYearsOld", "hectaresUnderTenYearsOld"],
+          "fields": [
+            "hectaresTenOrOverYearsOld",
+            "hectaresUnderTenYearsOld"
+          ],
           "minimum": 0.5
         },
         "fgSumEquals": {
-          "fields": ["landParcels[].areaHa"],
+          "fields": [
+            "landParcels[].areaHa"
+          ],
           "targetField": "totalHectaresForSelectedParcels"
         }
       },
       "stages": [
         {
           "code": "STAGE_REVIEWING_APPLICATION",
-          "name": "Reviewing Application",
-          "description": "Internal review of woodland management plan application",
+          "name": "Reviewing application",
+          "description": "Application received and being reviewed; agreement generation triggered on approval",
           "statuses": [
             {
               "code": "STATUS_APPLICATION_RECEIVED",
               "validFrom": []
             },
             {
-              "code": "STATUS_IN_REVIEW",
-              "validFrom": [
-                {
-                  "code": "STATUS_APPLICATION_RECEIVED",
-                  "processes": []
-                }
-              ]
-            },
-            {
               "code": "STATUS_AGREEMENT_GENERATING",
               "validFrom": [
                 {
-                  "code": "STATUS_IN_REVIEW",
-                  "processes": ["GENERATE_OFFER"]
+                  "code": "STATUS_APPLICATION_RECEIVED",
+                  "processes": [
+                    "GENERATE_OFFER"
+                  ]
                 }
               ]
             }
           ]
         },
         {
-          "code": "STAGE_SEND_AGREEMENT_TO_APPLICANT",
-          "name": "Send Agreement to applicant",
-          "description": "Send the Agreement to applicant",
+          "code": "STAGE_PREPARING_AGREEMENT",
+          "name": "Preparing agreement",
+          "description": "Agreement document being drafted and made ready for the applicant",
           "statuses": [
             {
               "code": "STATUS_AGREEMENT_READY_FOR_APPLICANT",
               "validFrom": [
                 {
                   "code": "PHASE_PRE_AWARD:STAGE_REVIEWING_APPLICATION:STATUS_AGREEMENT_GENERATING",
-                  "processes": ["STORE_AGREEMENT_CASE"]
+                  "processes": [
+                    "STORE_AGREEMENT_CASE"
+                  ]
                 }
               ]
             }
           ]
         },
         {
-          "code": "STAGE_FORWARD_TO_FC",
-          "name": "Forward to Forestry Commission",
-          "description": "Forward to Forestry Commission",
+          "code": "STAGE_AGREEMENT_WITH_APPLICANT",
+          "name": "Agreement with applicant",
+          "description": "Agreement is with the applicant, awaiting their response",
           "statuses": [
             {
-              "code": "STATUS_READY_TO_FORWARD",
+              "code": "STATUS_AGREEMENT_OFFERED",
               "validFrom": [
                 {
-                  "code": "PHASE_PRE_AWARD:STAGE_SEND_AGREEMENT_TO_APPLICANT:STATUS_AGREEMENT_READY_FOR_APPLICANT",
-                  "processes": ["ACCEPT_AGREEMENT"]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "code": "STAGE_FC_REVIEW",
-          "name": "Forestry Commission Review",
-          "description": "Forestry Commission review of the application",
-          "statuses": [
-            {
-              "code": "STATUS_AWAITING_FC",
-              "validFrom": [
-                {
-                  "code": "PHASE_PRE_AWARD:STAGE_FORWARD_TO_FC:STATUS_READY_TO_FORWARD",
+                  "code": "PHASE_PRE_AWARD:STAGE_PREPARING_AGREEMENT:STATUS_AGREEMENT_READY_FOR_APPLICANT",
                   "processes": []
                 }
               ]
@@ -304,15 +304,33 @@
           ]
         },
         {
-          "code": "STAGE_APPLICATION_COMPLETE",
-          "name": "Application complete",
-          "description": "The application is complete",
+          "code": "STAGE_AGREEMENT_ACCEPTED",
+          "name": "Agreement accepted",
+          "description": "Applicant has accepted the agreement; downstream processes triggered",
           "statuses": [
             {
-              "code": "STATUS_COMPLETED",
+              "code": "STATUS_AGREEMENT_ACCEPTED",
               "validFrom": [
                 {
-                  "code": "PHASE_PRE_AWARD:STAGE_FC_REVIEW:STATUS_AWAITING_FC",
+                  "code": "PHASE_PRE_AWARD:STAGE_AGREEMENT_WITH_APPLICANT:STATUS_AGREEMENT_OFFERED",
+                  "processes": [
+                    "ACCEPT_AGREEMENT"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": "STAGE_APPLICATION_COMPLETED",
+          "name": "Application completed",
+          "description": "All approvals received; application is complete",
+          "statuses": [
+            {
+              "code": "STATUS_APPLICATION_COMPLETED",
+              "validFrom": [
+                {
+                  "code": "PHASE_PRE_AWARD:STAGE_AGREEMENT_ACCEPTED:STATUS_AGREEMENT_ACCEPTED",
                   "processes": []
                 }
               ]
@@ -331,11 +349,6 @@
             "code": "STAGE_REVIEWING_APPLICATION",
             "statuses": [
               {
-                "code": "PHASE_PRE_AWARD:STAGE_REVIEWING_APPLICATION:STATUS_IN_REVIEW",
-                "source": "CW",
-                "mappedTo": "PHASE_PRE_AWARD:STAGE_REVIEWING_APPLICATION:STATUS_IN_REVIEW"
-              },
-              {
                 "code": "PHASE_PRE_AWARD:STAGE_REVIEWING_APPLICATION:STATUS_AGREEMENT_GENERATING",
                 "source": "CW",
                 "mappedTo": "PHASE_PRE_AWARD:STAGE_REVIEWING_APPLICATION:STATUS_AGREEMENT_GENERATING"
@@ -343,47 +356,43 @@
               {
                 "code": "offered",
                 "source": "AS",
-                "mappedTo": "PHASE_PRE_AWARD:STAGE_SEND_AGREEMENT_TO_APPLICANT:STATUS_AGREEMENT_READY_FOR_APPLICANT"
+                "mappedTo": "PHASE_PRE_AWARD:STAGE_PREPARING_AGREEMENT:STATUS_AGREEMENT_READY_FOR_APPLICANT"
               }
             ]
           },
           {
-            "code": "STAGE_SEND_AGREEMENT_TO_APPLICANT",
+            "code": "STAGE_PREPARING_AGREEMENT",
             "statuses": [
               {
-                "code": "PHASE_PRE_AWARD:STAGE_FORWARD_TO_FC:STATUS_READY_TO_FORWARD",
+                "code": "PHASE_PRE_AWARD:STAGE_AGREEMENT_WITH_APPLICANT:STATUS_AGREEMENT_OFFERED",
                 "source": "CW",
-                "mappedTo": "PHASE_PRE_AWARD:STAGE_FORWARD_TO_FC:STATUS_READY_TO_FORWARD"
-              },
+                "mappedTo": "PHASE_PRE_AWARD:STAGE_AGREEMENT_WITH_APPLICANT:STATUS_AGREEMENT_OFFERED"
+              }
+            ]
+          },
+          {
+            "code": "STAGE_AGREEMENT_WITH_APPLICANT",
+            "statuses": [
               {
                 "code": "accepted",
                 "source": "AS",
-                "mappedTo": "PHASE_PRE_AWARD:STAGE_FORWARD_TO_FC:STATUS_READY_TO_FORWARD"
+                "mappedTo": "PHASE_PRE_AWARD:STAGE_AGREEMENT_ACCEPTED:STATUS_AGREEMENT_ACCEPTED"
               }
             ]
           },
           {
-            "code": "STAGE_FORWARD_TO_FC",
+            "code": "STAGE_AGREEMENT_ACCEPTED",
             "statuses": [
               {
-                "code": "PHASE_PRE_AWARD:STAGE_FC_REVIEW:STATUS_AWAITING_FC",
+                "code": "PHASE_PRE_AWARD:STAGE_APPLICATION_COMPLETED:STATUS_APPLICATION_COMPLETED",
                 "source": "CW",
-                "mappedTo": "PHASE_PRE_AWARD:STAGE_FC_REVIEW:STATUS_AWAITING_FC"
-              }
-            ]
-          },
-          {
-            "code": "STAGE_FC_REVIEW",
-            "statuses": [
-              {
-                "code": "PHASE_PRE_AWARD:STAGE_APPLICATION_COMPLETE:STATUS_COMPLETED",
-                "source": "CW",
-                "mappedTo": "PHASE_PRE_AWARD:STAGE_APPLICATION_COMPLETE:STATUS_COMPLETED"
+                "mappedTo": "PHASE_PRE_AWARD:STAGE_APPLICATION_COMPLETED:STATUS_APPLICATION_COMPLETED"
               }
             ]
           }
         ]
       }
     ]
-  }
+  },
+  "version": "0.0.0"
 }
