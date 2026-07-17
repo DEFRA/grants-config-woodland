@@ -32,7 +32,7 @@ metadata:
       - fromGrantsStatus: REOPENED
         gasStatus: default
         toGrantsStatus: REOPENED
-        toPath: /summary
+        toPath: /returned-to-customer
 
       # Submitted -> confirmation (default for most GAS statuses)
       - fromGrantsStatus: SUBMITTED
