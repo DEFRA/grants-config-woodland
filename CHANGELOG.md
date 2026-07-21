@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.8.0
+
+### Minor Changes
+
+- acd32bb: Whitelist new batch of users for woodland
+
 ## 1.7.1
 
 ### Patch Changes
