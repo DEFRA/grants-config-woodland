@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.9.0
+
+### Minor Changes
+
+- 38a6c6c: Adding new SBI/CRN pairs to allowlist
+
 ## 1.8.0
 
 ### Minor Changes
