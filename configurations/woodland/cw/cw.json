@@ -1,9 +1,7 @@
 {
   "code": "woodland",
   "requiredRoles": {
-    "allOf": [
-      "ROLE_WMP"
-    ],
+    "allOf": ["ROLE_WMP"],
     "anyOf": []
   },
   "templates": {},

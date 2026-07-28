@@ -76,10 +76,7 @@
                 "type": "object"
               }
             },
-            "required": [
-              "business",
-              "customer"
-            ]
+            "required": ["business", "customer"]
           },
           "detailsConfirmedAt": {
             "type": "string",
@@ -113,10 +110,7 @@
                   "exclusiveMinimum": 0
                 }
               },
-              "required": [
-                "parcelId",
-                "areaHa"
-              ]
+              "required": ["parcelId", "areaHa"]
             },
             "minItems": 1
           },
@@ -164,10 +158,7 @@
                     },
                     "unit": {
                       "type": "string",
-                      "enum": [
-                        "ha",
-                        "%"
-                      ]
+                      "enum": ["ha", "%"]
                     }
                   },
                   "required": [
@@ -213,9 +204,7 @@
           }
         },
         "then": {
-          "required": [
-            "existingWmps"
-          ],
+          "required": ["existingWmps"],
           "properties": {
             "existingWmps": {
               "type": "string"
@@ -228,23 +217,15 @@
           }
         },
         "fgSumMax": {
-          "fields": [
-            "hectaresTenOrOverYearsOld",
-            "hectaresUnderTenYearsOld"
-          ],
+          "fields": ["hectaresTenOrOverYearsOld", "hectaresUnderTenYearsOld"],
           "targetField": "totalHectaresForSelectedParcels"
         },
         "fgSumMin": {
-          "fields": [
-            "hectaresTenOrOverYearsOld",
-            "hectaresUnderTenYearsOld"
-          ],
+          "fields": ["hectaresTenOrOverYearsOld", "hectaresUnderTenYearsOld"],
           "minimum": 0.5
         },
         "fgSumEquals": {
-          "fields": [
-            "landParcels[].areaHa"
-          ],
+          "fields": ["landParcels[].areaHa"],
           "targetField": "totalHectaresForSelectedParcels"
         }
       },
@@ -263,9 +244,7 @@
               "validFrom": [
                 {
                   "code": "STATUS_APPLICATION_RECEIVED",
-                  "processes": [
-                    "GENERATE_OFFER"
-                  ]
+                  "processes": ["GENERATE_OFFER"]
                 }
               ]
             }
@@ -281,9 +260,7 @@
               "validFrom": [
                 {
                   "code": "PHASE_PRE_AWARD:STAGE_REVIEWING_APPLICATION:STATUS_AGREEMENT_GENERATING",
-                  "processes": [
-                    "STORE_AGREEMENT_CASE"
-                  ]
+                  "processes": ["STORE_AGREEMENT_CASE"]
                 }
               ]
             }
@@ -315,9 +292,7 @@
               "validFrom": [
                 {
                   "code": "PHASE_PRE_AWARD:STAGE_AGREEMENT_WITH_APPLICANT:STATUS_AGREEMENT_OFFERED",
-                  "processes": [
-                    "ACCEPT_AGREEMENT"
-                  ]
+                  "processes": ["ACCEPT_AGREEMENT"]
                 }
               ]
             }
