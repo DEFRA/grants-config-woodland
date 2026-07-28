@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.9.4
+
+### Patch Changes
+
+- 285bb4b: pathc 2
+
 ## 1.9.3
 
 ### Patch Changes
