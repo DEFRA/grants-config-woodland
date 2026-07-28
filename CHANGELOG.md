@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.9.3
+
+### Patch Changes
+
+- 37f548c: doemo1
+
 ## 1.9.2
 
 ### Patch Changes
