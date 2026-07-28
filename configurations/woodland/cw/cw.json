@@ -469,6 +469,16 @@
                     ]
                   }
                 ]
+              },
+              {
+                "component": "paragraph",
+                "text": "Original configuration version $.originalConfigVersion",
+                "classes": "govuk-body"
+              },
+              {
+                "component": "paragraph",
+                "text": "Current configuration version $.currentConfigVersion",
+                "classes": "govuk-body"
               }
             ]
           },
