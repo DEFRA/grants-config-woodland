@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.10.0
+
+### Minor Changes
+
+- b137e87: gas cw latest config
+
 ## 1.9.4
 
 ### Patch Changes
