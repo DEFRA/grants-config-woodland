@@ -1,13 +1,15 @@
 {
   "code": "woodland",
   "requiredRoles": {
-    "allOf": ["ROLE_WMP"],
+    "allOf": [
+      "ROLE_WMP"
+    ],
     "anyOf": []
   },
   "templates": {},
   "definitions": {
     "agreementsService": {
-      "internalUrl": "https://fg-cw-frontend.%ENVIRONMENT%.cdp-int.defra.cloud/agreement/{agreementRef}"
+      "internalUrl": "https://fg-cw-frontend.ext-test.cdp-int.defra.cloud/agreement/{agreementRef}"
     }
   },
   "endpoints": [],
@@ -612,15 +614,57 @@
                   "checkTasks": false,
                   "action": {
                     "code": "ACTION_APPROVE_APPLICATION",
-                    "name": "Continue",
+                    "name": "Generate agreement",
+                    "checkTasks": false,
+                    "comment": null
+                  }
+                },
+                {
+                  "targetPosition": "PHASE_PRE_AWARD:STAGE_APPLICATION_AMENDMENT:STATUS_RETURNED_TO_CUSTOMER",
+                  "checkTasks": false,
+                  "action": {
+                    "code": "ACTION_RETURN_TO_CUSTOMER",
+                    "name": "Return to customer",
                     "checkTasks": false,
                     "comment": {
                       "label": {
-                        "text": "Comment",
+                        "text": "Reason for return",
                         "classes": "govuk-visually-hidden"
                       },
-                      "helpText": "Add comment for auditing purposes.",
-                      "mandatory": false
+                      "helpText": "What is the reason for returning this application to the customer?",
+                      "mandatory": true
+                    },
+                    "confirm": {
+                      "details": [
+                        {
+                          "component": "heading",
+                          "text": "Are you sure you want to return the application to the customer?",
+                          "level": 1,
+                          "classes": "govuk-heading-l"
+                        },
+                        {
+                          "component": "paragraph",
+                          "text": "If you return the application the customer will be able to edit it and then resubmit a new application."
+                        }
+                      ],
+                      "yes": {
+                        "component": "container",
+                        "items": [
+                          {
+                            "component": "text",
+                            "text": "Yes, return the application to customer"
+                          }
+                        ]
+                      },
+                      "no": {
+                        "component": "container",
+                        "items": [
+                          {
+                            "component": "text",
+                            "text": "No, go back to Application received"
+                          }
+                        ]
+                      }
                     }
                   }
                 }
@@ -647,13 +691,8 @@
               "renderIf": "jsonata:$.position.statusCode = 'STATUS_APPLICATION_IN_REVIEW'",
               "content": [
                 {
-                  "component": "heading",
-                  "level": 3,
-                  "text": "Generate draft agreement"
-                },
-                {
                   "component": "paragraph",
-                  "text": "Select 'Continue' to generate the draft agreement."
+                  "text": "Select 'Generate agreement' if you are ready to continue. If the customer needs to make amendments select 'Return to customer'."
                 }
               ]
             },
@@ -1094,6 +1133,43 @@
             }
           ],
           "taskGroups": []
+        },
+        {
+          "name": "Returned to customer",
+          "code": "STAGE_APPLICATION_AMENDMENT",
+          "description": "The application has been sent back to the client for modification",
+          "statuses": [
+            {
+              "code": "STATUS_RETURNED_TO_CUSTOMER",
+              "name": "Returned to customer",
+              "theme": "WARN",
+              "description": "The application has been sent back to the client for modification",
+              "interactive": false,
+              "closes": true,
+              "transitions": []
+            }
+          ],
+          "taskGroups": [],
+          "beforeContent": [
+            {
+              "renderIf": "jsonata:$.position.statusCode = 'STATUS_RETURNED_TO_CUSTOMER'",
+              "content": [
+                {
+                  "component": "heading",
+                  "text": "Application returned to customer",
+                  "level": 3
+                },
+                {
+                  "component": "paragraph",
+                  "text": "Application $.caseRef has been returned to customer."
+                },
+                {
+                  "component": "paragraph",
+                  "text": "You need to email the customer to notify them and provide a link to amend their returned application."
+                }
+              ]
+            }
+          ]
         }
       ]
     }

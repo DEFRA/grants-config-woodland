@@ -3,11 +3,13 @@
   "metadata": {
     "description": "Woodland Management Plan",
     "startDate": {
-      "$date": "2100-04-02T00:00:00Z"
+      "$date": "2100-01-01T00:00:00Z"
     }
   },
   "actions": [],
-  "amendablePositions": [],
+  "amendablePositions": [
+    "PHASE_PRE_AWARD:STAGE_APPLICATION_AMENDMENT:STATUS_RETURNED_TO_CUSTOMER"
+  ],
   "phases": [
     {
       "code": "PHASE_PRE_AWARD",
@@ -74,7 +76,10 @@
                 "type": "object"
               }
             },
-            "required": ["business", "customer"]
+            "required": [
+              "business",
+              "customer"
+            ]
           },
           "detailsConfirmedAt": {
             "type": "string",
@@ -108,7 +113,10 @@
                   "exclusiveMinimum": 0
                 }
               },
-              "required": ["parcelId", "areaHa"]
+              "required": [
+                "parcelId",
+                "areaHa"
+              ]
             },
             "minItems": 1
           },
@@ -156,7 +164,10 @@
                     },
                     "unit": {
                       "type": "string",
-                      "enum": ["ha", "%"]
+                      "enum": [
+                        "ha",
+                        "%"
+                      ]
                     }
                   },
                   "required": [
@@ -202,7 +213,9 @@
           }
         },
         "then": {
-          "required": ["existingWmps"],
+          "required": [
+            "existingWmps"
+          ],
           "properties": {
             "existingWmps": {
               "type": "string"
@@ -215,15 +228,23 @@
           }
         },
         "fgSumMax": {
-          "fields": ["hectaresTenOrOverYearsOld", "hectaresUnderTenYearsOld"],
+          "fields": [
+            "hectaresTenOrOverYearsOld",
+            "hectaresUnderTenYearsOld"
+          ],
           "targetField": "totalHectaresForSelectedParcels"
         },
         "fgSumMin": {
-          "fields": ["hectaresTenOrOverYearsOld", "hectaresUnderTenYearsOld"],
+          "fields": [
+            "hectaresTenOrOverYearsOld",
+            "hectaresUnderTenYearsOld"
+          ],
           "minimum": 0.5
         },
         "fgSumEquals": {
-          "fields": ["landParcels[].areaHa"],
+          "fields": [
+            "landParcels[].areaHa"
+          ],
           "targetField": "totalHectaresForSelectedParcels"
         }
       },
@@ -242,7 +263,9 @@
               "validFrom": [
                 {
                   "code": "STATUS_APPLICATION_RECEIVED",
-                  "processes": ["GENERATE_OFFER"]
+                  "processes": [
+                    "GENERATE_OFFER"
+                  ]
                 }
               ]
             }
@@ -258,7 +281,9 @@
               "validFrom": [
                 {
                   "code": "PHASE_PRE_AWARD:STAGE_REVIEWING_APPLICATION:STATUS_AGREEMENT_GENERATING",
-                  "processes": ["STORE_AGREEMENT_CASE"]
+                  "processes": [
+                    "STORE_AGREEMENT_CASE"
+                  ]
                 }
               ]
             }
@@ -290,7 +315,9 @@
               "validFrom": [
                 {
                   "code": "PHASE_PRE_AWARD:STAGE_AGREEMENT_WITH_APPLICANT:STATUS_AGREEMENT_OFFERED",
-                  "processes": ["ACCEPT_AGREEMENT"]
+                  "processes": [
+                    "ACCEPT_AGREEMENT"
+                  ]
                 }
               ]
             }
@@ -306,6 +333,22 @@
               "validFrom": [
                 {
                   "code": "PHASE_PRE_AWARD:STAGE_AGREEMENT_ACCEPTED:STATUS_AGREEMENT_ACCEPTED",
+                  "processes": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": "STAGE_APPLICATION_AMENDMENT",
+          "name": "Application amendment",
+          "description": "Application has been returned to the customer for amendments",
+          "statuses": [
+            {
+              "code": "STATUS_RETURNED_TO_CUSTOMER",
+              "validFrom": [
+                {
+                  "code": "PHASE_PRE_AWARD:STAGE_REVIEWING_APPLICATION:STATUS_APPLICATION_RECEIVED",
                   "processes": []
                 }
               ]
@@ -332,6 +375,11 @@
                 "code": "offered",
                 "source": "AS",
                 "mappedTo": "PHASE_PRE_AWARD:STAGE_PREPARING_AGREEMENT:STATUS_AGREEMENT_READY_FOR_APPLICANT"
+              },
+              {
+                "code": "PHASE_PRE_AWARD:STAGE_APPLICATION_AMENDMENT:STATUS_RETURNED_TO_CUSTOMER",
+                "source": "CW",
+                "mappedTo": "PHASE_PRE_AWARD:STAGE_APPLICATION_AMENDMENT:STATUS_RETURNED_TO_CUSTOMER"
               }
             ]
           },
