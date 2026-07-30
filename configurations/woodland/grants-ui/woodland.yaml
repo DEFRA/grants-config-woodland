@@ -29,13 +29,13 @@ metadata:
         toPath: /agreement
 
       # Ready for claim -> claims journey
-      - fromGrantsStatus: 'SUBMITTED,CLAIM_STARTED'
+      - fromGrantsStatus: 'SUBMITTED'
         gasStatus: 'STATUS_AWAITING_CLAIM'
         toGrantsStatus: 'CLAIM_STARTED'
         toPath: /claim
 
       # Claim submitted -> claim submitted page
-      - fromGrantsStatus: 'SUBMITTED,CLAIM_STARTED,CLAIM_SUBMITTED'
+      - fromGrantsStatus: 'CLAIM_STARTED'
         gasStatus: 'STATUS_CLAIM_COMPLETE'
         toGrantsStatus: 'CLAIM_SUBMITTED'
         toPath: /claim/submitted
