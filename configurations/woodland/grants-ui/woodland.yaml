@@ -29,15 +29,15 @@ metadata:
         toPath: /agreement
 
       # Ready for claim -> claims journey
-      - fromGrantsStatus: 'SUBMITTED'
+      - fromGrantsStatus: 'SUBMITTED,CLAIM_STARTED'
         gasStatus: 'STATUS_AWAITING_CLAIM'
-        toGrantsStatus: 'SUBMITTED'
+        toGrantsStatus: 'CLAIM_STARTED'
         toPath: /claim
 
       # Claim submitted -> claim submitted page
-      - fromGrantsStatus: 'SUBMITTED'
+      - fromGrantsStatus: 'SUBMITTED,CLAIM_STARTED,CLAIM_SUBMITTED'
         gasStatus: 'STATUS_CLAIM_COMPLETE'
-        toGrantsStatus: 'SUBMITTED'
+        toGrantsStatus: 'CLAIM_SUBMITTED'
         toPath: /claim/submitted
 
       # Reopened
@@ -45,6 +45,18 @@ metadata:
         gasStatus: default
         toGrantsStatus: REOPENED
         toPath: /returned-to-customer
+
+      # Claim started (steady state) -> stay on claims journey
+      - fromGrantsStatus: CLAIM_STARTED
+        gasStatus: default
+        toGrantsStatus: CLAIM_STARTED
+        toPath: /claim
+
+      # Claim submitted (steady state) -> stay on claim submitted page
+      - fromGrantsStatus: CLAIM_SUBMITTED
+        gasStatus: default
+        toGrantsStatus: CLAIM_SUBMITTED
+        toPath: /claim/submitted
 
       # Submitted -> confirmation (default for most GAS statuses)
       - fromGrantsStatus: SUBMITTED
