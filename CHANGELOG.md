@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.11.0
+
+### Minor Changes
+
+- 3bb2418: Add claims journey redirects for status_awaiting_claim and status_claim_complete GAS statuses
+
 ## 1.10.0
 
 ### Minor Changes
