@@ -34,12 +34,6 @@ metadata:
         toGrantsStatus: 'CLAIM_STARTED'
         toPath: /claim
 
-      # Claim submitted -> claim submitted page
-      - fromGrantsStatus: 'CLAIM_STARTED'
-        gasStatus: 'STATUS_CLAIM_COMPLETE'
-        toGrantsStatus: 'CLAIM_SUBMITTED'
-        toPath: /claim/submitted
-
       # Reopened
       - fromGrantsStatus: REOPENED
         gasStatus: default
