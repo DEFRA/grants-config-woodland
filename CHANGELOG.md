@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.11.2
+
+### Patch Changes
+
+- c647156: Use the supported four-decimal formatter for Woodland parcel areas.
+
 ## 1.11.1
 
 ### Patch Changes
