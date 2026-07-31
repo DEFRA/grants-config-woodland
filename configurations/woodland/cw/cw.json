@@ -376,7 +376,7 @@
                           {
                             "component": "text",
                             "text": "Area (ha)",
-                            "format": "numeric"
+                            "format": "fixed(4)"
                           }
                         ],
                         "rows": [
@@ -385,7 +385,7 @@
                           },
                           {
                             "text": "@.areaHa",
-                            "format": "numeric"
+                            "format": "fixed(4)"
                           }
                         ]
                       }
