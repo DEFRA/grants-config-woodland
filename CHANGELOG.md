@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.11.1
+
+### Patch Changes
+
+- 85dbdb5: Replace hardcoded ext-test environment in cw internalUrl with %ENVIRONMENT% placeholder
+
 ## 1.11.0
 
 ### Minor Changes
