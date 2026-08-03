@@ -802,7 +802,7 @@
                     }
                   ],
                   "mandatory": true,
-                  "statusOptions": [
+                  "valueOptions": [
                     {
                       "name": "Sent",
                       "code": "STATUS_AGREEMENT_SENT_TO_APPLICANT",
@@ -1011,7 +1011,7 @@
                     }
                   ],
                   "mandatory": true,
-                  "statusOptions": [
+                  "valueOptions": [
                     {
                       "name": "Created",
                       "code": "STATUS_CRM_RECORD_CREATED",
@@ -1095,7 +1095,7 @@
                   "code": "TASK_FC_REVIEW_OUTCOME",
                   "description": "Record Forestry Commission outcome",
                   "mandatory": true,
-                  "statusOptions": [
+                  "valueOptions": [
                     {
                       "name": "Accepted",
                       "code": "STATUS_FC_REVIEW_SUCCESSFUL",
