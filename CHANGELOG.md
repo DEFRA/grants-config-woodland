@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.12.0
+
+### Minor Changes
+
+- 071302b: rename statusOptions to valueOptions
+
 ## 1.11.2
 
 ### Patch Changes
