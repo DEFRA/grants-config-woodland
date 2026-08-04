@@ -29,11 +29,12 @@ else
 fi
 
 BASE='https://github.com/DEFRA/grants-ui.git#main:'
-BASE_COMPOSE=${BASE}compose.yml
+BASE_COMPOSE=${BASE}compose.grants-ui.yml
 
 docker compose version
 
 COMPOSE_COMMAND="docker compose \
+  -f ${BASE}compose.infra.yml \
   -f ${BASE_COMPOSE} \
   -f ${BASE}compose.ha.yml \
   -f ${BASE}compose.land-grants.yml \
@@ -44,7 +45,7 @@ echo "Running pre-emptive volume cleanse..."
 docker volume prune -f
 
 echo "Building docker compose containers..."
-eval "${COMPOSE_COMMAND} build --quiet  > /dev/null 2>&1"
+eval "${COMPOSE_COMMAND} build"
 echo "Starting services with docker compose..."
 START_SERVICES="${COMPOSE_COMMAND} up -d --quiet-pull"
 if [ "${CI}" = "true" ]; then
@@ -57,10 +58,10 @@ ATTEMPTS=0
 MAX_ATTEMPTS=60
 
 echo "Waiting for grants-ui service to start..."
-until docker compose -f ${BASE_COMPOSE} ps grants-ui | grep -q "Up"; do
+until eval "${COMPOSE_COMMAND} ps grants-ui" | grep -q "Up"; do
     if [ ${ATTEMPTS} -eq ${MAX_ATTEMPTS} ]; then
         echo "Error: Timed out waiting for grants-ui service to start."
-        docker compose -f ${BASE_COMPOSE} ps
+        eval "${COMPOSE_COMMAND} ps"
         eval "${COMPOSE_COMMAND} down -v"
         exit 1
     fi
@@ -77,11 +78,11 @@ until curl -skf https://localhost:4000/health >/dev/null 2>&1; do
     if [ ${ATTEMPTS} -eq ${MAX_ATTEMPTS} ]; then
         echo "Error: Timed out waiting for grants-ui service to be accessible."
         echo "--- Current Service Status ---"
-        docker compose ${BASE_COMPOSE} ps
+        eval "${COMPOSE_COMMAND} ps"
         echo "--- grants-ui Service Logs ---"
-        docker compose ${BASE_COMPOSE} logs grants-ui
+        eval "${COMPOSE_COMMAND} logs grants-ui"
         echo "--- Redis Service Logs ---"
-        docker compose ${BASE_COMPOSE} logs redis
+        eval "${COMPOSE_COMMAND} logs redis"
         eval "${COMPOSE_COMMAND} down"
         exit 1
     fi
@@ -92,7 +93,7 @@ done
 
 echo "All services are healthy!"
 echo "Service Status:"
-docker compose -f ${BASE_COMPOSE} ps
+eval "${COMPOSE_COMMAND} ps"
 
 if [ -n "${ACCEPTANCE_TESTS_HOOK:-}" ]; then
   echo "Running Journey Tests..."
