@@ -23,7 +23,7 @@ cp -r configurations/woodland/ test/testconfig/woodland@0.0.0
 cp $(dirname "$0")/release.yml test/testconfig/
 cp configurations/woodland/gas/gas.json test/testconfig/gas.schema.json
 curl -fsSL \
-  https://raw.githubusercontent.com/DEFRA/grants-ui/main/localstack/config-broker/local-allowlists/woodland.yaml \
+  https://raw.githubusercontent.com/DEFRA/grants-ui/main/compose/config-broker/local-allowlists/woodland.yaml \
   -o test/testconfig/woodland@0.0.0/grants-ui/allowlist.yaml
 
 "$(dirname "$0")/docker-compose-smoke-test.sh"
