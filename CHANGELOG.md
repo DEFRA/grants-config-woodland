@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.12.1
+
+### Patch Changes
+
+- 8c9e2f3: Update allowlist entries
+
 ## 1.12.0
 
 ### Minor Changes
