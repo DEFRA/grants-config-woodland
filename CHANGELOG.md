@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.14.0
+
+### Minor Changes
+
+- 70aa23e: Woodland claims journey & move ConfirmationPageController config to page-level
+
 ## 1.13.0
 
 ### Minor Changes
