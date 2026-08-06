@@ -28,7 +28,7 @@
             },
             "applicationId": {
               "label": "Application ID",
-              "text": "$.caseRef",
+              "text": "jsonata:($task := $.phases.stages.taskGroups.tasks[code = 'TASK_SITI_REFERENCE' and completed = true and $trim(value ? value : '') != ''];$exists($task) ? $.caseRef & ' (' & $task.value & ')' : $.caseRef)",
               "type": "string"
             },
             "sbi": {
@@ -946,6 +946,35 @@
               "name": "Tasks",
               "code": "TASK_GROUP_CRM_RECORD",
               "tasks": [
+                {
+                  "code": "TASK_SITI_REFERENCE",
+                  "name": "Add SitiAgri Reference",
+                  "mandatory": true,
+                  "description": [
+                    {
+                      "component": "heading",
+                      "text": "Add SitiAgri reference",
+                      "level": 2,
+                      "classes": "govuk-heading-l"
+                    },
+                    {
+                      "component": "paragraph",
+                      "text": "You need to add the SitiAgri reference before you can assign an application to the Forestry Commission. You can find this reference by searching the SBI of the business on the MI toolkit."
+                    }
+                  ],
+                  "input": {
+                    "type": "text",
+                    "label": {
+                      "text": "Enter SitiAgri reference",
+                      "classes": "govuk-label--m"
+                    },
+                    "pattern": "^[0-9]{7}$",
+                    "maxlength": 7,
+                    "hint": [
+                      "Provide the 7 digit SitiAgri reference for the Forestry Commission"
+                    ]
+                  }
+                },
                 {
                   "name": "Create CRM record",
                   "code": "TASK_CRM_RECORD_CREATION",
