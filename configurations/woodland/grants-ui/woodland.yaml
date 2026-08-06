@@ -50,7 +50,7 @@ metadata:
       - fromGrantsStatus: CLAIM_SUBMITTED
         gasStatus: default
         toGrantsStatus: CLAIM_SUBMITTED
-        toPath: /claim/submitted
+        toPath: /claim-confirmation
 
       # Submitted -> confirmation (default for most GAS statuses)
       - fromGrantsStatus: SUBMITTED
@@ -216,14 +216,6 @@ metadata:
       completed:
         text: 'Completed'
         classes: 'govuk-tag--green'
-  confirmationContent:
-    panelTitle: 'Application submitted'
-    panelText: 'Application reference number'
-    html: |
-      <p class="govuk-body">We've received your application.</p>
-      <h2 class="govuk-heading-m">What happens next</h2>
-      <p class="govuk-body">We'll be in contact to offer you an agreement, or to ask for more information.</p>
-      <p class="govuk-body"><a class="govuk-link" href="/{{SLUG}}/print-submitted-application" target="_blank">View / Print submitted application (opens in new tab)</a></p>
   printPage:
     showApplicantDetails: true
   incorrectDetailsContent:
@@ -678,6 +670,7 @@ pages:
         <p class="govuk-body">Based on the information provided, you may be eligible for a grant of {{ totalPayment }}.</p>
         <p class="govuk-inset-text">There’s no guarantee you’ll receive a grant</p>
         <p class="govuk-body">Please note that these figures are correct as at the Agreement Start Date and may vary as a result of the processes set out in the <a href="https://www.gov.uk/government/publications/capital-grants-agreements-terms-and-conditions-2026" class="govuk-link" target="_blank">Capital grants agreements: Terms and conditions 2026 (opens in new tab)</a>. Examples of where the figures may change include amendments to change the size of a parcel and adjustments to a payment rate to eliminate greening double funding.</p>
+
   - title: Submit your application
     id: ab194d2a-0b67-4a21-9158-1bd1bbdc4077
     path: /declaration
@@ -708,10 +701,27 @@ pages:
     path: /confirmation
     controller: ConfirmationPageController
     id: 9817cd3a-c9ae-49f1-8a95-076a82504d45
+    config:
+      panelTitle: 'Application submitted'
+      panelText: 'Application reference number'
+    components:
+      - name: confirmationContent
+        id: 9d0e3f4a-1c2b-4d5e-8f6a-0b1c2d3e4f50
+        type: Html
+        content: |
+          <p class="govuk-body">We've received your application.</p>
+          <h2 class="govuk-heading-m">What happens next</h2>
+          <p class="govuk-body">We'll be in contact to offer you an agreement, or to ask for more information.</p>
+          <p class="govuk-body"><a class="govuk-link" href="/{{ slug }}/print-submitted-application" target="_blank">View / Print submitted application (opens in new tab)</a></p>
+
   - title: PrintSubmittedApplication
     path: /print-submitted-application
     controller: PrintSubmittedApplicationController
     id: 9817cd3a-c9ae-49f1-8a95-076a82504d41
+
+  # ==========================================
+  # Landing page for return to customer
+  # ==========================================
 
   - title: Your application has been returned to you to make amendments
     id: 7d221505-fba7-4761-b511-28a12946c9e7
@@ -726,6 +736,89 @@ pages:
           <p class="govuk-body">If you change an answer, you may be required to answer additional questions.</p>
     next:
       - path: /summary
+
+  # ==========================================
+  # Claims journey
+  # ==========================================
+
+  - title: Review your WMP claim
+    id: 25e9e991-5cc4-46af-bebb-415393fb92e7
+    path: /claim
+    controller: StartClaimPageController
+    components:
+      - name: claimHtml
+        id: 1483e488-c18d-443d-a866-73f51d1479b9
+        type: Html
+        content: |
+          <p class="govuk-body">Your WMP agreed with the Forestry Commission covers a total eligible area of {{ totalEligibleArea }} {{ unit | formatAreaUnit }} of woodland.</p>
+          <p class="govuk-inset-text">Total claim amount: <span class="govuk-!-font-weight-bold">{{ (totalClaimAmountPence / 100) | formatCurrency }}</span></p>
+          <details class="govuk-details">
+            <summary class="govuk-details__summary">
+              <span class="govuk-details__summary-text">
+                How is the claim amount calculated?
+              </span>
+            </summary>
+            <div class="govuk-details__text">
+              Threshold payments for eligible land in hectares (ha):
+              <ul>
+                <li>0.5 hectares (ha) to 50ha: flat rate of £1,500</li>
+                <li>51ha to 100ha: flat rate of £1,500 for the first 50ha, plus £30 for each additional hectare up to and including 100ha</li>
+                <li>more than 100ha: flat rate of £3,000, plus £15 for each additional hectare over 100ha</li>
+              </ul>
+              <p>For full details read our <a href="https://www.gov.uk/government/publications/pa3-woodland-management-plan-2026/applicants-guide-pa3-woodland-management-plan-2026#whatyoull-get-paid" class="govuk-link" target="_blank">Applicant's guide: PA3 Woodland management plan 2026 guidance (opens in new tab)</a>.</p>
+            </div>
+          </details>
+    config:
+      hideBackLink: true
+      submitButtonText: Continue
+      dataSources:
+        - name: claims
+          items:
+            - totalEligibleArea
+            - unit
+            - totalClaimAmountPence
+      rpaDetails:
+        title: If you need help with your claim
+        content: |
+          <p class="govuk-body">Phone: 03000 200 301</p>
+          <p class="govuk-body">Monday to Friday, 8:30am to 5pm (except bank holidays)</p>
+          <p class="govuk-body"><a href="https://www.gov.uk/call-charges" class="govuk-link" rel="noreferrer noopener" target="_blank">Find out about call charges (opens in a new tab)</a></p>
+          <p class="govuk-body">Email: <a class="govuk-link" href="mailto:ruralpayments@defra.gov.uk">ruralpayments@defra.gov.uk</a></p>
+          <p class="govuk-body">We aim to respond to emails within 10 working days.</p>
+
+  - title: Declarations
+    id: 3e063a3f-846d-4e2c-8a1a-7d088ffdef4c
+    path: /claim-declaration
+    controller: DeclarationPageController
+    config:
+      declarationType: claim
+      submitButtonText: Confirm and submit
+      showSupportDetails: false
+    components:
+      - name: declarationContent
+        id: aa791320-b351-4dae-91c9-e133d6ae07ac
+        type: Html
+        content: |
+          <p class="govuk-body">I declare that all the details I have provided  are correct and I accept full responsibility for them.</p>
+          <p class="govuk-body">I have complied with, and will continue to comply with, the provisions of my Countryside Stewardship agreement and understand that payment may be withheld or recovered if I breach that agreement.</p>
+
+  - title: Confirmation
+    id: 0f62bdd3-5cb1-4d9d-9d90-10c440ee2301
+    path: /claim-confirmation
+    controller: ConfirmationPageController
+    config:
+      confirmationType: claim
+      panelTitle: 'Claim submitted'
+      panelText: 'Your claim reference number'
+    components:
+      - name: claimConfirmationContent
+        id: a7fd7085-ebcc-4ac7-b522-5b70940d5218
+        type: Html
+        content: |
+          <h2 class="govuk-heading-m">What happens next</h2>
+          <p class="govuk-body">We aim to pay valid claims within 2 months of receiving them.</p>
+          <p class="govuk-body">We will make payments directly into your bank account.</p>
+          <p class="govuk-body">It is your responsibility to keep your bank details up to date on the <a href="https://www.ruralpayments.service.gov.uk/">Rural Payment service</a>.</p>
 
 lists:
   - title: Forestry commission team list
