@@ -965,7 +965,7 @@
                   "input": {
                     "type": "text",
                     "label": {
-                      "text": "Enter SitiAgri reference",
+                      "text": "SitiAgri reference",
                       "classes": "govuk-label--m"
                     },
                     "pattern": "^[0-9]{7}$",
