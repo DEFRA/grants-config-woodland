@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.17.1
+
+### Patch Changes
+
+- 3e7f279: Update label to remove duplicate "Enter" text on SitiAgri task
+
 ## 1.17.0
 
 ### Minor Changes
