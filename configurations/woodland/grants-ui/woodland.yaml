@@ -2,6 +2,7 @@ engine: V2
 name: Apply for a woodland management plan (WMP)
 metadata:
   id: 95e92559-968d-44ae-8666-2b1ad3dffd38
+  surveyLabel: Woodland Management Plan
   description: Create or improve a woodland management plan for your woodland.
   referenceNumberPrefix: WMP
   submission:
