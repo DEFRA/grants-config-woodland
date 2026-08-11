@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.17.0
+
+### Minor Changes
+
+- 6c9cfd3: Survey config
+
 ## 1.16.0
 
 ### Minor Changes
