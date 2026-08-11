@@ -771,12 +771,7 @@ pages:
     config:
       hideBackLink: true
       submitButtonText: Continue
-      dataSources:
-        - name: claims
-          items:
-            - totalEligibleArea
-            - unit
-            - totalClaimAmountPence
+      paymentStrategy: woodland-claim
       rpaDetails:
         title: If you need help with your claim
         content: |
