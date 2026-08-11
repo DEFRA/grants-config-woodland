@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.16.0
+
+### Minor Changes
+
+- f9fb864: Claims journey with payment strategy
+
 ## 1.15.0
 
 ### Minor Changes
