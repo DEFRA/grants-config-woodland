@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.19.0
+
+### Minor Changes
+
+- 5360a1a: Add entitlement block and claim phase to WMP grant definition
+
 ## 1.18.0
 
 ### Minor Changes
