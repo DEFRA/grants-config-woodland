@@ -10,6 +10,95 @@
   "amendablePositions": [
     "PHASE_PRE_AWARD:STAGE_APPLICATION_AMENDMENT:STATUS_RETURNED_TO_CUSTOMER"
   ],
+  "entitlementTemplates": [
+    {
+      "code": "ENT_CS_CAPITAL_PA3",
+      "name": "PA3 Woodland Management Plan entitlement",
+      "description": "The maximum eligible woodland area that can be claimed under PA3.",
+      "appliesTo": {
+        "level": "AGREEMENT",
+        "itemCode": null
+      },
+      "limit": {
+        "field": "limitQuantity",
+        "unit": "HA"
+      },
+      "creation": {
+        "availableAt": [
+          "PHASE_PRE_AWARD:STAGE_PREPARE_CLAIM:STATUS_PREPARING_CLAIM"
+        ],
+        "onCreated": {
+          "targetPosition": "PHASE_CLAIM:STAGE_AWAITING_CLAIM:STATUS_AWAITING_CLAIM"
+        },
+        "inputSchema": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["limitQuantity"],
+          "properties": {
+            "limitQuantity": {
+              "type": "number",
+              "minimum": 3,
+              "maximum": 10000
+            }
+          }
+        },
+        "form": {
+          "content": [
+            {
+              "component": "heading",
+              "text": "Enter the total eligible area of woodland included in the plan",
+              "level": 1
+            },
+            {
+              "component": "paragraph",
+              "text": "You can find this in the confirmation email sent by the FC."
+            },
+            {
+              "component": "paragraph",
+              "text": "The size of woodland approved by the FC will be used to calculate the amount the customer can claim."
+            },
+            {
+              "component": "input",
+              "field": "limitQuantity",
+              "label": {
+                "text": "Total area of eligible woodland",
+                "classes": "govuk-label--s"
+              },
+              "inputmode": "decimal",
+              "spellcheck": false,
+              "classes": "govuk-input--width-10",
+              "suffix": {
+                "text": "ha"
+              },
+              "errorMessages": {
+                "required": "Enter the total area of eligible woodland",
+                "type": "Enter the area using numbers",
+                "minimum": "The area must be 3 hectares or more",
+                "maximum": "The area must be 10,000 hectares or less"
+              }
+            }
+          ]
+        }
+      },
+      "claim": {
+        "availableAt": [
+          "PHASE_CLAIM:STAGE_AWAITING_CLAIM:STATUS_AWAITING_CLAIM"
+        ],
+        "limits": {
+          "maximumClaims": 1,
+          "allowsPartialClaims": false
+        },
+        "onCreated": {
+          "targetPosition": "PHASE_CLAIM:STAGE_CLAIM_COMPLETE:STATUS_CLAIM_COMPLETE"
+        },
+        "payment": {
+          "calculationAction": "calculate-capital-claim",
+          "trigger": "ON_CLAIM_CREATED"
+        }
+      }
+    }
+  ],
   "phases": [
     {
       "code": "PHASE_PRE_AWARD",
@@ -324,6 +413,66 @@
               "validFrom": [
                 {
                   "code": "PHASE_PRE_AWARD:STAGE_REVIEWING_APPLICATION:STATUS_APPLICATION_RECEIVED",
+                  "processes": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": "STAGE_PREPARE_CLAIM",
+          "name": "Prepare claim",
+          "description": "Applicant provides the details needed to create the claim entitlement",
+          "statuses": [
+            {
+              "code": "STATUS_PREPARING_CLAIM",
+              "validFrom": [
+                {
+                  "code": "PHASE_PRE_AWARD:STAGE_APPLICATION_COMPLETED:STATUS_APPLICATION_COMPLETED",
+                  "processes": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "PHASE_CLAIM",
+      "name": "Claim",
+      "description": "Claim phase",
+      "questions": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {}
+      },
+      "stages": [
+        {
+          "code": "STAGE_AWAITING_CLAIM",
+          "name": "Awaiting claim",
+          "description": "Entitlement has been created; awaiting the claim to be made against it",
+          "statuses": [
+            {
+              "code": "STATUS_AWAITING_CLAIM",
+              "validFrom": [
+                {
+                  "code": "PHASE_PRE_AWARD:STAGE_PREPARE_CLAIM:STATUS_PREPARING_CLAIM",
+                  "processes": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": "STAGE_CLAIM_COMPLETE",
+          "name": "Claim complete",
+          "description": "Claim has been made against the entitlement and is complete",
+          "statuses": [
+            {
+              "code": "STATUS_CLAIM_COMPLETE",
+              "validFrom": [
+                {
+                  "code": "PHASE_CLAIM:STAGE_AWAITING_CLAIM:STATUS_AWAITING_CLAIM",
                   "processes": []
                 }
               ]
