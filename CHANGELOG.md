@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.20.0
+
+### Minor Changes
+
+- fa199ca: update entitlement template for woodland
+
 ## 1.19.0
 
 ### Minor Changes
