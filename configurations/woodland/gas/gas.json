@@ -12,90 +12,31 @@
   ],
   "entitlementTemplates": [
     {
-      "code": "ENT_CS_CAPITAL_PA3",
+      "claimCode": "ENT_CS_CAPITAL_PA3",
       "name": "PA3 Woodland Management Plan entitlement",
       "description": "The maximum eligible woodland area that can be claimed under PA3.",
-      "appliesTo": {
-        "level": "AGREEMENT",
-        "itemCode": null
-      },
-      "limit": {
-        "field": "limitQuantity",
-        "unit": "HA"
-      },
-      "creation": {
-        "availableAt": [
-          "PHASE_PRE_AWARD:STAGE_PREPARE_CLAIM:STATUS_PREPARING_CLAIM"
-        ],
-        "onCreated": {
-          "targetPosition": "PHASE_CLAIM:STAGE_AWAITING_CLAIM:STATUS_AWAITING_CLAIM"
-        },
-        "inputSchema": {
-          "$schema": "https://json-schema.org/draft/2020-12/schema",
-          "type": "object",
-          "additionalProperties": false,
-          "required": ["limitQuantity"],
-          "properties": {
-            "limitQuantity": {
-              "type": "number",
-              "minimum": 3,
-              "maximum": 10000
-            }
-          }
-        },
-        "form": {
-          "content": [
-            {
-              "component": "heading",
-              "text": "Enter the total eligible area of woodland included in the plan",
-              "level": 1
-            },
-            {
-              "component": "paragraph",
-              "text": "You can find this in the confirmation email sent by the FC."
-            },
-            {
-              "component": "paragraph",
-              "text": "The size of woodland approved by the FC will be used to calculate the amount the customer can claim."
-            },
-            {
-              "component": "input",
-              "field": "limitQuantity",
-              "label": {
-                "text": "Total area of eligible woodland",
-                "classes": "govuk-label--s"
-              },
-              "inputmode": "decimal",
-              "spellcheck": false,
-              "classes": "govuk-input--width-10",
-              "suffix": {
-                "text": "ha"
-              },
-              "errorMessages": {
-                "required": "Enter the total area of eligible woodland",
-                "type": "Enter the area using numbers",
-                "minimum": "The area must be 3 hectares or more",
-                "maximum": "The area must be 10,000 hectares or less"
-              }
-            }
-          ]
+      "materialised": false,
+      "fields": {
+        "limitQuantity": {
+          "input": true,
+          "label": "Total area of eligible woodland",
+          "unitType": "decimal",
+          "decimalPlaces": 2,
+          "unit": "HA",
+          "minValue": 3,
+          "maxValue": 10000
         }
+      },
+      "maxEntitlements": 1,
+      "availableAt": {
+        "phase": "PHASE_PRE_AWARD",
+        "stage": "STAGE_PREPARE_CLAIM",
+        "status": "STATUS_PREPARING_CLAIM"
       },
       "claim": {
-        "availableAt": [
-          "PHASE_CLAIM:STAGE_AWAITING_CLAIM:STATUS_AWAITING_CLAIM"
-        ],
-        "limits": {
-          "maximumClaims": 1,
-          "allowsPartialClaims": false
-        },
-        "onCreated": {
-          "targetPosition": "PHASE_CLAIM:STAGE_CLAIM_COMPLETE:STATUS_CLAIM_COMPLETE"
-        },
-        "payment": {
-          "calculationAction": "calculate-capital-claim",
-          "trigger": "ON_CLAIM_CREATED"
-        }
+        "limits": { "maximumClaims": 1, "allowsPartialClaims": false },
+        "requiresApproval": false,
+        "requiresEvidence": false
       }
     }
   ],
@@ -540,6 +481,5 @@
         ]
       }
     ]
-  },
-  "version": "0.0.0"
+  }
 }
