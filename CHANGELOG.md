@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.21.0
+
+### Minor Changes
+
+- 7676efc: Adds config schema for FGP-1355
+
 ## 1.20.1
 
 ### Patch Changes
