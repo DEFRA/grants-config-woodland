@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.20.1
+
+### Patch Changes
+
+- 2936ce4: Add new users to allowlist for Tranche 12
+
 ## 1.20.0
 
 ### Minor Changes
