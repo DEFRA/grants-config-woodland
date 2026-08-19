@@ -150,7 +150,8 @@
               "type": "object",
               "properties": {
                 "parcelId": {
-                  "type": "string"
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9]{6}-[0-9]{4}$"
                 },
                 "areaHa": {
                   "type": "number",
