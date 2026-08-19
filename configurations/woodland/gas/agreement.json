@@ -11,7 +11,7 @@
       },
       "request": {
         "body": {
-          "parcelIds": "jsonata:$.agreement.application.landParcels.parcelId",
+          "parcelIds": "$.agreement.application.landParcels.parcelId",
           "oldWoodlandAreaHa": "$.agreement.application.hectaresTenOrOverYearsOld",
           "newWoodlandAreaHa": "$.agreement.application.hectaresUnderTenYearsOld"
         }
@@ -109,31 +109,11 @@
             "startDate": "$.outputs.CALCULATE_WMP_AGREEMENT_DATES.startDate",
             "endDate": "$.outputs.CALCULATE_WMP_AGREEMENT_DATES.endDate"
           }
-        },
-        "withdraw": {
-          "target": "withdrawn"
-        },
-        "cancel": {
-          "target": "cancelled"
         }
       }
     },
     "accepted": {
-      "page": "accepted",
-      "on": {
-        "terminate": {
-          "target": "terminated"
-        }
-      }
-    },
-    "withdrawn": {
-      "page": "withdrawn"
-    },
-    "cancelled": {
-      "page": "cancelled"
-    },
-    "terminated": {
-      "page": "terminated"
+      "page": "accepted"
     }
   },
   "pages": {
@@ -143,10 +123,7 @@
       "contents": true,
       "print": true,
       "watermarks": {
-        "offered": "DRAFT",
-        "withdrawn": "WITHDRAWN",
-        "cancelled": "CANCELLED",
-        "terminated": "TERMINATED"
+        "offered": "DRAFT"
       },
       "components": [
         {
@@ -172,39 +149,6 @@
                   "rel": "noopener noreferrer"
                 }
               ]
-            }
-          ]
-        },
-        {
-          "component": "notification-banner",
-          "condition": "jsonata:$.agreement.state = 'withdrawn'",
-          "items": [
-            {
-              "component": "paragraph",
-              "text": "This agreement offer has been withdrawn.",
-              "classes": "govuk-notification-banner__heading"
-            }
-          ]
-        },
-        {
-          "component": "notification-banner",
-          "condition": "jsonata:$.agreement.state = 'cancelled'",
-          "items": [
-            {
-              "component": "paragraph",
-              "text": "This agreement offer has been cancelled.",
-              "classes": "govuk-notification-banner__heading"
-            }
-          ]
-        },
-        {
-          "component": "notification-banner",
-          "condition": "jsonata:$.agreement.state = 'terminated'",
-          "items": [
-            {
-              "component": "paragraph",
-              "text": "This agreement offer has been terminated.",
-              "classes": "govuk-notification-banner__heading"
             }
           ]
         },
@@ -245,7 +189,7 @@
               "text": "XXXXX"
             }
           ],
-          "condition": "jsonata:$.agreement.state in ['offered','withdrawn','cancelled']"
+          "condition": "jsonata:$.agreement.state = 'offered'"
         },
         {
           "component": "summary-list",
@@ -281,7 +225,7 @@
               "format": "dateLong"
             }
           ],
-          "condition": "jsonata:$.agreement.state in ['accepted','terminated']"
+          "condition": "jsonata:$.agreement.state = 'accepted'"
         }
       ],
       "sections": [
@@ -623,7 +567,7 @@
                   "text": "XXXXX"
                 }
               ],
-              "condition": "jsonata:$.agreement.state in ['offered','withdrawn','cancelled']"
+              "condition": "jsonata:$.agreement.state = 'offered'"
             },
             {
               "component": "summary-list",
@@ -639,7 +583,7 @@
                   "format": "dateLong"
                 }
               ],
-              "condition": "jsonata:$.agreement.state in ['accepted','terminated']"
+              "condition": "jsonata:$.agreement.state = 'accepted'"
             }
           ]
         },
@@ -688,7 +632,7 @@
                   "text": "$.agreement.applicant.business.name"
                 }
               ],
-              "condition": "jsonata:$.agreement.state != 'accepted'"
+              "condition": "jsonata:$.agreement.state = 'offered'"
             }
           ]
         },
@@ -1201,123 +1145,6 @@
         {
           "component": "paragraph",
           "text": "The RPA responds to email queries within 10 working days."
-        }
-      ],
-      "actions": []
-    },
-    "withdrawn": {
-      "title": "Your agreement offer has been withdrawn",
-      "watermarks": {
-        "withdrawn": "WITHDRAWN"
-      },
-      "components": [
-        {
-          "component": "notification-banner",
-          "items": [
-            {
-              "component": "paragraph",
-              "text": "This agreement offer has been withdrawn.",
-              "classes": "govuk-notification-banner__heading"
-            }
-          ]
-        },
-        {
-          "component": "summary-list",
-          "rows": [
-            {
-              "label": "Agreement number",
-              "text": "$.agreement.agreementNumber"
-            }
-          ]
-        },
-        {
-          "component": "url",
-          "href": {
-            "urlTemplate": "/agreements/{agreementNumber}/document",
-            "params": {
-              "agreementNumber": "$.agreement.agreementNumber"
-            }
-          },
-          "text": "View and print your withdrawn agreement (opens in new tab)",
-          "target": "_blank"
-        }
-      ],
-      "actions": []
-    },
-    "cancelled": {
-      "title": "Your agreement offer has been cancelled",
-      "watermarks": {
-        "cancelled": "CANCELLED"
-      },
-      "components": [
-        {
-          "component": "notification-banner",
-          "items": [
-            {
-              "component": "paragraph",
-              "text": "This agreement offer has been cancelled.",
-              "classes": "govuk-notification-banner__heading"
-            }
-          ]
-        },
-        {
-          "component": "summary-list",
-          "rows": [
-            {
-              "label": "Agreement number",
-              "text": "$.agreement.agreementNumber"
-            }
-          ]
-        },
-        {
-          "component": "url",
-          "href": {
-            "urlTemplate": "/agreements/{agreementNumber}/document",
-            "params": {
-              "agreementNumber": "$.agreement.agreementNumber"
-            }
-          },
-          "text": "View and print your cancelled agreement (opens in new tab)",
-          "target": "_blank"
-        }
-      ],
-      "actions": []
-    },
-    "terminated": {
-      "title": "Your agreement has been terminated",
-      "watermarks": {
-        "terminated": "TERMINATED"
-      },
-      "components": [
-        {
-          "component": "notification-banner",
-          "items": [
-            {
-              "component": "paragraph",
-              "text": "This agreement offer has been terminated.",
-              "classes": "govuk-notification-banner__heading"
-            }
-          ]
-        },
-        {
-          "component": "summary-list",
-          "rows": [
-            {
-              "label": "Agreement number",
-              "text": "$.agreement.agreementNumber"
-            }
-          ]
-        },
-        {
-          "component": "url",
-          "href": {
-            "urlTemplate": "/agreements/{agreementNumber}/document",
-            "params": {
-              "agreementNumber": "$.agreement.agreementNumber"
-            }
-          },
-          "text": "View and print your terminated agreement (opens in new tab)",
-          "target": "_blank"
         }
       ],
       "actions": []
