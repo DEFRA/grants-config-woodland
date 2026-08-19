@@ -340,7 +340,7 @@
               "component": "paragraph",
               "items": [
                 {
-                  "text": "jsonata:$join($map([$.agreement.applicant.customer.name.title, $.agreement.applicant.customer.name.first, $.agreement.applicant.customer.name.middle, $.agreement.applicant.customer.name.last][$ != null], function($v) { $trim($v) })[$ != ''], ' ')"
+                  "text": "jsonata:$join([$.agreement.applicant.customer.name.title, $.agreement.applicant.customer.name.first, $.agreement.applicant.customer.name.middle, $.agreement.applicant.customer.name.last][$ != null and $ != ''], ' ')"
                 },
                 {
                   "text": ", of "
@@ -598,7 +598,7 @@
                   "text": "The agreement comprising this agreement document, the terms and conditions and the actions has been accepted by "
                 },
                 {
-                  "text": "jsonata:$join($map([$.agreement.applicant.customer.name.title, $.agreement.applicant.customer.name.first, $.agreement.applicant.customer.name.middle, $.agreement.applicant.customer.name.last][$ != null], function($v) { $trim($v) })[$ != ''], ' ')"
+                  "text": "jsonata:$join([$.agreement.applicant.customer.name.title, $.agreement.applicant.customer.name.first, $.agreement.applicant.customer.name.middle, $.agreement.applicant.customer.name.last][$ != null and $ != ''], ' ')"
                 },
                 {
                   "text": " – "
@@ -623,7 +623,7 @@
                   "text": "The agreement comprising this agreement document, the terms and conditions and the actions has been accepted by "
                 },
                 {
-                  "text": "jsonata:$join($map([$.agreement.applicant.customer.name.title, $.agreement.applicant.customer.name.first, $.agreement.applicant.customer.name.middle, $.agreement.applicant.customer.name.last][$ != null], function($v) { $trim($v) })[$ != ''], ' ')"
+                  "text": "jsonata:$join([$.agreement.applicant.customer.name.title, $.agreement.applicant.customer.name.first, $.agreement.applicant.customer.name.middle, $.agreement.applicant.customer.name.last][$ != null and $ != ''], ' ')"
                 },
                 {
                   "text": " – "
