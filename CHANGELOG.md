@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.22.0
+
+### Minor Changes
+
+- 085df42: Add the Woodland GAS agreement definition (FGP-1369)
+
 ## 1.21.0
 
 ### Minor Changes
