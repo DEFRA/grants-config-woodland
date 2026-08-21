@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.22.1
+
+### Patch Changes
+
+- 7ca6413: Style Woodland agreement headers consistently with legacy agreements.
+
 ## 1.22.0
 
 ### Minor Changes
