@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.22.2
+
+### Patch Changes
+
+- 614ed2d: Align Woodland agreement links, lists, tables and duration with the legacy document.
+
 ## 1.22.1
 
 ### Patch Changes
