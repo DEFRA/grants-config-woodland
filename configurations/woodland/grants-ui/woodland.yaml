@@ -67,10 +67,11 @@ metadata:
     excludedPaths: ['print-submitted-application']
   permissions:
     enforce: true
-    resource: csApplications
+    resource: csApplications # grant-wide default (application journey)
     pageAccess:
       default: amend
       rules:
+        # --- application journey (csApplications) ---
         - paths:
             - declaration
           permission: submit
@@ -78,6 +79,25 @@ metadata:
             - print-submitted-application
             - confirmation
           permission: view
+        # --- claims journey (csAgreements) ---
+        - paths:
+            - claim
+          resource: csAgreements
+          permission: amend
+        - paths:
+            - claim-declaration
+          resource: csAgreements
+          permission: submit
+        - paths:
+            - claim-confirmation
+          resource: csAgreements
+          permission: view
+    cannotSubmit:
+      csAgreements:
+        pageTitle: You cannot submit this claim
+        content: |
+          <p class="govuk-body">You do not have permission to submit the claim.</p>
+          <p class="govuk-body">Contact an authorised person from your business to review and submit the claim.</p>
   supportEmail: ruralpayments@defra.gov.uk
   detailsPage:
     confirmationFieldName: businessDetailsUpToDate
