@@ -145,6 +145,7 @@
                   "component": "url",
                   "href": "https://www.gov.uk/government/publications/capital-grants-agreements-terms-and-conditions-2026/capital-grants-agreements-terms-and-conditions-2026",
                   "text": "Capital grants agreements: Terms and Conditions 2026",
+                  "classes": "govuk-link",
                   "target": "_blank",
                   "rel": "noopener noreferrer"
                 }
@@ -325,11 +326,13 @@
             },
             {
               "component": "unordered-list",
+              "classes": "govuk-list govuk-list--bullet govuk-!-padding-left-8",
               "items": [
                 {
                   "component": "url",
                   "href": "https://www.gov.uk/government/publications/capital-grants-agreements-terms-and-conditions-2026/capital-grants-agreements-terms-and-conditions-2026",
                   "text": "the Capital grants agreements: terms and conditions 2026",
+                  "classes": "govuk-link",
                   "target": "_blank",
                   "rel": "noopener noreferrer"
                 },
@@ -357,6 +360,7 @@
                   "component": "url",
                   "href": "https://www.gov.uk/government/publications/pa3-woodland-management-plan-2026",
                   "text": "PA3: Woodland management plan 2026",
+                  "classes": "govuk-link",
                   "target": "_blank",
                   "rel": "noopener noreferrer"
                 },
@@ -380,6 +384,7 @@
                   "component": "url",
                   "href": "https://www.gov.uk/government/publications/pa3-woodland-management-plan-2026/applicants-guide-pa3-woodland-management-plan-2026",
                   "text": "Applicant's guide: PA3 Woodland Management Plan 2026 ",
+                  "classes": "govuk-link",
                   "target": "_blank",
                   "rel": "noopener noreferrer"
                 },
@@ -457,6 +462,7 @@
             },
             {
               "component": "table",
+              "classes": "govuk-table--small-text-until-tablet",
               "head": [
                 {
                   "text": "Parcel Number"
@@ -491,6 +497,7 @@
             },
             {
               "component": "table",
+              "classes": "govuk-table--small-text-until-tablet table-bordered",
               "head": [
                 {
                   "text": "Item code"
@@ -531,6 +538,7 @@
             },
             {
               "component": "ordered-list",
+              "classes": "govuk-list govuk-list--number govuk-!-padding-left-8",
               "items": [
                 {
                   "text": "Any woodland holding over 0.5ha in area that does not currently have a management plan in place. The plan shall cover all the woodland on the holding."
@@ -550,6 +558,7 @@
                   "component": "url",
                   "href": "https://www.gov.uk/government/publications/pa3-woodland-management-plan-2026/applicants-guide-pa3-woodland-management-plan-2026#whocan-apply-and-what-land-is-eligible",
                   "text": "Applicant’s guide: PA3 Woodland management plan 2026 guidance on ",
+                  "classes": "govuk-link",
                   "target": "_blank",
                   "rel": "noopener noreferrer"
                 },
@@ -587,6 +596,7 @@
                   "component": "url",
                   "href": "https://www.gov.uk/government/publications/pa3-woodland-management-plan-2026/applicants-guide-pa3-woodland-management-plan-2026#whocan-apply-and-what-land-is-eligible",
                   "text": "Applicant’s guide: PA3 Woodland management plan 2026 guidance. ",
+                  "classes": "govuk-link",
                   "target": "_blank",
                   "rel": "noopener noreferrer"
                 }
@@ -606,6 +616,7 @@
                   "component": "url",
                   "href": "https://www.gov.uk/government/publications/capital-grants-agreements-terms-and-conditions-2026/capital-grants-agreements-terms-and-conditions-2026",
                   "text": "Capital grants agreements: terms and conditions 2026. ",
+                  "classes": "govuk-link",
                   "target": "_blank",
                   "rel": "noopener noreferrer"
                 }
@@ -613,6 +624,7 @@
             },
             {
               "component": "table",
+              "classes": "govuk-table--small-text-until-tablet table-bordered",
               "head": [
                 {
                   "text": "Agreement total"
@@ -642,31 +654,57 @@
               "text": "The agreement will commence on the agreement start date and end on the agreement end date, subject to the provisions for early termination set out in the Countryside Stewardship terms and conditions."
             },
             {
-              "component": "summary-list",
+              "component": "description-list",
+              "classes": "govuk-body dataset-info",
               "rows": [
                 {
-                  "label": "Agreement Start Date:",
-                  "text": "XXXXX"
+                  "label": {
+                    "text": "Agreement Start Date:",
+                    "classes": "govuk-!-font-weight-regular"
+                  },
+                  "value": {
+                    "text": "XXXXX",
+                    "classes": "govuk-!-font-weight-bold"
+                  }
                 },
                 {
-                  "label": "Agreement End Date:",
-                  "text": "XXXXX"
+                  "label": {
+                    "text": "Agreement End Date:",
+                    "classes": "govuk-!-font-weight-regular"
+                  },
+                  "value": {
+                    "text": "XXXXX",
+                    "classes": "govuk-!-font-weight-bold"
+                  }
                 }
               ],
               "condition": "jsonata:$.agreement.state = 'offered'"
             },
             {
-              "component": "summary-list",
+              "component": "description-list",
+              "classes": "govuk-body dataset-info",
               "rows": [
                 {
-                  "label": "Agreement Start Date:",
-                  "text": "$.agreement.startDate",
-                  "format": "dateLong"
+                  "label": {
+                    "text": "Agreement Start Date:",
+                    "classes": "govuk-!-font-weight-regular"
+                  },
+                  "value": {
+                    "text": "$.agreement.startDate",
+                    "classes": "govuk-!-font-weight-bold",
+                    "format": "dateLong"
+                  }
                 },
                 {
-                  "label": "Agreement End Date:",
-                  "text": "$.agreement.endDate",
-                  "format": "dateLong"
+                  "label": {
+                    "text": "Agreement End Date:",
+                    "classes": "govuk-!-font-weight-regular"
+                  },
+                  "value": {
+                    "text": "$.agreement.endDate",
+                    "classes": "govuk-!-font-weight-bold",
+                    "format": "dateLong"
+                  }
                 }
               ],
               "condition": "jsonata:$.agreement.state = 'accepted'"
