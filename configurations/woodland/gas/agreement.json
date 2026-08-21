@@ -158,71 +158,157 @@
           "text": "Woodland Management Plan PA3 agreement document"
         },
         {
-          "component": "summary-list",
+          "component": "description-list",
+          "classes": "govuk-body dataset-info",
           "rows": [
             {
-              "label": "Agreement holder",
-              "text": "$.agreement.applicant.business.name"
+              "label": {
+                "text": "Agreement holder",
+                "classes": "govuk-!-font-weight-bold"
+              },
+              "value": {
+                "text": "$.agreement.applicant.business.name",
+                "classes": "govuk-!-font-weight-regular"
+              }
             },
             {
-              "label": "SBI",
-              "text": "$.agreement.identifiers.sbi"
+              "label": {
+                "text": "SBI",
+                "classes": "govuk-!-font-weight-bold"
+              },
+              "value": {
+                "text": "$.agreement.identifiers.sbi",
+                "classes": "govuk-!-font-weight-regular"
+              }
             },
             {
-              "label": "Address",
-              "text": "jsonata:$join([$.agreement.applicant.business.address.line1, $.agreement.applicant.business.address.line2, $.agreement.applicant.business.address.line3, $.agreement.applicant.business.address.line4, $.agreement.applicant.business.address.line5, $.agreement.applicant.business.address.street, $.agreement.applicant.business.address.city, $.agreement.applicant.business.address.postalCode][$ != null and $ != ''], ', ')"
+              "label": {
+                "text": "Address",
+                "classes": "govuk-!-font-weight-bold"
+              },
+              "value": {
+                "text": "jsonata:$join([$.agreement.applicant.business.address.line1, $.agreement.applicant.business.address.line2, $.agreement.applicant.business.address.line3, $.agreement.applicant.business.address.line4, $.agreement.applicant.business.address.line5, $.agreement.applicant.business.address.street, $.agreement.applicant.business.address.city, $.agreement.applicant.business.address.postalCode][$ != null and $ != ''], ', ')",
+                "classes": "govuk-!-font-weight-regular"
+              }
             },
             {
-              "label": "Agreement name",
-              "text": "$.agreement.name"
+              "label": {
+                "text": "Agreement name",
+                "classes": "govuk-!-font-weight-bold"
+              },
+              "value": {
+                "text": "$.agreement.name",
+                "classes": "govuk-!-font-weight-regular"
+              }
             },
             {
-              "label": "Agreement number",
-              "text": "$.agreement.agreementNumber"
+              "label": {
+                "text": "Agreement number",
+                "classes": "govuk-!-font-weight-bold"
+              },
+              "value": {
+                "text": "$.agreement.agreementNumber",
+                "classes": "govuk-!-font-weight-regular"
+              }
             },
             {
-              "label": "Agreement start date",
-              "text": "XXXXX"
+              "label": {
+                "text": "Agreement start date",
+                "classes": "govuk-!-font-weight-bold"
+              },
+              "value": {
+                "text": "XXXXX",
+                "classes": "govuk-!-font-weight-regular"
+              }
             },
             {
-              "label": "Agreement end date",
-              "text": "XXXXX"
+              "label": {
+                "text": "Agreement end date",
+                "classes": "govuk-!-font-weight-bold"
+              },
+              "value": {
+                "text": "XXXXX",
+                "classes": "govuk-!-font-weight-regular"
+              }
             }
           ],
           "condition": "jsonata:$.agreement.state = 'offered'"
         },
         {
-          "component": "summary-list",
+          "component": "description-list",
+          "classes": "govuk-body dataset-info",
           "rows": [
             {
-              "label": "Agreement holder",
-              "text": "$.agreement.applicant.business.name"
+              "label": {
+                "text": "Agreement holder",
+                "classes": "govuk-!-font-weight-bold"
+              },
+              "value": {
+                "text": "$.agreement.applicant.business.name",
+                "classes": "govuk-!-font-weight-regular"
+              }
             },
             {
-              "label": "SBI",
-              "text": "$.agreement.identifiers.sbi"
+              "label": {
+                "text": "SBI",
+                "classes": "govuk-!-font-weight-bold"
+              },
+              "value": {
+                "text": "$.agreement.identifiers.sbi",
+                "classes": "govuk-!-font-weight-regular"
+              }
             },
             {
-              "label": "Address",
-              "text": "jsonata:$join([$.agreement.applicant.business.address.line1, $.agreement.applicant.business.address.line2, $.agreement.applicant.business.address.line3, $.agreement.applicant.business.address.line4, $.agreement.applicant.business.address.line5, $.agreement.applicant.business.address.street, $.agreement.applicant.business.address.city, $.agreement.applicant.business.address.postalCode][$ != null and $ != ''], ', ')"
+              "label": {
+                "text": "Address",
+                "classes": "govuk-!-font-weight-bold"
+              },
+              "value": {
+                "text": "jsonata:$join([$.agreement.applicant.business.address.line1, $.agreement.applicant.business.address.line2, $.agreement.applicant.business.address.line3, $.agreement.applicant.business.address.line4, $.agreement.applicant.business.address.line5, $.agreement.applicant.business.address.street, $.agreement.applicant.business.address.city, $.agreement.applicant.business.address.postalCode][$ != null and $ != ''], ', ')",
+                "classes": "govuk-!-font-weight-regular"
+              }
             },
             {
-              "label": "Agreement name",
-              "text": "$.agreement.name"
+              "label": {
+                "text": "Agreement name",
+                "classes": "govuk-!-font-weight-bold"
+              },
+              "value": {
+                "text": "$.agreement.name",
+                "classes": "govuk-!-font-weight-regular"
+              }
             },
             {
-              "label": "Agreement number",
-              "text": "$.agreement.agreementNumber"
+              "label": {
+                "text": "Agreement number",
+                "classes": "govuk-!-font-weight-bold"
+              },
+              "value": {
+                "text": "$.agreement.agreementNumber",
+                "classes": "govuk-!-font-weight-regular"
+              }
             },
             {
-              "label": "Agreement start date",
-              "text": "$.agreement.startDate",
-              "format": "dateLong"
+              "label": {
+                "text": "Agreement start date",
+                "classes": "govuk-!-font-weight-bold"
+              },
+              "value": {
+                "text": "$.agreement.startDate",
+                "classes": "govuk-!-font-weight-regular",
+                "format": "dateLong"
+              }
             },
             {
-              "label": "Agreement end date",
-              "text": "$.agreement.endDate",
-              "format": "dateLong"
+              "label": {
+                "text": "Agreement end date",
+                "classes": "govuk-!-font-weight-bold"
+              },
+              "value": {
+                "text": "$.agreement.endDate",
+                "classes": "govuk-!-font-weight-regular",
+                "format": "dateLong"
+              }
             }
           ],
           "condition": "jsonata:$.agreement.state = 'accepted'"
