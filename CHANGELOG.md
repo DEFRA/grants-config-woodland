@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.24.0
+
+### Minor Changes
+
+- f610658: adds pages to woodland grant
+
 ## 1.23.0
 
 ### Minor Changes
