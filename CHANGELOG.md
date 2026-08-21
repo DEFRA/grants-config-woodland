@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.23.0
+
+### Minor Changes
+
+- be11ea3: Claims permissions
+
 ## 1.22.2
 
 ### Patch Changes
