@@ -489,7 +489,7 @@
         },
         {
           "id": "items",
-          "title": "Summary of Capital items",
+          "title": "Summary of capital items",
           "components": [
             {
               "component": "paragraph",
