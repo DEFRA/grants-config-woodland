@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.25.1
+
+### Patch Changes
+
+- cd8100e: Lowercase the capital items agreement title to match the legacy agreement.
+
 ## 1.25.0
 
 ### Minor Changes
