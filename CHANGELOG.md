@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.25.0
+
+### Minor Changes
+
+- f3a6842: Add new CRNs/SBIs to the prod allowlist
+
 ## 1.24.0
 
 ### Minor Changes
