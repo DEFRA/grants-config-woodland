@@ -13,7 +13,7 @@ metadata:
     postSubmission:
       # Cleared - APPLICATION_WITHDRAWN status
       - fromGrantsStatus: SUBMITTED,REOPENED
-        gasStatus: APPLICATION_WITHDRAWN
+        gasStatus: sdfsdfsdfsdfsdfsdfsdf
         toGrantsStatus: CLEARED
         toPath: /check-details
 
