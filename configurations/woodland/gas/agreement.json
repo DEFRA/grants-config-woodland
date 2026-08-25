@@ -866,15 +866,23 @@
           ]
         },
         {
-          "component": "url",
-          "href": {
-            "urlTemplate": "/agreements/{agreementNumber}/document",
-            "params": {
-              "agreementNumber": "$.agreement.agreementNumber"
+          "component": "paragraph",
+          "items": [
+            {
+              "component": "url",
+              "href": {
+                "urlTemplate": "/agreements/{agreementNumber}/document",
+                "params": {
+                  "agreementNumber": "$.agreement.agreementNumber"
+                }
+              },
+              "text": "View a printable version of your draft agreement (opens in new tab)",
+              "target": "_blank"
             }
-          },
-          "text": "View a printable version of your draft agreement (opens in new tab)",
-          "target": "_blank"
+          ]
+        },
+        {
+          "component": "line-break"
         },
         {
           "component": "heading",
@@ -887,6 +895,9 @@
         },
         {
           "component": "table",
+          "classes": "govuk-table--small-text-until-tablet table-bordered",
+          "layout": "full-width",
+          "insertActionsAfter": true,
           "head": [
             {
               "text": "Action"
