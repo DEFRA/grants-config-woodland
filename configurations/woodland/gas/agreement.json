@@ -1000,12 +1000,7 @@
           "items": [
             {
               "component": "url",
-              "href": {
-                "urlTemplate": "/agreements/{agreementNumber}/document",
-                "params": {
-                  "agreementNumber": "$.agreement.agreementNumber"
-                }
-              },
+              "href": "/agreements/$.agreement.agreementNumber/document",
               "text": "draft agreement document (opens in new tab)",
               "target": "_blank",
               "rel": "noopener noreferrer"
@@ -1033,6 +1028,7 @@
         },
         {
           "component": "unordered-list",
+          "classes": "govuk-list govuk-list--bullet govuk-!-padding-left-8",
           "items": [
             {
               "text": "you will comply with the obligations under your agreement"
@@ -1088,7 +1084,8 @@
           "component": "details",
           "summaryItems": [
             {
-              "text": "If you need to make an update"
+              "text": "If you need to make an update",
+              "classes": "govuk-details__summary-text"
             }
           ],
           "items": [
