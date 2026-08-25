@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.25.2
+
+### Patch Changes
+
+- 89f0ad8: Align the accepted agreement page links, heading and spacing with the legacy journey.
+
 ## 1.25.1
 
 ### Patch Changes
