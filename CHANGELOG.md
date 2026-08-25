@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.26.0
+
+### Minor Changes
+
+- e63fcd6: Amend allowlist CRNs
+
 ## 1.25.2
 
 ### Patch Changes
