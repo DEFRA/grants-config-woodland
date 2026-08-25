@@ -1194,7 +1194,12 @@
                 },
                 {
                   "component": "url",
-                  "href": "/agreements/$.agreement.agreementNumber/document",
+                  "href": {
+                    "urlTemplate": "/agreements/{agreementNumber}/document",
+                    "params": {
+                      "agreementNumber": "$.agreement.agreementNumber"
+                    }
+                  },
                   "text": "agreement document",
                   "classes": "govuk-link",
                   "target": "_blank",
