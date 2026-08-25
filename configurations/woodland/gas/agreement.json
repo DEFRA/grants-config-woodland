@@ -1042,7 +1042,7 @@
               "components": [
                 {
                   "component": "button",
-                  "actionId": "accept"
+                  "action": "accept"
                 },
                 {
                   "component": "details",
@@ -1102,20 +1102,6 @@
               ]
             }
           ]
-        }
-      ],
-      "actions": [
-        {
-          "name": "accept",
-          "method": "GET",
-          "href": {
-            "urlTemplate": "/agreements/{agreementNumber}/actions/{name}",
-            "params": {
-              "agreementNumber": "$.agreement.agreementNumber",
-              "name": "accept"
-            }
-          },
-          "text": "Continue"
         }
       ]
     },
@@ -1218,7 +1204,6 @@
                 },
                 {
                   "component": "form",
-                  "actionId": "accept",
                   "components": [
                     {
                       "component": "checkboxes",
@@ -1232,10 +1217,10 @@
                       ]
                     },
                     {
-                      "component": "button",
-                      "actionId": "accept"
+                      "component": "button"
                     }
-                  ]
+                  ],
+                  "action": "accept"
                 },
                 {
                   "component": "details",
@@ -1295,20 +1280,6 @@
               ]
             }
           ]
-        }
-      ],
-      "actions": [
-        {
-          "name": "accept",
-          "method": "POST",
-          "href": {
-            "urlTemplate": "/agreements/{agreementNumber}/actions/{name}",
-            "params": {
-              "agreementNumber": "$.agreement.agreementNumber",
-              "name": "accept"
-            }
-          },
-          "text": "Accept offer"
         }
       ]
     },
@@ -1444,8 +1415,7 @@
             }
           ]
         }
-      ],
-      "actions": []
+      ]
     }
   }
 }
