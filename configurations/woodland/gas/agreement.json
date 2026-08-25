@@ -1176,7 +1176,8 @@
         },
         {
           "component": "paragraph",
-          "text": "Your agreement number is $.agreement.agreementNumber."
+          "text": "Your agreement number is $.agreement.agreementNumber.",
+          "classes": "govuk-body govuk-!-margin-bottom-1"
         },
         {
           "component": "paragraph",
@@ -1193,13 +1194,9 @@
                 },
                 {
                   "component": "url",
-                  "href": {
-                    "urlTemplate": "/agreements/{agreementNumber}/document",
-                    "params": {
-                      "agreementNumber": "$.agreement.agreementNumber"
-                    }
-                  },
+                  "href": "/agreements/$.agreement.agreementNumber/document",
                   "text": "agreement document",
+                  "classes": "govuk-link",
                   "target": "_blank",
                   "rel": "noopener noreferrer"
                 }
@@ -1214,7 +1211,8 @@
                 {
                   "component": "url",
                   "href": "https://www.gov.uk/government/publications/capital-grants-agreements-terms-and-conditions-2026",
-                  "text": "Capital grants agreements: terms and conditions 2026"
+                  "text": "Capital grants agreements: terms and conditions 2026",
+                  "classes": "govuk-link"
                 }
               ]
             }
@@ -1223,7 +1221,8 @@
         {
           "component": "heading",
           "level": 2,
-          "text": "If you need help"
+          "text": "If you need help",
+          "classes": "govuk-heading-m"
         },
         {
           "component": "paragraph",
@@ -1248,6 +1247,7 @@
               "component": "url",
               "href": "https://www.gov.uk/call-charges",
               "text": "Find out about call charges (opens in new tab)",
+              "classes": "govuk-link",
               "target": "_blank",
               "rel": "noopener noreferrer"
             }
@@ -1262,7 +1262,8 @@
             {
               "component": "url",
               "href": "mailto:ruralpayments@defra.gov.uk",
-              "text": "ruralpayments@defra.gov.uk"
+              "text": "ruralpayments@defra.gov.uk",
+              "classes": "govuk-link"
             }
           ]
         },
