@@ -896,8 +896,7 @@
         {
           "component": "table",
           "classes": "govuk-table--small-text-until-tablet table-bordered",
-          "layout": "full-width",
-          "insertActionsAfter": true,
+          "width": "full",
           "head": [
             {
               "text": "Action"
@@ -922,6 +921,9 @@
               "format": "poundsFromPence"
             }
           ]
+        },
+        {
+          "component": "actions"
         },
         {
           "component": "details",
