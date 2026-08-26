@@ -1058,7 +1058,7 @@
                       "rel": "noopener noreferrer"
                     },
                     {
-                      "component": "paragraph",
+                      "component": "container",
                       "items": [
                         {
                           "text": "the "
@@ -1080,6 +1080,7 @@
                 },
                 {
                   "component": "unordered-list",
+                  "classes": "govuk-list govuk-list--bullet govuk-!-padding-left-8",
                   "items": [
                     {
                       "text": "you will comply with the obligations under your agreement"
