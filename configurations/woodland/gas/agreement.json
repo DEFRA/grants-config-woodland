@@ -1283,7 +1283,16 @@
             }
           ]
         }
-      ]
+      ],
+      "backLink": {
+        "text": "Back",
+        "href": {
+          "urlTemplate": "/agreements/{agreementNumber}",
+          "params": {
+            "agreementNumber": "$.agreement.agreementNumber"
+          }
+        }
+      }
     },
     "accepted": {
       "title": "Offer accepted",
