@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.26.1
+
+### Patch Changes
+
+- c80adb2: Migrate every Woodland Management Plan agreement page to explicit component trees.
+
 ## 1.26.0
 
 ### Minor Changes
