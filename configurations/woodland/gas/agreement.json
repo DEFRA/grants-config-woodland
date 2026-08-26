@@ -1204,12 +1204,7 @@
       ],
       "backLink": {
         "text": "Back",
-        "href": {
-          "urlTemplate": "/agreements/{agreementNumber}",
-          "params": {
-            "agreementNumber": "$.agreement.agreementNumber"
-          }
-        }
+        "href": "/agreements/current"
       }
     },
     "accepted": {
