@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.26.2
+
+### Patch Changes
+
+- 3b5d00d: Use the case-aware route when caseworkers view Woodland GAS agreements.
+
 ## 1.26.1
 
 ### Patch Changes
