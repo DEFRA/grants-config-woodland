@@ -332,112 +332,101 @@
           "title": "Introduction and overview",
           "components": [
             {
-              "component": "grid-row",
-              "components": [
+              "component": "paragraph",
+              "text": "This is the Countryside Stewardship Woodland Management Plan (WMP) agreement document. It sets out the agreement holder specific details for a Countryside Stewardship WMP agreement. The agreement document should be read in conjunction with the following documents (which together form the Countryside Stewardship Agreement):"
+            },
+            {
+              "component": "unordered-list",
+              "classes": "govuk-list govuk-list--bullet govuk-!-padding-left-8",
+              "items": [
                 {
-                  "component": "grid-column",
-                  "width": "full",
-                  "components": [
-                    {
-                      "component": "paragraph",
-                      "text": "This is the Countryside Stewardship Woodland Management Plan (WMP) agreement document. It sets out the agreement holder specific details for a Countryside Stewardship WMP agreement. The agreement document should be read in conjunction with the following documents (which together form the Countryside Stewardship Agreement):"
-                    },
-                    {
-                      "component": "unordered-list",
-                      "classes": "govuk-list govuk-list--bullet govuk-!-padding-left-8",
-                      "items": [
-                        {
-                          "component": "url",
-                          "href": "https://www.gov.uk/government/publications/capital-grants-agreements-terms-and-conditions-2026/capital-grants-agreements-terms-and-conditions-2026",
-                          "text": "the Capital grants agreements: terms and conditions 2026",
-                          "classes": "govuk-link",
-                          "target": "_blank",
-                          "rel": "noopener noreferrer"
-                        },
-                        {
-                          "text": "The supporting documents specified in this agreement document"
-                        }
-                      ]
-                    },
-                    {
-                      "component": "paragraph",
-                      "text": "All elements and details in this agreement document are binding on the agreement holder, unless it expressly says they are \"not binding\"."
-                    },
-                    {
-                      "component": "heading",
-                      "level": 3,
-                      "text": "Objectives (not binding)"
-                    },
-                    {
-                      "component": "paragraph",
-                      "items": [
-                        {
-                          "text": "Produce a WMP in accordance with the requirements of the "
-                        },
-                        {
-                          "component": "url",
-                          "href": "https://www.gov.uk/government/publications/pa3-woodland-management-plan-2026",
-                          "text": "PA3: Woodland management plan 2026",
-                          "classes": "govuk-link",
-                          "target": "_blank",
-                          "rel": "noopener noreferrer"
-                        },
-                        {
-                          "text": " on GOV.UK. You must submit your plan to the Forestry Commission for approval."
-                        }
-                      ]
-                    },
-                    {
-                      "component": "heading",
-                      "level": 3,
-                      "text": "Outcomes"
-                    },
-                    {
-                      "component": "paragraph",
-                      "items": [
-                        {
-                          "text": "Produce a UK Forestry Standard (UKFS) compliant WMP, plan of operations and plan maps using the Forestry Commission template and associated guidance notes from the "
-                        },
-                        {
-                          "component": "url",
-                          "href": "https://www.gov.uk/government/publications/pa3-woodland-management-plan-2026/applicants-guide-pa3-woodland-management-plan-2026",
-                          "text": "Applicant's guide: PA3 Woodland Management Plan 2026 ",
-                          "classes": "govuk-link",
-                          "target": "_blank",
-                          "rel": "noopener noreferrer"
-                        },
-                        {
-                          "text": " on GOV.UK. A full account of historical features, important habitats, landscape and tree features must be included."
-                        }
-                      ]
-                    },
-                    {
-                      "component": "paragraph",
-                      "text": "Where a felling licence is required, the plan of operations will include all proposed thinning and felling for the next 10 years, as well as the necessary detail to meet the requirements of all relevant legislation."
-                    },
-                    {
-                      "component": "paragraph",
-                      "text": "If the area covered by the WMP includes a Site of Special Scientific Interest (SSSI), Natural England will need to be consulted over its content while it is being drafted. Proposals must be agreed by the Forestry Commission and Natural England, and a supplementary notice of operations for the SSSI may need to be completed. If the supplementary notice is not included in the WMP, the applicant will be required to seek consent from Natural England separately."
-                    },
-                    {
-                      "component": "paragraph",
-                      "text": "If the WMP includes a scheduled monument or areas covered by Registered Parks or Gardens Grade II, Historic England will need to be consulted. This should be done during drafting to determine what actions may be required by Historic England to give full consent to operations included in the WMP."
-                    },
-                    {
-                      "component": "paragraph",
-                      "text": "Once your Countryside Stewardship agreement has been issued, the draft WMP must be submitted for approval to your local Forestry Commission admin hub. Submit your draft WMP in electronic form with supporting maps and photographs, accompanied by a completed plan submission proforma."
-                    },
-                    {
-                      "component": "paragraph",
-                      "text": "The maps supplied with the draft WMP should include further detail in line with the technical guidance available (see above). You are strongly advised to submit your plan to the Forestry Commission within one year from the start of your Countryside Stewardship agreement. Plans submitted later than this risk not being approved within the three-year Countryside Stewardship agreement period."
-                    },
-                    {
-                      "component": "paragraph",
-                      "text": "All relevant persons that have a direct interest in the land within the WMP should be allowed to see the draft plan (for example, gamekeepers or other central or local government organisations). This is so that, where appropriate, they can advise on any conflict and allow adjustments to the WMP within the three-year Countryside Stewardship agreement period."
-                    }
-                  ]
+                  "component": "url",
+                  "href": "https://www.gov.uk/government/publications/capital-grants-agreements-terms-and-conditions-2026/capital-grants-agreements-terms-and-conditions-2026",
+                  "text": "the Capital grants agreements: terms and conditions 2026",
+                  "classes": "govuk-link",
+                  "target": "_blank",
+                  "rel": "noopener noreferrer"
+                },
+                {
+                  "text": "The supporting documents specified in this agreement document"
                 }
               ]
+            },
+            {
+              "component": "paragraph",
+              "text": "All elements and details in this agreement document are binding on the agreement holder, unless it expressly says they are \"not binding\"."
+            },
+            {
+              "component": "heading",
+              "level": 3,
+              "text": "Objectives (not binding)"
+            },
+            {
+              "component": "paragraph",
+              "items": [
+                {
+                  "text": "Produce a WMP in accordance with the requirements of the "
+                },
+                {
+                  "component": "url",
+                  "href": "https://www.gov.uk/government/publications/pa3-woodland-management-plan-2026",
+                  "text": "PA3: Woodland management plan 2026",
+                  "classes": "govuk-link",
+                  "target": "_blank",
+                  "rel": "noopener noreferrer"
+                },
+                {
+                  "text": " on GOV.UK. You must submit your plan to the Forestry Commission for approval."
+                }
+              ]
+            },
+            {
+              "component": "heading",
+              "level": 3,
+              "text": "Outcomes"
+            },
+            {
+              "component": "paragraph",
+              "items": [
+                {
+                  "text": "Produce a UK Forestry Standard (UKFS) compliant WMP, plan of operations and plan maps using the Forestry Commission template and associated guidance notes from the "
+                },
+                {
+                  "component": "url",
+                  "href": "https://www.gov.uk/government/publications/pa3-woodland-management-plan-2026/applicants-guide-pa3-woodland-management-plan-2026",
+                  "text": "Applicant's guide: PA3 Woodland Management Plan 2026 ",
+                  "classes": "govuk-link",
+                  "target": "_blank",
+                  "rel": "noopener noreferrer"
+                },
+                {
+                  "text": " on GOV.UK. A full account of historical features, important habitats, landscape and tree features must be included."
+                }
+              ]
+            },
+            {
+              "component": "paragraph",
+              "text": "Where a felling licence is required, the plan of operations will include all proposed thinning and felling for the next 10 years, as well as the necessary detail to meet the requirements of all relevant legislation."
+            },
+            {
+              "component": "paragraph",
+              "text": "If the area covered by the WMP includes a Site of Special Scientific Interest (SSSI), Natural England will need to be consulted over its content while it is being drafted. Proposals must be agreed by the Forestry Commission and Natural England, and a supplementary notice of operations for the SSSI may need to be completed. If the supplementary notice is not included in the WMP, the applicant will be required to seek consent from Natural England separately."
+            },
+            {
+              "component": "paragraph",
+              "text": "If the WMP includes a scheduled monument or areas covered by Registered Parks or Gardens Grade II, Historic England will need to be consulted. This should be done during drafting to determine what actions may be required by Historic England to give full consent to operations included in the WMP."
+            },
+            {
+              "component": "paragraph",
+              "text": "Once your Countryside Stewardship agreement has been issued, the draft WMP must be submitted for approval to your local Forestry Commission admin hub. Submit your draft WMP in electronic form with supporting maps and photographs, accompanied by a completed plan submission proforma."
+            },
+            {
+              "component": "paragraph",
+              "text": "The maps supplied with the draft WMP should include further detail in line with the technical guidance available (see above). You are strongly advised to submit your plan to the Forestry Commission within one year from the start of your Countryside Stewardship agreement. Plans submitted later than this risk not being approved within the three-year Countryside Stewardship agreement period."
+            },
+            {
+              "component": "paragraph",
+              "text": "All relevant persons that have a direct interest in the land within the WMP should be allowed to see the draft plan (for example, gamekeepers or other central or local government organisations). This is so that, where appropriate, they can advise on any conflict and allow adjustments to the WMP within the three-year Countryside Stewardship agreement period."
             }
           ]
         },
@@ -446,40 +435,29 @@
           "title": "Parties to the agreement",
           "components": [
             {
-              "component": "grid-row",
-              "components": [
+              "component": "paragraph",
+              "text": "This agreement is between:"
+            },
+            {
+              "component": "paragraph",
+              "items": [
                 {
-                  "component": "grid-column",
-                  "width": "full",
-                  "components": [
-                    {
-                      "component": "paragraph",
-                      "text": "This agreement is between:"
-                    },
-                    {
-                      "component": "paragraph",
-                      "items": [
-                        {
-                          "text": "jsonata:$join([$.agreement.applicant.customer.name.title, $.agreement.applicant.customer.name.first, $.agreement.applicant.customer.name.middle, $.agreement.applicant.customer.name.last][$ != null and $ != ''], ' ')"
-                        },
-                        {
-                          "text": ", of "
-                        },
-                        {
-                          "text": "$.agreement.applicant.business.name"
-                        },
-                        {
-                          "text": ", "
-                        },
-                        {
-                          "text": "jsonata:$join([$.agreement.applicant.business.address.line1, $.agreement.applicant.business.address.line2, $.agreement.applicant.business.address.line3, $.agreement.applicant.business.address.line4, $.agreement.applicant.business.address.line5, $.agreement.applicant.business.address.street, $.agreement.applicant.business.address.city, $.agreement.applicant.business.address.postalCode][$ != null and $ != ''], ', ')"
-                        },
-                        {
-                          "text": " (the agreement holder), and the Rural Payments Agency, PO Box 324, Worksop, S95 1DF (the Authority acting as a delivery body on behalf of the Department for Environment, Food and Rural Affairs)."
-                        }
-                      ]
-                    }
-                  ]
+                  "text": "jsonata:$join([$.agreement.applicant.customer.name.title, $.agreement.applicant.customer.name.first, $.agreement.applicant.customer.name.middle, $.agreement.applicant.customer.name.last][$ != null and $ != ''], ' ')"
+                },
+                {
+                  "text": ", of "
+                },
+                {
+                  "text": "$.agreement.applicant.business.name"
+                },
+                {
+                  "text": ", "
+                },
+                {
+                  "text": "jsonata:$join([$.agreement.applicant.business.address.line1, $.agreement.applicant.business.address.line2, $.agreement.applicant.business.address.line3, $.agreement.applicant.business.address.line4, $.agreement.applicant.business.address.line5, $.agreement.applicant.business.address.street, $.agreement.applicant.business.address.city, $.agreement.applicant.business.address.postalCode][$ != null and $ != ''], ', ')"
+                },
+                {
+                  "text": " (the agreement holder), and the Rural Payments Agency, PO Box 324, Worksop, S95 1DF (the Authority acting as a delivery body on behalf of the Department for Environment, Food and Rural Affairs)."
                 }
               ]
             }
@@ -490,146 +468,124 @@
           "title": "Land covered by the agreement",
           "components": [
             {
-              "component": "grid-row",
-              "components": [
+              "component": "paragraph",
+              "text": "The \"Agreement Land\" comprises the following land parcels."
+            },
+            {
+              "component": "table",
+              "classes": "govuk-table--small-text-until-tablet",
+              "head": [
                 {
-                  "component": "grid-column",
-                  "width": "full",
-                  "components": [
-                    {
-                      "component": "paragraph",
-                      "text": "The \"Agreement Land\" comprises the following land parcels."
-                    },
-                    {
-                      "component": "table",
-                      "classes": "govuk-table--small-text-until-tablet",
-                      "head": [
-                        {
-                          "text": "Parcel Number"
-                        },
-                        {
-                          "text": "Total parcel area (ha)"
-                        }
-                      ],
-                      "rowsRef": "$.agreement.parcels",
-                      "rows": [
-                        {
-                          "text": "@.id"
-                        },
-                        {
-                          "text": "@.area.quantity"
-                        }
-                      ]
-                    },
-                    {
-                      "component": "paragraph",
-                      "text": "The Countryside Stewardship terms and conditions contain separate obligations in relation to the \"Agreement Land\"."
-                    }
-                  ]
+                  "text": "Parcel Number"
+                },
+                {
+                  "text": "Total parcel area (ha)"
+                }
+              ],
+              "rowsRef": "$.agreement.parcels",
+              "rows": [
+                {
+                  "text": "@.id"
+                },
+                {
+                  "text": "@.area.quantity"
                 }
               ]
+            },
+            {
+              "component": "paragraph",
+              "text": "The Countryside Stewardship terms and conditions contain separate obligations in relation to the \"Agreement Land\"."
             }
           ]
         },
         {
           "id": "items",
-          "title": "Summary of capital items",
+          "title": "Summary of Capital items",
           "components": [
             {
-              "component": "grid-row",
-              "components": [
+              "component": "paragraph",
+              "text": "The following is a summary of the capital items which the agreement holder is required to deliver under the agreement:"
+            },
+            {
+              "component": "table",
+              "classes": "govuk-table--small-text-until-tablet table-bordered",
+              "head": [
                 {
-                  "component": "grid-column",
-                  "width": "full",
-                  "components": [
-                    {
-                      "component": "paragraph",
-                      "text": "The following is a summary of the capital items which the agreement holder is required to deliver under the agreement:"
-                    },
-                    {
-                      "component": "table",
-                      "classes": "govuk-table--small-text-until-tablet table-bordered",
-                      "head": [
-                        {
-                          "text": "Item code"
-                        },
-                        {
-                          "text": "Item title"
-                        },
-                        {
-                          "text": "Total parcel area (ha)"
-                        }
-                      ],
-                      "rowsRef": "$.agreement.items",
-                      "rows": [
-                        {
-                          "text": "@.code"
-                        },
-                        {
-                          "text": "@.description"
-                        },
-                        {
-                          "text": "@.quantity"
-                        }
-                      ]
-                    },
-                    {
-                      "component": "heading",
-                      "level": 3,
-                      "text": "Aim (not binding) "
-                    },
-                    {
-                      "component": "paragraph",
-                      "text": "To produce a WMP for sustainable forest management in accordance with the UK Forestry Standard."
-                    },
-                    {
-                      "component": "heading",
-                      "level": 3,
-                      "text": "Eligibility"
-                    },
-                    {
-                      "component": "ordered-list",
-                      "classes": "govuk-list govuk-list--number govuk-!-padding-left-8",
-                      "items": [
-                        {
-                          "text": "Any woodland holding over 0.5ha in area that does not currently have a management plan in place. The plan shall cover all the woodland on the holding."
-                        },
-                        {
-                          "text": "The WMP must cover all the woodland on the holding, including all newly-planted woodland. The amount paid will be calculated on the entire eligible area of woodland on the holding. This calculation can include up to an additional 20% of newly-planted woodland (this means woodland that is under 10 years old at the time of application). Areas over 20% will be deducted from the total area for payment but must still be covered in the management plan."
-                        }
-                      ]
-                    },
-                    {
-                      "component": "paragraph",
-                      "items": [
-                        {
-                          "text": "You can find more information about eligibility in the "
-                        },
-                        {
-                          "component": "url",
-                          "href": "https://www.gov.uk/government/publications/pa3-woodland-management-plan-2026/applicants-guide-pa3-woodland-management-plan-2026#whocan-apply-and-what-land-is-eligible",
-                          "text": "Applicant’s guide: PA3 Woodland management plan 2026 guidance on ",
-                          "classes": "govuk-link",
-                          "target": "_blank",
-                          "rel": "noopener noreferrer"
-                        },
-                        {
-                          "text": " on GOV.UK."
-                        }
-                      ]
-                    },
-                    {
-                      "component": "heading",
-                      "level": 3,
-                      "text": "Specifications"
-                    },
-                    {
-                      "component": "paragraph",
-                      "text": "Create the management plan using the Forestry Commission template (available on the Forestry Commission website or by request)."
-                    }
-                  ]
+                  "text": "Item code"
+                },
+                {
+                  "text": "Item title"
+                },
+                {
+                  "text": "Total parcel area (ha)"
+                }
+              ],
+              "rowsRef": "$.agreement.items",
+              "rows": [
+                {
+                  "text": "@.code"
+                },
+                {
+                  "text": "@.description"
+                },
+                {
+                  "text": "@.quantity"
                 }
               ]
+            },
+            {
+              "component": "heading",
+              "level": 3,
+              "text": "Aim (not binding) "
+            },
+            {
+              "component": "paragraph",
+              "text": "To produce a WMP for sustainable forest management in accordance with the UK Forestry Standard."
+            },
+            {
+              "component": "heading",
+              "level": 3,
+              "text": "Eligibility"
+            },
+            {
+              "component": "ordered-list",
+              "classes": "govuk-list govuk-list--number govuk-!-padding-left-8",
+              "items": [
+                {
+                  "text": "Any woodland holding over 0.5ha in area that does not currently have a management plan in place. The plan shall cover all the woodland on the holding."
+                },
+                {
+                  "text": "The WMP must cover all the woodland on the holding, including all newly-planted woodland. The amount paid will be calculated on the entire eligible area of woodland on the holding. This calculation can include up to an additional 20% of newly-planted woodland (this means woodland that is under 10 years old at the time of application). Areas over 20% will be deducted from the total area for payment but must still be covered in the management plan."
+                }
+              ]
+            },
+            {
+              "component": "paragraph",
+              "items": [
+                {
+                  "text": "You can find more information about eligibility in the "
+                },
+                {
+                  "component": "url",
+                  "href": "https://www.gov.uk/government/publications/pa3-woodland-management-plan-2026/applicants-guide-pa3-woodland-management-plan-2026#whocan-apply-and-what-land-is-eligible",
+                  "text": "Applicant’s guide: PA3 Woodland management plan 2026 guidance on ",
+                  "classes": "govuk-link",
+                  "target": "_blank",
+                  "rel": "noopener noreferrer"
+                },
+                {
+                  "text": " on GOV.UK."
+                }
+              ]
+            },
+            {
+              "component": "heading",
+              "level": 3,
+              "text": "Specifications"
+            },
+            {
+              "component": "paragraph",
+              "text": "Create the management plan using the Forestry Commission template (available on the Forestry Commission website or by request)."
             }
           ]
         },
@@ -638,76 +594,65 @@
           "title": "Payments",
           "components": [
             {
-              "component": "grid-row",
-              "components": [
+              "component": "paragraph",
+              "text": "The following table sets out the anticipated total payments payable to the agreement holder as long as they comply with the agreement."
+            },
+            {
+              "component": "paragraph",
+              "items": [
                 {
-                  "component": "grid-column",
-                  "width": "full",
-                  "components": [
-                    {
-                      "component": "paragraph",
-                      "text": "The following table sets out the anticipated total payments payable to the agreement holder as long as they comply with the agreement."
-                    },
-                    {
-                      "component": "paragraph",
-                      "items": [
-                        {
-                          "text": "These figures are correct as at the agreement start date and may vary as a result of the processes set out in the Countryside Stewardship terms and conditions and "
-                        },
-                        {
-                          "component": "url",
-                          "href": "https://www.gov.uk/government/publications/pa3-woodland-management-plan-2026/applicants-guide-pa3-woodland-management-plan-2026#whocan-apply-and-what-land-is-eligible",
-                          "text": "Applicant’s guide: PA3 Woodland management plan 2026 guidance. ",
-                          "classes": "govuk-link",
-                          "target": "_blank",
-                          "rel": "noopener noreferrer"
-                        }
-                      ]
-                    },
-                    {
-                      "component": "paragraph",
-                      "text": "Examples of where the figures may change include amendments to change the size of a parcel and adjustments to a payment rate to eliminate greening double funding."
-                    },
-                    {
-                      "component": "paragraph",
-                      "items": [
-                        {
-                          "text": "These figures are provided to help the agreement holder determine what publicity obligations will apply to them. For further details on publicity obligations, please see the "
-                        },
-                        {
-                          "component": "url",
-                          "href": "https://www.gov.uk/government/publications/capital-grants-agreements-terms-and-conditions-2026/capital-grants-agreements-terms-and-conditions-2026",
-                          "text": "Capital grants agreements: terms and conditions 2026. ",
-                          "classes": "govuk-link",
-                          "target": "_blank",
-                          "rel": "noopener noreferrer"
-                        }
-                      ]
-                    },
-                    {
-                      "component": "table",
-                      "classes": "govuk-table--small-text-until-tablet table-bordered",
-                      "head": [
-                        {
-                          "text": "Agreement total"
-                        }
-                      ],
-                      "rowsRef": "jsonata:[$.agreement]",
-                      "rows": [
-                        {
-                          "text": "@.totalAmountPence",
-                          "format": "poundsFromPence",
-                          "classes": "govuk-!-font-weight-bold"
-                        }
-                      ]
-                    },
-                    {
-                      "component": "paragraph",
-                      "text": "The capital items must be completed by the relevant agreement end date and the relevant grant must be claimed by agreement end date. The grant paid will be based on the value included in the payment claim, but will not exceed the agreement total indicated above. Refer to the Countryside Stewardship terms and conditions, claim form and associated instructions for details of the minimum claim value and what constitutes a valid capital claim."
-                    }
-                  ]
+                  "text": "These figures are correct as at the agreement start date and may vary as a result of the processes set out in the Countryside Stewardship terms and conditions and "
+                },
+                {
+                  "component": "url",
+                  "href": "https://www.gov.uk/government/publications/pa3-woodland-management-plan-2026/applicants-guide-pa3-woodland-management-plan-2026#whocan-apply-and-what-land-is-eligible",
+                  "text": "Applicant’s guide: PA3 Woodland management plan 2026 guidance. ",
+                  "classes": "govuk-link",
+                  "target": "_blank",
+                  "rel": "noopener noreferrer"
                 }
               ]
+            },
+            {
+              "component": "paragraph",
+              "text": "Examples of where the figures may change include amendments to change the size of a parcel and adjustments to a payment rate to eliminate greening double funding."
+            },
+            {
+              "component": "paragraph",
+              "items": [
+                {
+                  "text": "These figures are provided to help the agreement holder determine what publicity obligations will apply to them. For further details on publicity obligations, please see the "
+                },
+                {
+                  "component": "url",
+                  "href": "https://www.gov.uk/government/publications/capital-grants-agreements-terms-and-conditions-2026/capital-grants-agreements-terms-and-conditions-2026",
+                  "text": "Capital grants agreements: terms and conditions 2026. ",
+                  "classes": "govuk-link",
+                  "target": "_blank",
+                  "rel": "noopener noreferrer"
+                }
+              ]
+            },
+            {
+              "component": "table",
+              "classes": "govuk-table--small-text-until-tablet table-bordered",
+              "head": [
+                {
+                  "text": "Agreement total"
+                }
+              ],
+              "rowsRef": "jsonata:[$.agreement]",
+              "rows": [
+                {
+                  "text": "@.totalAmountPence",
+                  "format": "poundsFromPence",
+                  "classes": "govuk-!-font-weight-bold"
+                }
+              ]
+            },
+            {
+              "component": "paragraph",
+              "text": "The capital items must be completed by the relevant agreement end date and the relevant grant must be claimed by agreement end date. The grant paid will be based on the value included in the payment claim, but will not exceed the agreement total indicated above. Refer to the Countryside Stewardship terms and conditions, claim form and associated instructions for details of the minimum claim value and what constitutes a valid capital claim."
             }
           ]
         },
@@ -716,75 +661,64 @@
           "title": "Agreement duration",
           "components": [
             {
-              "component": "grid-row",
-              "components": [
+              "component": "paragraph",
+              "text": "The agreement will commence on the agreement start date and end on the agreement end date, subject to the provisions for early termination set out in the Countryside Stewardship terms and conditions."
+            },
+            {
+              "component": "description-list",
+              "classes": "govuk-body dataset-info dataset-info--nowrap-labels",
+              "rows": [
                 {
-                  "component": "grid-column",
-                  "width": "full",
-                  "components": [
-                    {
-                      "component": "paragraph",
-                      "text": "The agreement will commence on the agreement start date and end on the agreement end date, subject to the provisions for early termination set out in the Countryside Stewardship terms and conditions."
-                    },
-                    {
-                      "component": "description-list",
-                      "classes": "govuk-body dataset-info",
-                      "rows": [
-                        {
-                          "label": {
-                            "text": "Agreement Start Date:",
-                            "classes": "govuk-!-font-weight-regular"
-                          },
-                          "value": {
-                            "text": "XXXXX",
-                            "classes": "govuk-!-font-weight-bold"
-                          }
-                        },
-                        {
-                          "label": {
-                            "text": "Agreement End Date:",
-                            "classes": "govuk-!-font-weight-regular"
-                          },
-                          "value": {
-                            "text": "XXXXX",
-                            "classes": "govuk-!-font-weight-bold"
-                          }
-                        }
-                      ],
-                      "condition": "jsonata:$.agreement.state = 'offered'"
-                    },
-                    {
-                      "component": "description-list",
-                      "classes": "govuk-body dataset-info",
-                      "rows": [
-                        {
-                          "label": {
-                            "text": "Agreement Start Date:",
-                            "classes": "govuk-!-font-weight-regular"
-                          },
-                          "value": {
-                            "text": "$.agreement.startDate",
-                            "classes": "govuk-!-font-weight-bold",
-                            "format": "dateLong"
-                          }
-                        },
-                        {
-                          "label": {
-                            "text": "Agreement End Date:",
-                            "classes": "govuk-!-font-weight-regular"
-                          },
-                          "value": {
-                            "text": "$.agreement.endDate",
-                            "classes": "govuk-!-font-weight-bold",
-                            "format": "dateLong"
-                          }
-                        }
-                      ],
-                      "condition": "jsonata:$.agreement.state = 'accepted'"
-                    }
-                  ]
+                  "label": {
+                    "text": "Agreement Start Date:",
+                    "classes": "govuk-!-font-weight-regular"
+                  },
+                  "value": {
+                    "text": "XXXXX",
+                    "classes": "govuk-!-font-weight-bold"
+                  }
+                },
+                {
+                  "label": {
+                    "text": "Agreement End Date:",
+                    "classes": "govuk-!-font-weight-regular"
+                  },
+                  "value": {
+                    "text": "XXXXX",
+                    "classes": "govuk-!-font-weight-bold"
+                  }
                 }
-              ]
+              ],
+              "condition": "jsonata:$.agreement.state = 'offered'"
+            },
+            {
+              "component": "description-list",
+              "classes": "govuk-body dataset-info dataset-info--nowrap-labels",
+              "rows": [
+                {
+                  "label": {
+                    "text": "Agreement Start Date:",
+                    "classes": "govuk-!-font-weight-regular"
+                  },
+                  "value": {
+                    "text": "$.agreement.startDate",
+                    "classes": "govuk-!-font-weight-bold",
+                    "format": "dateLong"
+                  }
+                },
+                {
+                  "label": {
+                    "text": "Agreement End Date:",
+                    "classes": "govuk-!-font-weight-regular"
+                  },
+                  "value": {
+                    "text": "$.agreement.endDate",
+                    "classes": "govuk-!-font-weight-bold",
+                    "format": "dateLong"
+                  }
+                }
+              ],
+              "condition": "jsonata:$.agreement.state = 'accepted'"
             }
           ]
         },
@@ -793,58 +727,47 @@
           "title": "Electronic signature",
           "components": [
             {
-              "component": "grid-row",
-              "components": [
+              "component": "paragraph",
+              "items": [
                 {
-                  "component": "grid-column",
-                  "width": "full",
-                  "components": [
-                    {
-                      "component": "paragraph",
-                      "items": [
-                        {
-                          "text": "The agreement comprising this agreement document, the terms and conditions and the actions has been accepted by "
-                        },
-                        {
-                          "text": "jsonata:$join([$.agreement.applicant.customer.name.title, $.agreement.applicant.customer.name.first, $.agreement.applicant.customer.name.middle, $.agreement.applicant.customer.name.last][$ != null and $ != ''], ' ')"
-                        },
-                        {
-                          "text": " – "
-                        },
-                        {
-                          "text": "$.agreement.applicant.business.name"
-                        },
-                        {
-                          "text": " on "
-                        },
-                        {
-                          "text": "$.agreement.acceptedAt",
-                          "format": "dateLong"
-                        }
-                      ],
-                      "condition": "jsonata:$.agreement.state = 'accepted'"
-                    },
-                    {
-                      "component": "paragraph",
-                      "items": [
-                        {
-                          "text": "The agreement comprising this agreement document, the terms and conditions and the actions has been accepted by "
-                        },
-                        {
-                          "text": "jsonata:$join([$.agreement.applicant.customer.name.title, $.agreement.applicant.customer.name.first, $.agreement.applicant.customer.name.middle, $.agreement.applicant.customer.name.last][$ != null and $ != ''], ' ')"
-                        },
-                        {
-                          "text": " – "
-                        },
-                        {
-                          "text": "$.agreement.applicant.business.name"
-                        }
-                      ],
-                      "condition": "jsonata:$.agreement.state = 'offered'"
-                    }
-                  ]
+                  "text": "The agreement comprising this agreement document, the terms and conditions and the actions has been accepted by "
+                },
+                {
+                  "text": "jsonata:$join([$.agreement.applicant.customer.name.title, $.agreement.applicant.customer.name.first, $.agreement.applicant.customer.name.middle, $.agreement.applicant.customer.name.last][$ != null and $ != ''], ' ')"
+                },
+                {
+                  "text": " – "
+                },
+                {
+                  "text": "$.agreement.applicant.business.name"
+                },
+                {
+                  "text": " on "
+                },
+                {
+                  "text": "$.agreement.acceptedAt",
+                  "format": "dateLong"
                 }
-              ]
+              ],
+              "condition": "jsonata:$.agreement.state = 'accepted'"
+            },
+            {
+              "component": "paragraph",
+              "items": [
+                {
+                  "text": "The agreement comprising this agreement document, the terms and conditions and the actions has been accepted by "
+                },
+                {
+                  "text": "jsonata:$join([$.agreement.applicant.customer.name.title, $.agreement.applicant.customer.name.first, $.agreement.applicant.customer.name.middle, $.agreement.applicant.customer.name.last][$ != null and $ != ''], ' ')"
+                },
+                {
+                  "text": " – "
+                },
+                {
+                  "text": "$.agreement.applicant.business.name"
+                }
+              ],
+              "condition": "jsonata:$.agreement.state = 'offered'"
             }
           ]
         },
@@ -853,19 +776,8 @@
           "title": "Data protection",
           "components": [
             {
-              "component": "grid-row",
-              "components": [
-                {
-                  "component": "grid-column",
-                  "width": "full",
-                  "components": [
-                    {
-                      "component": "paragraph",
-                      "text": "The Department for Environment, Food and Rural Affairs (Defra) is the data controller for personal data you give to RPA. For information on how we handle personal data see Condition 18 of the terms and conditions."
-                    }
-                  ]
-                }
-              ]
+              "component": "paragraph",
+              "text": "The Department for Environment, Food and Rural Affairs (Defra) is the data controller for personal data you give to RPA. For information on how we handle personal data see Condition 18 of the terms and conditions."
             }
           ]
         }
