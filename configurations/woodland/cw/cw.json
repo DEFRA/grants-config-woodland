@@ -7,7 +7,7 @@
   "templates": {},
   "definitions": {
     "agreementsService": {
-      "internalUrl": "https://fg-cw-frontend.%ENVIRONMENT%.cdp-int.defra.cloud/agreement/{agreementRef}"
+      "internalUrl": "https://fg-cw-frontend.%ENVIRONMENT%.cdp-int.defra.cloud/cases/{caseId}/agreement/{agreementRef}"
     }
   },
   "endpoints": [],
@@ -565,6 +565,7 @@
                         "href": {
                           "urlTemplate": "$.definitions.agreementsService.internalUrl",
                           "params": {
+                            "caseId": "$._id",
                             "agreementRef": "jsonata:$sort($.supplementaryData.agreements, function($l, $r) { $l.createdAt < $r.createdAt })[0].agreementRef"
                           }
                         },
