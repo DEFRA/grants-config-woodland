@@ -1235,8 +1235,7 @@
                 },
                 {
                   "component": "paragraph",
-                  "text": "Your agreement number is $.agreement.agreementNumber.",
-                  "classes": "govuk-body govuk-!-margin-bottom-1"
+                  "text": "Your agreement number is $.agreement.agreementNumber."
                 },
                 {
                   "component": "paragraph",
@@ -1246,7 +1245,7 @@
                   "component": "unordered-list",
                   "items": [
                     {
-                      "component": "paragraph",
+                      "component": "container",
                       "items": [
                         {
                           "text": "your "
@@ -1267,7 +1266,7 @@
                       ]
                     },
                     {
-                      "component": "paragraph",
+                      "component": "container",
                       "items": [
                         {
                           "text": "the "
@@ -1285,8 +1284,8 @@
                 {
                   "component": "heading",
                   "level": 2,
-                  "text": "If you need help",
-                  "classes": "govuk-heading-m"
+                  "size": "m",
+                  "text": "If you need help"
                 },
                 {
                   "component": "paragraph",
