@@ -11,7 +11,7 @@
       },
       "request": {
         "body": {
-          "parcelIds": "$.agreement.application.landParcels.parcelId",
+          "parcelIds": "jsonata:[$.agreement.application.landParcels.parcelId]",
           "oldWoodlandAreaHa": "$.agreement.application.hectaresTenOrOverYearsOld",
           "newWoodlandAreaHa": "$.agreement.application.hectaresUnderTenYearsOld"
         }
