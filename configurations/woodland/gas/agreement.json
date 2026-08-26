@@ -837,7 +837,7 @@
                   "component": "unordered-list",
                   "items": [
                     {
-                      "component": "paragraph",
+                      "component": "container",
                       "items": [
                         {
                           "text": "the "
@@ -852,7 +852,7 @@
                       ]
                     },
                     {
-                      "component": "paragraph",
+                      "component": "container",
                       "items": [
                         {
                           "text": "the "
@@ -867,7 +867,7 @@
                       ]
                     },
                     {
-                      "component": "paragraph",
+                      "component": "container",
                       "items": [
                         {
                           "text": "the "
@@ -884,15 +884,20 @@
                   ]
                 },
                 {
-                  "component": "url",
-                  "href": {
-                    "urlTemplate": "/agreements/{agreementNumber}/document",
-                    "params": {
-                      "agreementNumber": "$.agreement.agreementNumber"
+                  "component": "paragraph",
+                  "items": [
+                    {
+                      "component": "url",
+                      "href": {
+                        "urlTemplate": "/agreements/{agreementNumber}/document",
+                        "params": {
+                          "agreementNumber": "$.agreement.agreementNumber"
+                        }
+                      },
+                      "text": "View a printable version of your draft agreement (opens in new tab)",
+                      "target": "_blank"
                     }
-                  },
-                  "text": "View a printable version of your draft agreement (opens in new tab)",
-                  "target": "_blank"
+                  ]
                 },
                 {
                   "component": "heading",
