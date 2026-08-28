@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.27.0
+
+### Minor Changes
+
+- ebf4aca: Add Woodland GAS claim lifecycle stages, entitlement templates, and claim.claimableAt so GAS can validate claim submissions.
+
 ## 1.26.2
 
 ### Patch Changes
