@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.28.0
+
+### Minor Changes
+
+- ae6db12: Add new CRNs/SBIs to the prod allowlist
+
 ## 1.27.0
 
 ### Minor Changes
