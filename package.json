@@ -1,6 +1,6 @@
 {
   "name": "grants-config-woodland",
-  "version": "1.26.0",
+  "version": "1.28.0",
   "description": "grants-config-woodland",
   "main": "src/index.js",
   "type": "module",
@@ -35,7 +35,7 @@
   "dependencies": {
     "@defra/cdp-auditing": "0.6.1",
     "@defra/cdp-metrics": "0.6.0",
-    "@defra/grants-config-utils": "1.1.0",
+    "@defra/grants-config-utils": "1.3.0",
     "@defra/hapi-secure-context": "0.4.0",
     "@defra/hapi-tracing": "1.30.0",
     "@elastic/ecs-pino-format": "1.5.0",
@@ -47,20 +47,20 @@
     "convict-format-with-validator": "6.2.0",
     "hapi-pino": "13.0.0",
     "hapi-pulse": "4.0.0",
-    "joi": "18.2.3",
+    "joi": "18.2.5",
     "pino": "10.3.1",
     "pino-pretty": "13.1.3"
   },
   "devDependencies": {
-    "@changesets/changelog-github": "0.7.0",
-    "@changesets/cli": "2.31.1",
-    "@vitest/coverage-v8": "4.1.10",
+    "@changesets/changelog-github": "1.0.0",
+    "@changesets/cli": "3.0.1",
+    "@vitest/coverage-v8": "4.1.11",
     "eslint": "10.7.0",
     "husky": "9.1.7",
     "neostandard": "0.13.0",
     "npm-run-all": "4.1.5",
-    "prettier": "3.9.5",
-    "vitest": "4.1.10",
+    "prettier": "3.9.6",
+    "vitest": "4.1.11",
     "vitest-fetch-mock": "0.4.5"
   },
   "overrides": {

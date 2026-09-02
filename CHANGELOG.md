@@ -1,5 +1,29 @@
 # grants-config-woodland
 
+## 1.28.0
+
+### Minor Changes
+
+- ae6db12: Add new CRNs/SBIs to the prod allowlist
+
+## 1.27.0
+
+### Minor Changes
+
+- ebf4aca: Add Woodland GAS claim lifecycle stages, entitlement templates, and claim.claimableAt so GAS can validate claim submissions.
+
+## 1.26.2
+
+### Patch Changes
+
+- 3b5d00d: Use the case-aware route when caseworkers view Woodland GAS agreements.
+
+## 1.26.1
+
+### Patch Changes
+
+- c80adb2: Migrate every Woodland Management Plan agreement page to explicit component trees.
+
 ## 1.26.0
 
 ### Minor Changes

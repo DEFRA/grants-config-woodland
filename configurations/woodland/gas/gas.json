@@ -63,6 +63,13 @@
         ]
       },
       "claim": {
+        "claimableAt": [
+          {
+            "phase": "PHASE_CLAIM",
+            "stage": "STAGE_AWAITING_CLAIM",
+            "status": "STATUS_AWAITING_CLAIM"
+          }
+        ],
         "limits": {
           "maximumClaims": 1,
           "allowsPartialClaims": false
