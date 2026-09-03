@@ -23,14 +23,7 @@ metadata:
         toGrantsStatus: REOPENED
         toPath: /returned-to-customer
 
-      # Agreement offered/accepted/completed GAS statuses -> agreements service (TGC-1632).
-      # Statuses come from the current workflow in configurations/woodland/gas/gas.json; the
-      # agreement is customer-accessible from STATUS_AGREEMENT_READY_FOR_APPLICANT onwards
-      # because that status is only entered on the agreements service "offered" event:
-      #   STATUS_AGREEMENT_READY_FOR_APPLICANT - AS "offered" event lands here before CW advances it
-      #   STATUS_AGREEMENT_OFFERED             - CW has sent the agreement to the applicant
-      #   STATUS_AGREEMENT_ACCEPTED            - AS "accepted" event (applicant signed)
-      #   STATUS_APPLICATION_COMPLETED         - CW marked the application complete
+      # Agreement in progress/completed GAS statuses -> agreements service
       - fromGrantsStatus: 'SUBMITTED'
         gasStatus: 'STATUS_AGREEMENT_READY_FOR_APPLICANT,STATUS_AGREEMENT_OFFERED,STATUS_AGREEMENT_ACCEPTED,STATUS_APPLICATION_COMPLETED'
         toGrantsStatus: 'SUBMITTED'
