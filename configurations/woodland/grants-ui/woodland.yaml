@@ -25,7 +25,7 @@ metadata:
 
       # Agreement in progress/completed GAS statuses -> agreements service
       - fromGrantsStatus: 'SUBMITTED'
-        gasStatus: 'STATUS_AGREEMENT_OFFERED,STATUS_APPLICATION_COMPLETED'
+        gasStatus: 'STATUS_AGREEMENT_READY_FOR_APPLICANT,STATUS_AGREEMENT_OFFERED,STATUS_AGREEMENT_ACCEPTED,STATUS_APPLICATION_COMPLETED'
         toGrantsStatus: 'SUBMITTED'
         toPath: /agreement
 
