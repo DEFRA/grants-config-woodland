@@ -42,11 +42,11 @@
         }
       },
       "maxEntitlements": 1,
-      "availableAt": {
+      "availableAt": [{
         "phase": "PHASE_PRE_AWARD",
         "stage": "STAGE_PREPARE_CLAIM",
         "status": "STATUS_PREPARING_CLAIM"
-      },
+      }],
       "help": {
         "summary": "How is the claim amount calculated?",
         "content": [
