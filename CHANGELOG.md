@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.28.2
+
+### Patch Changes
+
+- 64a7a73: adds help text
+
 ## 1.28.1
 
 ### Patch Changes
