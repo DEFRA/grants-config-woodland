@@ -300,7 +300,7 @@ pages:
         options:
           required: true
           classes: govuk-radios
-        shortDescription: All land registered
+        shortDescription: All land registered with the RPA
 
   # 2. Exit - land not registered
   - title: All the land in your application must be registered with the Rural Payments service
@@ -361,7 +361,7 @@ pages:
         options:
           required: true
           classes: govuk-radios
-        shortDescription: Countersignature
+        shortDescription: Countersignature of parties
 
   # 6. Exit - no countersignature
   - title: You must get your landlord's countersignature
@@ -411,7 +411,7 @@ pages:
         options:
           required: true
           classes: govuk-radios
-        shortDescription: Tenancy and legal obligations
+        shortDescription: Requirement of tenancy or other legal obligations
 
   # 9. Exit - tenant obligations
   - title: You cannot apply for a woodland management plan (WMP) for any work that is a requirement of your tenancy or any other legally binding obligation
@@ -458,7 +458,7 @@ pages:
         options:
           required: true
           classes: govuk-radios
-        shortDescription: Live WMPs on land
+        shortDescription: FC plan references for live WMPs
 
   # 12. WMP agreement number (conditional - only if valid-wmp = yes)
   - title: Enter the FC plan references for any live WMPs
@@ -500,7 +500,7 @@ pages:
         options:
           required: true
           classes: govuk-radios
-        shortDescription: Apply for CSHT
+        shortDescription: Interested in a CSHT agreement
 
   # ==========================================
   # Section 2: About your woodland (placeholder)
