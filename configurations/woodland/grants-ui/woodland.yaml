@@ -275,6 +275,18 @@ pages:
     path: /check-details
     controller: CheckDetailsController
     id: a24cb35f-a359-4934-b8c8-56ff92cb3df1
+    config:
+      rpaDetails:
+        title: If you need help
+        content: |
+          <p class="govuk-body">Get help with your application.</p>
+          <p class="govuk-body">
+            <span class="govuk-!-display-block">Telephone: 03000 200 301</span>
+            Monday to Friday, 8:30am to 5pm (except bank holidays)
+          </p>
+          <p class="govuk-body"><a href="https://www.gov.uk/call-charges" class="govuk-link" rel="noreferrer noopener" target="_blank">Find out about call charges (opens in a new tab)</a></p>
+          <p class="govuk-body">Email: <a class="govuk-link" href="mailto:support@defra.gov.uk">support@defra.gov.uk</a></p>
+          <p class="govuk-body">The RPA responds to email queries within 10 working days.</p>
 
   # Task list page
   - title: Apply for a woodland management plan (WMP)
