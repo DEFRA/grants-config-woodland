@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.29.0
+
+### Minor Changes
+
+- 605e907: fix the jsonata path
+
 ## 1.28.3
 
 ### Patch Changes
