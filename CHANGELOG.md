@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.28.3
+
+### Patch Changes
+
+- aeb722a: Update CYA labels for WMP application (TGC-1563)
+
 ## 1.28.2
 
 ### Patch Changes
