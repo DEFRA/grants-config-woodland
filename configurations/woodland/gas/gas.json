@@ -35,7 +35,7 @@
         },
         "actionVersion": {
           "input": false,
-          "value": "jsonata: $.agreement.actions[code='PA3'].version",
+          "value": "jsonata: $.agreement.items[code='PA3'].version",
           "unitType": "string",
           "minLength": 1,
           "maxLength": null
