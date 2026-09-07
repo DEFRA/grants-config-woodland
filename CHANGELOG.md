@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.30.0
+
+### Minor Changes
+
+- cb75660: Add 15 new users to WMP in prod
+
 ## 1.29.0
 
 ### Minor Changes
