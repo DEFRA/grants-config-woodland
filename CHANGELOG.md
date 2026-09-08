@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.31.0
+
+### Minor Changes
+
+- 07ceb98: Update check-details to use new config.rpaDetails component
+
 ## 1.30.0
 
 ### Minor Changes
