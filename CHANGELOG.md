@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.33.0
+
+### Minor Changes
+
+- deed6c0: Update WMP journey for common land pages: reword grazing rights question and add conditional common land guidance page
+
 ## 1.32.0
 
 ### Minor Changes
