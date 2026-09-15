@@ -441,7 +441,7 @@ pages:
           <a class="govuk-link" href="https://www.gov.uk/government/publications/pa3-woodland-management-plan-2026/applicants-guide-pa3-woodland-management-plan-2026#landreceiving-other-funding">Applicant's guide: PA3 Woodland management plan 2026 guidance</a>.</p>
 
   # 10. Grazing rights
-  - title: Are you applying for land covered by common or shared grazing rights?
+  - title: Does your application include common land or shared grazing?
     id: 3f4d21fd-7cf9-4c3e-9026-d9506cf94cb1
     path: /eligibility-grazing-rights
     section: 16848e5e-ba30-4719-aa98-f0e1144fb492
@@ -450,11 +450,34 @@ pages:
       - name: landHasGrazingRights
         id: 540e77e4-13ec-4393-aee4-6ceed9cb91ed
         type: YesNoField
-        title: Are you applying for land covered by common or shared grazing rights?
+        title: Does your application include common land or shared grazing?
+        hint: This includes land where other people have legal grazing rights, or where the land is registered as common land.
         options:
           required: true
           classes: govuk-radios
         shortDescription: Common or shared grazing rights
+
+  # 10a. Common land guidance (conditional - only if landHasGrazingRights = yes)
+  - title: What you need to do
+    id: 8beebca2-58fd-412a-850a-f8dba2b0e02a
+    path: /eligibility-grazing-rights-guidance
+    section: 16848e5e-ba30-4719-aa98-f0e1144fb492
+    controller: TaskPageController
+    condition: 6773632c-7f14-479a-b13a-7c67edac446c
+    config:
+      submitButtonText: Confirm and continue
+    components:
+      - name: grazingRightsGuidance
+        id: cd6c3bee-d05d-4daf-ac69-21b6cc84db7c
+        type: Html
+        content: |
+          <p class="govuk-body">Because your application includes common land or shared grazing, you'll need to:</p>
+          <ul class="govuk-list govuk-list--bullet">
+          <li>contact and consult people with a legal interest in managing the land</li>
+          <li>get consent from the landowner</li>
+          <li>provide details of rightsholders and their rights</li>
+          <li>confirm who can sign the agreement on behalf of the group or association</li>
+          </ul>
 
   # 11. Valid WMP
   - title: Do you already have any live woodland management plans (WMPs) on any land in your application?
@@ -745,6 +768,16 @@ pages:
           <p class="govuk-body">We've received your application.</p>
           <h2 class="govuk-heading-m">What happens next</h2>
           <p class="govuk-body">We'll be in contact to offer you an agreement, or to ask for more information.</p>
+          {% if landHasGrazingRights %}
+          <h2 class="govuk-heading-m">What you need to do</h2>
+          <p class="govuk-body">Because your application includes common land or shared grazing, you'll need to:</p>
+          <ul class="govuk-list govuk-list--bullet">
+          <li>contact and consult people with a legal interest in managing the land</li>
+          <li>get consent from the landowner</li>
+          <li>provide details of rightsholders and their rights</li>
+          <li>confirm who can sign the agreement on behalf of the group or association</li>
+          </ul>
+          {% endif %}
           <p class="govuk-body"><a class="govuk-link" href="/{{ slug }}/print-submitted-application" target="_blank">View / Print submitted application (opens in new tab)</a></p>
 
   - title: PrintSubmittedApplication
@@ -917,6 +950,16 @@ conditions:
     items:
       - id: 41f6d2cd-5826-42ee-beed-034389ffaa2e
         componentId: f025cbb2-920c-4b07-9cfa-d43589369696
+        operator: is
+        type: BooleanValue
+        value: true
+
+  # Land has grazing rights (landHasGrazingRights = true) -> show common land guidance page
+  - id: 6773632c-7f14-479a-b13a-7c67edac446c
+    displayName: hasGrazingRights
+    items:
+      - id: ab262dd7-7d45-4a86-ad03-5e92955da3b8
+        componentId: 540e77e4-13ec-4393-aee4-6ceed9cb91ed
         operator: is
         type: BooleanValue
         value: true
