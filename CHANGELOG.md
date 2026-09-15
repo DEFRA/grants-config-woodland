@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.34.0
+
+### Minor Changes
+
+- eb4e76d: Add the GAS Payment definition, so a submitted Claim raises a Payment
+
 ## 1.33.0
 
 ### Minor Changes
