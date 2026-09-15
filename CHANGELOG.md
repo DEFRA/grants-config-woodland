@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.32.0
+
+### Minor Changes
+
+- d064581: Woodland Management Plan - Add 20 users to WMP
+
 ## 1.31.0
 
 ### Minor Changes
