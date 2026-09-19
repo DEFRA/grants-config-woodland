@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.35.0
+
+### Minor Changes
+
+- 92387da: Extend allowlist for Prod
+
 ## 1.34.0
 
 ### Minor Changes
