@@ -24,15 +24,15 @@ metadata:
         toPath: /returned-to-customer
 
       # Agreement in progress/completed GAS statuses -> agreements service
-      - fromGrantsStatus: 'SUBMITTED'
-        gasStatus: 'STATUS_AGREEMENT_READY_FOR_APPLICANT,STATUS_AGREEMENT_OFFERED,STATUS_AGREEMENT_ACCEPTED,STATUS_APPLICATION_COMPLETED'
-        toGrantsStatus: 'SUBMITTED'
+      - fromGrantsStatus: SUBMITTED
+        gasStatus: STATUS_AGREEMENT_READY_FOR_APPLICANT,STATUS_AGREEMENT_OFFERED,STATUS_AGREEMENT_ACCEPTED,STATUS_APPLICATION_COMPLETED
+        toGrantsStatus: SUBMITTED
         toPath: /agreement
 
       # Ready for claim -> claims journey
-      - fromGrantsStatus: 'SUBMITTED'
-        gasStatus: 'STATUS_AWAITING_CLAIM'
-        toGrantsStatus: 'CLAIM_STARTED'
+      - fromGrantsStatus: SUBMITTED
+        gasStatus: STATUS_AWAITING_CLAIM,STATUS_AWAITING_REVISION
+        toGrantsStatus: CLAIM_STARTED
         toPath: /claim
 
       # Reopened
