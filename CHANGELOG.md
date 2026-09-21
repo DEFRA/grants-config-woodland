@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.36.0
+
+### Minor Changes
+
+- 1dd76cc: Support for claim submission to GAS
+
 ## 1.35.0
 
 ### Minor Changes
