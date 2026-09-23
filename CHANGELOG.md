@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.37.0
+
+### Minor Changes
+
+- dcbb10e: Rename surveyLabel to shortName in config
+
 ## 1.36.1
 
 ### Patch Changes
