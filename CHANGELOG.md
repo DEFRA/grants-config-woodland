@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.36.1
+
+### Patch Changes
+
+- 3107a87: Update claim permission page copy
+
 ## 1.36.0
 
 ### Minor Changes
