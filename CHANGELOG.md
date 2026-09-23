@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.37.1
+
+### Patch Changes
+
+- bf1868c: Version bump to trigger grants-ui-backend ingestion
+
 ## 1.37.0
 
 ### Minor Changes
