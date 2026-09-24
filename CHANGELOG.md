@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.38.1
+
+### Patch Changes
+
+- 4c56d29: Permissions pages - copy change
+
 ## 1.38.0
 
 ### Minor Changes
