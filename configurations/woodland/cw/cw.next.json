@@ -8,6 +8,9 @@
   "definitions": {
     "agreementsService": {
       "internalUrl": "https://fg-cw-frontend.%ENVIRONMENT%.cdp-int.defra.cloud/cases/{caseId}/agreement/{agreementRef}"
+    },
+    "grantsPlatformAdmin": {
+      "claimsUrl": "https://fg-grants-platform-admin.%ENVIRONMENT%.cdp-int.defra.cloud/grant-ops/grants/woodland/applications/{caseRef}/claims"
     }
   },
   "endpoints": [],
@@ -1254,7 +1257,20 @@
                       "component": "ordered-list",
                       "items": [
                         {
-                          "text": "Go to Grant management (opens in new tab)"
+                          "text": [
+                            {
+                              "component": "url",
+                              "text": "View claims in Grants Platform admin (opens in new tab)",
+                              "href": {
+                                "urlTemplate": "$.definitions.grantsPlatformAdmin.claimsUrl",
+                                "params": {
+                                  "caseRef": "$.caseRef"
+                                }
+                              },
+                              "target": "_blank",
+                              "rel": "noopener"
+                            }
+                          ]
                         },
                         {
                           "text": "Create a new claim for 'Woodland Management Plan'"
