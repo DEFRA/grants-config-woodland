@@ -465,6 +465,16 @@
                 "mappedTo": "PHASE_PRE_AWARD:STAGE_AGREEMENT_ACCEPTED:STATUS_AGREEMENT_ACCEPTED"
               }
             ]
+          },
+          {
+            "code": "STAGE_AGREEMENT_ACCEPTED",
+            "statuses": [
+              {
+                "code": "PHASE_CLAIM:STAGE_PREPARE_CLAIM:STATUS_PREPARING_CLAIM",
+                "source": "CW",
+                "mappedTo": "PHASE_CLAIM:STAGE_AWAITING_CLAIM:STATUS_AWAITING_CLAIM"
+              }
+            ]
           }
         ]
       },
