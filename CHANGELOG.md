@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.39.0
+
+### Minor Changes
+
+- 1d5416b: variant version
+
 ## 1.38.1
 
 ### Patch Changes
