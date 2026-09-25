@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.39.1
+
+### Patch Changes
+
+- 245ceb1: Correct the CW claim-preparation status mapping in the next Woodland Management Plan GAS configuration.
+
 ## 1.39.0
 
 ### Minor Changes
