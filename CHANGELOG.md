@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.39.2
+
+### Patch Changes
+
+- 9ba0dae: Extend Prod allowlist
+
 ## 1.39.1
 
 ### Patch Changes
