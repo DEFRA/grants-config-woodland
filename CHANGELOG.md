@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.40.1
+
+### Patch Changes
+
+- ee67f6a: Render the Grants Platform admin link correctly in the Woodland Management Plan claim preparation task.
+
 ## 1.40.0
 
 ### Minor Changes
