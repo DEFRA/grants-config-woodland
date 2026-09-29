@@ -406,9 +406,16 @@
                   "processes": []
                 }
               ]
-            },
+            }
+          ]
+        },
+        {
+          "code": "STAGE_CLAIM_COMPLETE",
+          "name": "Claim complete",
+          "description": "The claim has been completed",
+          "statuses": [
             {
-              "code": "STAGE_CLAIM_COMPLETE",
+              "code": "STATUS_CLAIM_COMPLETE",
               "validFrom": [
                 {
                   "code": "PHASE_CLAIM:STAGE_AWAITING_CLAIM:STATUS_AWAITING_CLAIM",
@@ -482,7 +489,7 @@
         "code": "PHASE_CLAIM",
         "stages": [
           {
-            "code": "STAGE_PREPARE_CLAIM",
+            "code": "STAGE_AWAITING_CLAIM",
             "statuses": [
               {
                 "code": "PHASE_CLAIM:STAGE_AWAITING_CLAIM:STATUS_AWAITING_CLAIM",
@@ -490,10 +497,34 @@
                 "mappedTo": "PHASE_CLAIM:STAGE_AWAITING_CLAIM:STATUS_AWAITING_CLAIM"
               }
             ]
+          },
+          {
+            "code": "STAGE_CLAIM_COMPLETE",
+            "statuses": [
+              {
+                "code": "PHASE_CLAIM:STAGE_CLAIM_COMPLETE:STATUS_CLAIM_COMPLETE",
+                "source": "CW",
+                "mappedTo": "PHASE_CLAIM:STAGE_CLAIM_COMPLETE:STATUS_CLAIM_COMPLETE"
+              }
+            ]
           }
         ]
       }
     ]
+  },
+  "claims": {
+    "onClaimApproval": {
+      "currentPosition": {
+        "phase": "PHASE_CLAIM",
+        "stage": "STAGE_AWAITING_CLAIM",
+        "status": "STATUS_AWAITING_CLAIM"
+      },
+      "targetPosition": {
+        "phase": "PHASE_CLAIM",
+        "stage": "STAGE_CLAIM_COMPLETE",
+        "status": "STATUS_CLAIM_COMPLETE"
+      }
+    }
   },
   "pages": {
     "claims": {
