@@ -1257,20 +1257,16 @@
                       "component": "ordered-list",
                       "items": [
                         {
-                          "text": [
-                            {
-                              "component": "url",
-                              "text": "View claims in Grants Platform admin (opens in new tab)",
-                              "href": {
-                                "urlTemplate": "$.definitions.grantsPlatformAdmin.claimsUrl",
-                                "params": {
-                                  "caseRef": "$.caseRef"
-                                }
-                              },
-                              "target": "_blank",
-                              "rel": "noopener"
+                          "component": "url",
+                          "text": "View claims in Grants Platform admin (opens in new tab)",
+                          "href": {
+                            "urlTemplate": "$.definitions.grantsPlatformAdmin.claimsUrl",
+                            "params": {
+                              "caseRef": "$.caseRef"
                             }
-                          ]
+                          },
+                          "target": "_blank",
+                          "rel": "noopener"
                         },
                         {
                           "text": "Create a new claim for 'Woodland Management Plan'"
