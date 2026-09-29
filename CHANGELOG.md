@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.40.2
+
+### Patch Changes
+
+- 97a8362: Complete Woodland applications in GAS only after their final available claim, and acknowledge Caseworking claim-status echoes without treating them as unknown transitions.
+
 ## 1.40.1
 
 ### Patch Changes
