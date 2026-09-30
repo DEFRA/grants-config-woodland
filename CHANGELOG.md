@@ -1,5 +1,12 @@
 # grants-config-woodland
 
+## 1.40.3
+
+### Patch Changes
+
+- 56e99ca: Add CRN 1100134379 to Prod allowlist
+- a865d02: reverting variant version
+
 ## 1.40.2
 
 ### Patch Changes
