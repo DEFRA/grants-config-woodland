@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.40.4
+
+### Patch Changes
+
+- 31e7047: enable variant on test env
+
 ## 1.40.3
 
 ### Patch Changes
