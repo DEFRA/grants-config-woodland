@@ -3,7 +3,7 @@
   "metadata": {
     "description": "Woodland Management Plan",
     "startDate": {
-      "$date": "2100-02-02T00:00:00Z"
+      "$date": "2100-01-02T00:00:00Z"
     }
   },
   "actions": [],
@@ -44,9 +44,9 @@
       "maxEntitlements": 1,
       "availableAt": [
         {
-          "phase": "PHASE_CLAIM",
-          "stage": "STAGE_AWAITING_CLAIM",
-          "status": "STATUS_AWAITING_CLAIM"
+          "phase": "PHASE_PRE_AWARD",
+          "stage": "STAGE_PREPARE_CLAIM",
+          "status": "STATUS_PREPARING_CLAIM"
         }
       ],
       "help": {
@@ -392,6 +392,22 @@
           ]
         },
         {
+          "code": "STAGE_APPLICATION_COMPLETED",
+          "name": "Application completed",
+          "description": "All approvals received; application is complete",
+          "statuses": [
+            {
+              "code": "STATUS_APPLICATION_COMPLETED",
+              "validFrom": [
+                {
+                  "code": "PHASE_PRE_AWARD:STAGE_AGREEMENT_ACCEPTED:STATUS_AGREEMENT_ACCEPTED",
+                  "processes": []
+                }
+              ]
+            }
+          ]
+        },
+        {
           "code": "STAGE_APPLICATION_AMENDMENT",
           "name": "Application amendment",
           "description": "Application has been returned to the customer for amendments",
@@ -406,25 +422,45 @@
               ]
             }
           ]
+        },
+        {
+          "code": "STAGE_PREPARE_CLAIM",
+          "name": "Prepare claim",
+          "description": "Applicant provides the details needed to create the claim entitlement",
+          "statuses": [
+            {
+              "code": "STATUS_PREPARING_CLAIM",
+              "validFrom": [
+                {
+                  "code": "PHASE_PRE_AWARD:STAGE_APPLICATION_COMPLETED:STATUS_APPLICATION_COMPLETED",
+                  "processes": []
+                }
+              ]
+            }
+          ]
         }
       ]
     },
     {
       "code": "PHASE_CLAIM",
-      "name": "Claim Phase",
-      "description": "Phase for processing claims and payments",
-      "questions": {},
+      "name": "Claim",
+      "description": "Claim phase",
+      "questions": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {}
+      },
       "stages": [
         {
           "code": "STAGE_AWAITING_CLAIM",
-          "name": "Claim Review",
-          "description": "Claims are reviewed for eligibility and accuracy",
+          "name": "Awaiting claim",
+          "description": "Entitlement has been created; awaiting the claim to be made against it",
           "statuses": [
             {
               "code": "STATUS_AWAITING_CLAIM",
               "validFrom": [
                 {
-                  "code": "PHASE_PRE_AWARD:STAGE_AGREEMENT_ACCEPTED:STATUS_AGREEMENT_ACCEPTED",
+                  "code": "PHASE_PRE_AWARD:STAGE_PREPARE_CLAIM:STATUS_PREPARING_CLAIM",
                   "processes": []
                 }
               ]
@@ -434,7 +470,7 @@
         {
           "code": "STAGE_CLAIM_COMPLETE",
           "name": "Claim complete",
-          "description": "The claim has been completed",
+          "description": "Claim has been made against the entitlement and is complete",
           "statuses": [
             {
               "code": "STATUS_CLAIM_COMPLETE",
@@ -509,54 +545,15 @@
             "code": "STAGE_AGREEMENT_ACCEPTED",
             "statuses": [
               {
-                "code": "PHASE_CLAIM:STAGE_PREPARE_CLAIM:STATUS_PREPARING_CLAIM",
+                "code": "PHASE_PRE_AWARD:STAGE_APPLICATION_COMPLETED:STATUS_APPLICATION_COMPLETED",
                 "source": "CW",
-                "mappedTo": "PHASE_CLAIM:STAGE_AWAITING_CLAIM:STATUS_AWAITING_CLAIM"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "code": "PHASE_CLAIM",
-        "stages": [
-          {
-            "code": "STAGE_AWAITING_CLAIM",
-            "statuses": [
-              {
-                "code": "PHASE_CLAIM:STAGE_AWAITING_CLAIM:STATUS_AWAITING_CLAIM",
-                "source": "CW",
-                "mappedTo": "PHASE_CLAIM:STAGE_AWAITING_CLAIM:STATUS_AWAITING_CLAIM"
-              }
-            ]
-          },
-          {
-            "code": "STAGE_CLAIM_COMPLETE",
-            "statuses": [
-              {
-                "code": "PHASE_CLAIM:STAGE_CLAIM_COMPLETE:STATUS_CLAIM_COMPLETE",
-                "source": "CW",
-                "mappedTo": "PHASE_CLAIM:STAGE_CLAIM_COMPLETE:STATUS_CLAIM_COMPLETE"
+                "mappedTo": "PHASE_PRE_AWARD:STAGE_APPLICATION_COMPLETED:STATUS_APPLICATION_COMPLETED"
               }
             ]
           }
         ]
       }
     ]
-  },
-  "claims": {
-    "onClaimApproval": {
-      "currentPosition": {
-        "phase": "PHASE_CLAIM",
-        "stage": "STAGE_AWAITING_CLAIM",
-        "status": "STATUS_AWAITING_CLAIM"
-      },
-      "targetPosition": {
-        "phase": "PHASE_CLAIM",
-        "stage": "STAGE_CLAIM_COMPLETE",
-        "status": "STATUS_CLAIM_COMPLETE"
-      }
-    }
   },
   "pages": {
     "claims": {
