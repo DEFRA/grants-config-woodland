@@ -906,7 +906,7 @@
                   "comment": null
                 },
                 {
-                  "targetPosition": "PHASE_PRE_AWARD:STAGE_AGREEMENT_WITH_APPLICANT:WITHDRAWAL_REQUESTED",
+                  "targetPosition": "PHASE_PRE_AWARD:STAGE_AGREEMENT_WITH_APPLICANT:STATUS_WITHDRAWAL_REQUESTED",
                   "checkTasks": false,
                   "action": {
                     "code": "WITHDRAW_APPLICATION",
@@ -923,19 +923,14 @@
             },
             {
               "name": "Withdrawal requested",
-              "code": "WITHDRAWAL_REQUESTED",
+              "code": "STATUS_WITHDRAWAL_REQUESTED",
               "theme": "WARN",
               "description": "Application withdrawal has been requested and is awaiting agreement withdrawal confirmation",
               "interactive": false,
               "closes": false,
               "transitions": [
                 {
-                  "targetPosition": "PHASE_PRE_AWARD:STAGE_AGREEMENT_WITH_APPLICANT:APPLICATION_WITHDRAWN",
-                  "checkTasks": false,
-                  "action": null
-                },
-                {
-                  "targetPosition": "PHASE_PRE_AWARD:STAGE_AGREEMENT_ACCEPTED:STATUS_AGREEMENT_ACCEPTED",
+                  "targetPosition": "PHASE_PRE_AWARD:STAGE_AGREEMENT_WITH_APPLICANT:STATUS_APPLICATION_WITHDRAWN",
                   "checkTasks": false,
                   "action": null
                 }
@@ -943,7 +938,7 @@
             },
             {
               "name": "Withdrawn",
-              "code": "APPLICATION_WITHDRAWN",
+              "code": "STATUS_APPLICATION_WITHDRAWN",
               "theme": "WARN",
               "description": "Application has been withdrawn",
               "interactive": false,
