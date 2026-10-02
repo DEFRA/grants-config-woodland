@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.40.6
+
+### Patch Changes
+
+- 5968136: Republish the withdrawal variant so environments selecting it can load a fresh config version. Clarify that withdrawal requests await agreement withdrawal confirmation.
+
 ## 1.40.5
 
 ### Patch Changes
