@@ -109,11 +109,17 @@
             "startDate": "$.outputs.CALCULATE_WMP_AGREEMENT_DATES.startDate",
             "endDate": "$.outputs.CALCULATE_WMP_AGREEMENT_DATES.endDate"
           }
+        },
+        "withdraw": {
+          "target": "withdrawn"
         }
       }
     },
     "accepted": {
       "page": "accepted"
+    },
+    "withdrawn": {
+      "page": "withdrawn"
     }
   },
   "pages": {
@@ -123,7 +129,8 @@
       "contents": true,
       "print": true,
       "watermarks": {
-        "offered": "DRAFT"
+        "offered": "DRAFT",
+        "withdrawn": "WITHDRAWN"
       },
       "components": [
         {
@@ -159,6 +166,11 @@
                       ]
                     }
                   ]
+                },
+                {
+                  "component": "notification-banner",
+                  "condition": "jsonata:$.agreement.state = 'withdrawn'",
+                  "title": "This agreement offer has been withdrawn"
                 },
                 {
                   "component": "heading",
@@ -240,7 +252,7 @@
                       }
                     }
                   ],
-                  "condition": "jsonata:$.agreement.state = 'offered'"
+                  "condition": "jsonata:$.agreement.state in ['offered', 'withdrawn']"
                 },
                 {
                   "component": "description-list",
@@ -778,6 +790,48 @@
             {
               "component": "paragraph",
               "text": "The Department for Environment, Food and Rural Affairs (Defra) is the data controller for personal data you give to RPA. For information on how we handle personal data see Condition 18 of the terms and conditions."
+            }
+          ]
+        }
+      ]
+    },
+    "withdrawn": {
+      "title": "Your agreement offer has been withdrawn",
+      "components": [
+        {
+          "component": "grid-row",
+          "components": [
+            {
+              "component": "grid-column",
+              "width": "two-thirds",
+              "components": [
+                {
+                  "component": "notification-banner",
+                  "title": "This agreement offer has been withdrawn",
+                  "text": "The Rural Payments Agency has withdrawn this offer. You do not need to do anything."
+                },
+                {
+                  "component": "summary-list",
+                  "rows": [
+                    {
+                      "label": "Agreement number",
+                      "text": "$.agreement.agreementNumber"
+                    }
+                  ]
+                },
+                {
+                  "component": "url",
+                  "href": {
+                    "urlTemplate": "/agreements/{agreementNumber}/document",
+                    "params": {
+                      "agreementNumber": "$.agreement.agreementNumber"
+                    }
+                  },
+                  "text": "View and print your withdrawn agreement (opens in new tab)",
+                  "target": "_blank",
+                  "rel": "noopener noreferrer"
+                }
+              ]
             }
           ]
         }

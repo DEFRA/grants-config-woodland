@@ -350,6 +350,24 @@
                   "processes": []
                 }
               ]
+            },
+            {
+              "code": "WITHDRAWAL_REQUESTED",
+              "validFrom": [
+                {
+                  "code": "STATUS_AGREEMENT_OFFERED",
+                  "processes": ["REQUEST_APPLICATION_WITHDRAWAL"]
+                }
+              ]
+            },
+            {
+              "code": "APPLICATION_WITHDRAWN",
+              "validFrom": [
+                {
+                  "code": "WITHDRAWAL_REQUESTED",
+                  "processes": ["WITHDRAW_AGREEMENT"]
+                }
+              ]
             }
           ]
         },
@@ -363,6 +381,10 @@
               "validFrom": [
                 {
                   "code": "PHASE_PRE_AWARD:STAGE_AGREEMENT_WITH_APPLICANT:STATUS_AGREEMENT_OFFERED",
+                  "processes": ["ACCEPT_AGREEMENT"]
+                },
+                {
+                  "code": "PHASE_PRE_AWARD:STAGE_AGREEMENT_WITH_APPLICANT:WITHDRAWAL_REQUESTED",
                   "processes": ["ACCEPT_AGREEMENT"]
                 }
               ]
@@ -502,6 +524,16 @@
           {
             "code": "STAGE_AGREEMENT_WITH_APPLICANT",
             "statuses": [
+              {
+                "code": "PHASE_PRE_AWARD:STAGE_AGREEMENT_WITH_APPLICANT:WITHDRAWAL_REQUESTED",
+                "source": "CW",
+                "mappedTo": "PHASE_PRE_AWARD:STAGE_AGREEMENT_WITH_APPLICANT:WITHDRAWAL_REQUESTED"
+              },
+              {
+                "code": "withdrawn",
+                "source": "AS",
+                "mappedTo": "PHASE_PRE_AWARD:STAGE_AGREEMENT_WITH_APPLICANT:APPLICATION_WITHDRAWN"
+              },
               {
                 "code": "accepted",
                 "source": "AS",
