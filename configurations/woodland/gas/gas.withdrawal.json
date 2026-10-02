@@ -352,7 +352,7 @@
               ]
             },
             {
-              "code": "WITHDRAWAL_REQUESTED",
+              "code": "STATUS_WITHDRAWAL_REQUESTED",
               "validFrom": [
                 {
                   "code": "STATUS_AGREEMENT_OFFERED",
@@ -361,10 +361,10 @@
               ]
             },
             {
-              "code": "APPLICATION_WITHDRAWN",
+              "code": "STATUS_APPLICATION_WITHDRAWN",
               "validFrom": [
                 {
-                  "code": "WITHDRAWAL_REQUESTED",
+                  "code": "STATUS_WITHDRAWAL_REQUESTED",
                   "processes": ["WITHDRAW_AGREEMENT"]
                 }
               ]
@@ -381,10 +381,6 @@
               "validFrom": [
                 {
                   "code": "PHASE_PRE_AWARD:STAGE_AGREEMENT_WITH_APPLICANT:STATUS_AGREEMENT_OFFERED",
-                  "processes": ["ACCEPT_AGREEMENT"]
-                },
-                {
-                  "code": "PHASE_PRE_AWARD:STAGE_AGREEMENT_WITH_APPLICANT:WITHDRAWAL_REQUESTED",
                   "processes": ["ACCEPT_AGREEMENT"]
                 }
               ]
@@ -525,14 +521,14 @@
             "code": "STAGE_AGREEMENT_WITH_APPLICANT",
             "statuses": [
               {
-                "code": "PHASE_PRE_AWARD:STAGE_AGREEMENT_WITH_APPLICANT:WITHDRAWAL_REQUESTED",
+                "code": "PHASE_PRE_AWARD:STAGE_AGREEMENT_WITH_APPLICANT:STATUS_WITHDRAWAL_REQUESTED",
                 "source": "CW",
-                "mappedTo": "PHASE_PRE_AWARD:STAGE_AGREEMENT_WITH_APPLICANT:WITHDRAWAL_REQUESTED"
+                "mappedTo": "PHASE_PRE_AWARD:STAGE_AGREEMENT_WITH_APPLICANT:STATUS_WITHDRAWAL_REQUESTED"
               },
               {
                 "code": "withdrawn",
                 "source": "AS",
-                "mappedTo": "PHASE_PRE_AWARD:STAGE_AGREEMENT_WITH_APPLICANT:APPLICATION_WITHDRAWN"
+                "mappedTo": "PHASE_PRE_AWARD:STAGE_AGREEMENT_WITH_APPLICANT:STATUS_APPLICATION_WITHDRAWN"
               },
               {
                 "code": "accepted",
