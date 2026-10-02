@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.40.7
+
+### Patch Changes
+
+- 95ac468: Prefix withdrawal variant statuses with STATUS_ and remove the workflow transition from withdrawal requested to agreement accepted.
+
 ## 1.40.6
 
 ### Patch Changes
