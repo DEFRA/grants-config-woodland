@@ -925,7 +925,7 @@
               "name": "Withdrawal requested",
               "code": "WITHDRAWAL_REQUESTED",
               "theme": "WARN",
-              "description": "Application withdrawal has been requested",
+              "description": "Application withdrawal has been requested and is awaiting agreement withdrawal confirmation",
               "interactive": false,
               "closes": false,
               "transitions": [
