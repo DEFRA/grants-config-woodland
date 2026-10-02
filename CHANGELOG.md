@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.40.5
+
+### Patch Changes
+
+- 7aeffc5: Add a withdrawal configuration variant based on the default casework, GAS and agreement configurations so caseworkers can try withdrawing offered Woodland Management Plan agreements without changing the default or next configurations.
+
 ## 1.40.4
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "grants-config-woodland",
-  "version": "1.40.4",
+  "version": "1.40.5",
   "description": "grants-config-woodland",
   "main": "src/index.js",
   "type": "module",
