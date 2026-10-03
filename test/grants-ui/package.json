@@ -1,0 +1,24 @@
+{
+  "name": "grants-config-woodland-grants-ui-tests",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Woodland journey tests for grants-ui",
+  "type": "module",
+  "engines": {
+    "node": ">=24.15.0 <25.0.0",
+    "npm": ">=11.12.1"
+  },
+  "author": "Defra DDTS",
+  "license": "OGL-UK-3.0",
+  "scripts": {
+    "test:local": "playwright test --config=playwright.local.config.js",
+    "test:ci": "playwright test --config=playwright.ci.config.js"
+  },
+  "dependencies": {
+    "@axe-core/playwright": "4.11.3",
+    "@playwright/test": "1.59.1",
+    "ajv": "8.20.0",
+    "mockserver-client": "5.15.0",
+    "mongodb": "7.5.0"
+  }
+}
