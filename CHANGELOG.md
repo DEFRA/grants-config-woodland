@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.40.12
+
+### Patch Changes
+
+- f569da4: Add latest tranch of users
+
 ## 1.40.11
 
 ### Patch Changes
