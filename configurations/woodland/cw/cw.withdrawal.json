@@ -926,15 +926,6 @@
                 {
                   "component": "paragraph",
                   "text": "The application and agreement offer have been withdrawn. The customer can submit a new application."
-                },
-                {
-                  "component": "url",
-                  "text": "Back to applications",
-                  "href": {
-                    "urlTemplate": "/cases",
-                    "params": {}
-                  },
-                  "classes": "govuk-link"
                 }
               ]
             }
@@ -990,6 +981,7 @@
               "theme": "WARN",
               "description": "Application has been withdrawn",
               "interactive": false,
+              "hideTaskGroups": true,
               "closes": true,
               "transitions": []
             }
