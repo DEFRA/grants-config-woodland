@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.40.10
+
+### Patch Changes
+
+- 8afef27: GRALS-6: Recognise STATUS_APPLICATION_WITHDRAWN in the Woodland Grants UI redirect so customers can reapply after withdrawal, while retaining legacy APPLICATION_WITHDRAWN support.
+
 ## 1.40.9
 
 ### Patch Changes
