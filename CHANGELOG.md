@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.40.9
+
+### Patch Changes
+
+- 6acbb81: GRALS-6: Hide the empty task-group message and remove the duplicate Back to applications link after withdrawal, retaining the existing breadcrumb navigation.
+
 ## 1.40.8
 
 ### Patch Changes
