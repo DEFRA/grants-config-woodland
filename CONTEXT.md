@@ -35,3 +35,19 @@ _Avoid_: Wizard, Survey, Funnel
 **Changeset**
 The release note/version marker required for configuration changes.
 _Avoid_: Changelog entry when the `.changeset` file is meant, Commit message
+
+**Journey test**
+An end-to-end Playwright browser test in `test/grants-ui` that exercises a woodland grant journey through Grants UI.
+_Avoid_: Unit test, Smoke test, Performance test
+
+**Application journey**
+The full eligible WMP application path from sign-in through confirmation.
+_Avoid_: Scenario when the whole user journey is meant, Script
+
+**Application lifecycle**
+The post-submission path through amend, offer sent, claim, and withdrawn states.
+_Avoid_: Browser lifecycle, Test lifecycle, Deployment lifecycle
+
+**CRN**
+Customer Reference Number: the Defra ID identifier for an individual user.
+_Avoid_: SBI, User ID, Account number

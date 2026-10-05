@@ -1,5 +1,23 @@
 # grants-config-woodland
 
+## 1.40.9
+
+### Patch Changes
+
+- 6acbb81: GRALS-6: Hide the empty task-group message and remove the duplicate Back to applications link after withdrawal, retaining the existing breadcrumb navigation.
+
+## 1.40.8
+
+### Patch Changes
+
+- 2f87150: GRALS-6: Show withdrawal progress with a Refresh page button and a completion message with a Back to applications link in the casework withdrawal variant.
+
+## 1.40.7
+
+### Patch Changes
+
+- 95ac468: Prefix withdrawal variant statuses with STATUS_ and remove the workflow transition from withdrawal requested to agreement accepted.
+
 ## 1.40.6
 
 ### Patch Changes

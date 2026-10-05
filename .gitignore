@@ -11,3 +11,5 @@ coverage
 .env
 test/testconfig
 AGENTS.local.md
+playwright-report/
+test-results/

@@ -1,5 +1,25 @@
 services:
 
-  grants-ui-woodland-tests:
+  # Defined in full until grants-ui's compose.tests.yml has this service; the
+  # relative certs path resolves against the grants-ui project directory.
+  grants-config-woodland-grants-ui-tests:
+    image: grants-config-woodland-grants-ui-tests
+    pull_policy: build
+    build:
+      context: ${PWD}
+      dockerfile: test/grants-ui/Dockerfile
+    environment:
+      MAX_INSTANCES: 3
+      NODE_EXTRA_CA_CERTS: /etc/ssl/certs/nginx.crt
+      BASE_URL: https://grants-ui-proxy:4000
+      BASE_BACKEND_URL: https://grants-ui-proxy:4001
+      GRANTS_UI_BACKEND_AUTH_TOKEN: ${GRANTS_UI_BACKEND_AUTH_TOKEN:-auth_token}
+      GRANTS_UI_BACKEND_ENCRYPTION_KEY: ${GRANTS_UI_BACKEND_ENCRYPTION_KEY:-encryption_key}
+      MOCKSERVER_HOST: mockserver
+      MOCKSERVER_PORT: 1080
+      MONGO_URI: mongodb://mongodb:27017/
     volumes:
-      - ${PWD}/test/testconfig:/app/test/schemas:ro
+      - ./nginx/certs:/etc/ssl/certs:ro
+    command: ['npm', 'run', 'test:ci']
+    networks:
+      - grants-ui-net
