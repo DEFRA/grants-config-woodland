@@ -11,7 +11,7 @@ metadata:
     preSubmission:
       - toPath: '/tasks'
     postSubmission:
-      # Cleared - withdrawal variant status and legacy APPLICATION_WITHDRAWN status
+      # Support the withdrawal variant and GAS's unprefixed withdrawal fallback
       - fromGrantsStatus: SUBMITTED,REOPENED
         gasStatus: STATUS_APPLICATION_WITHDRAWN,APPLICATION_WITHDRAWN
         toGrantsStatus: CLEARED
