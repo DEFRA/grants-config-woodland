@@ -889,6 +889,54 @@
                 }
               ],
               "renderIf": "jsonata:$.position.statusCode = 'STATUS_AGREEMENT_OFFERED'"
+            },
+            {
+              "renderIf": "jsonata:$.position.statusCode = 'STATUS_WITHDRAWAL_REQUESTED'",
+              "content": [
+                {
+                  "component": "heading",
+                  "level": 3,
+                  "text": "Withdrawal requested"
+                },
+                {
+                  "component": "paragraph",
+                  "text": "The application and agreement offer are being withdrawn. Refresh the page to check whether withdrawal has completed."
+                },
+                {
+                  "component": "url",
+                  "text": "Refresh page",
+                  "href": {
+                    "urlTemplate": "/cases/{caseId}",
+                    "params": {
+                      "caseId": "$._id"
+                    }
+                  },
+                  "classes": "govuk-button"
+                }
+              ]
+            },
+            {
+              "renderIf": "jsonata:$.position.statusCode = 'STATUS_APPLICATION_WITHDRAWN'",
+              "content": [
+                {
+                  "component": "heading",
+                  "level": 3,
+                  "text": "Application withdrawn"
+                },
+                {
+                  "component": "paragraph",
+                  "text": "The application and agreement offer have been withdrawn. The customer can submit a new application."
+                },
+                {
+                  "component": "url",
+                  "text": "Back to applications",
+                  "href": {
+                    "urlTemplate": "/cases",
+                    "params": {}
+                  },
+                  "classes": "govuk-link"
+                }
+              ]
             }
           ],
           "taskGroups": [],
