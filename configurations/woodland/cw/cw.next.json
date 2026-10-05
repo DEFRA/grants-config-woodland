@@ -892,6 +892,45 @@
                 }
               ],
               "renderIf": "jsonata:$.position.statusCode = 'STATUS_AGREEMENT_OFFERED'"
+            },
+            {
+              "renderIf": "jsonata:$.position.statusCode = 'STATUS_WITHDRAWAL_REQUESTED'",
+              "content": [
+                {
+                  "component": "heading",
+                  "level": 3,
+                  "text": "Withdrawal requested"
+                },
+                {
+                  "component": "paragraph",
+                  "text": "The application and agreement offer are being withdrawn. Refresh the page to check whether withdrawal has completed."
+                },
+                {
+                  "component": "url",
+                  "text": "Refresh page",
+                  "href": {
+                    "urlTemplate": "/cases/{caseId}",
+                    "params": {
+                      "caseId": "$._id"
+                    }
+                  },
+                  "classes": "govuk-button"
+                }
+              ]
+            },
+            {
+              "renderIf": "jsonata:$.position.statusCode = 'STATUS_APPLICATION_WITHDRAWN'",
+              "content": [
+                {
+                  "component": "heading",
+                  "level": 3,
+                  "text": "Application withdrawn"
+                },
+                {
+                  "component": "paragraph",
+                  "text": "The application and agreement offer have been withdrawn. The customer can submit a new application."
+                }
+              ]
             }
           ],
           "taskGroups": [],
@@ -901,15 +940,53 @@
               "code": "STATUS_AGREEMENT_OFFERED",
               "theme": "NEUTRAL",
               "interactive": true,
-              "devComment": "we will have extra transitions below for withdraw and return to customer",
               "transitions": [
                 {
                   "targetPosition": "PHASE_PRE_AWARD:STAGE_AGREEMENT_ACCEPTED:STATUS_AGREEMENT_ACCEPTED",
                   "checkTasks": false,
                   "action": null,
                   "comment": null
+                },
+                {
+                  "targetPosition": "PHASE_PRE_AWARD:STAGE_AGREEMENT_WITH_APPLICANT:STATUS_WITHDRAWAL_REQUESTED",
+                  "checkTasks": false,
+                  "action": {
+                    "code": "WITHDRAW_APPLICATION",
+                    "name": "Withdraw",
+                    "checkTasks": false,
+                    "comment": {
+                      "label": "Explain this decision",
+                      "helpText": "You must include an explanation for auditing purposes.",
+                      "mandatory": true
+                    }
+                  }
                 }
               ]
+            },
+            {
+              "name": "Withdrawal requested",
+              "code": "STATUS_WITHDRAWAL_REQUESTED",
+              "theme": "WARN",
+              "description": "Application withdrawal has been requested and is awaiting agreement withdrawal confirmation",
+              "interactive": false,
+              "closes": false,
+              "transitions": [
+                {
+                  "targetPosition": "PHASE_PRE_AWARD:STAGE_AGREEMENT_WITH_APPLICANT:STATUS_APPLICATION_WITHDRAWN",
+                  "checkTasks": false,
+                  "action": null
+                }
+              ]
+            },
+            {
+              "name": "Withdrawn",
+              "code": "STATUS_APPLICATION_WITHDRAWN",
+              "theme": "WARN",
+              "description": "Application has been withdrawn",
+              "interactive": false,
+              "hideTaskGroups": true,
+              "closes": true,
+              "transitions": []
             }
           ]
         },

@@ -11,7 +11,7 @@ metadata:
     preSubmission:
       - toPath: '/tasks'
     postSubmission:
-      # Support the withdrawal variant and GAS's unprefixed withdrawal fallback
+      # Support Woodland withdrawal and GAS's unprefixed withdrawal fallback
       - fromGrantsStatus: SUBMITTED,REOPENED
         gasStatus: STATUS_APPLICATION_WITHDRAWN,APPLICATION_WITHDRAWN
         toGrantsStatus: CLEARED
