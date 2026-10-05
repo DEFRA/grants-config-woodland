@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.40.8
+
+### Patch Changes
+
+- 2f87150: GRALS-6: Show withdrawal progress with a Refresh page button and a completion message with a Back to applications link in the casework withdrawal variant.
+
 ## 1.40.7
 
 ### Patch Changes
