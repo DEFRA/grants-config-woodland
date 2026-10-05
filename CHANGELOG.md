@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.40.11
+
+### Patch Changes
+
+- 1c9d8fa: reverting variant on test env
+
 ## 1.40.10
 
 ### Patch Changes
