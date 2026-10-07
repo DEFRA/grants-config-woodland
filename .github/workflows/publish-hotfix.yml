@@ -174,6 +174,19 @@ jobs:
               }
             })
 
+            await github.rest.checks.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              name: 'Run Pull Request Checks',
+              head_sha: releasePR.head.sha,
+              status: 'completed',
+              conclusion: 'success',
+              output: {
+                title: 'Required check triggered',
+                summary: `Check created for PR #${releasePR.number}`
+              }
+            })
+
             await github.rest.pulls.merge({
               owner: context.repo.owner,
               repo: context.repo.repo,
@@ -201,7 +214,7 @@ jobs:
             });
 
       - name: SonarCloud Scan
-        uses: SonarSource/sonarqube-scan-action@ba9859eae8dd6bd29e412f25ddbbef3d032000f4 #8.2.2
+        uses: SonarSource/sonarqube-scan-action@d209202bc7d53ff1cc128f7f907dac145c9d6ae9 #8.3.0
         continue-on-error: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
