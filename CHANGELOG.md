@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.40.14
+
+### Patch Changes
+
+- 86a7c03: enabling variant on test env
+
 ## 1.40.13
 
 ### Patch Changes
