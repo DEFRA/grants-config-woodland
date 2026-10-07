@@ -37,7 +37,7 @@
   "dependencies": {
     "@defra/cdp-auditing": "0.6.1",
     "@defra/cdp-metrics": "0.6.0",
-    "@defra/grants-config-utils": "1.0.0",
+    "@defra/grants-config-utils": "1.4.0",
     "@defra/hapi-secure-context": "0.4.0",
     "@defra/hapi-tracing": "1.30.0",
     "@elastic/ecs-pino-format": "1.5.0",
@@ -56,7 +56,7 @@
   "devDependencies": {
     "@changesets/changelog-github": "1.0.1",
     "@changesets/cli": "3.0.3",
-    "@vitest/coverage-v8": "5.0.1",
+    "@vitest/coverage-v8": "5.0.3",
     "eslint": "10.7.0",
     "husky": "9.1.7",
     "neostandard": "0.13.0",
