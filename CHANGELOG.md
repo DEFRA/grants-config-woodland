@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.40.15
+
+### Patch Changes
+
+- 2f81e7d: updating variant
+
 ## 1.40.14
 
 ### Patch Changes
