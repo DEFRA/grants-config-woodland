@@ -23,9 +23,9 @@ if [ "$currentUser" != "github-actions[bot]" ]; then
   if (
     git diff --name-only "$diffTarget...HEAD"
     git diff --cached --name-only
-  ) | grep -q '^configurations/'; then
+  ) | grep -Eq '^(configurations|test)/'; then
     if ! compgen -G ".changeset/*-*-*.md" > /dev/null; then
-      echo "❌ Changes in configurations/ require a changeset"
+      echo "❌ Changes in configurations/ or test/ require a changeset"
       echo "Run: npm run version"
       exit 1
     fi
