@@ -1351,7 +1351,11 @@
                         "mandatory": true
                       }
                     }
-                  ]
+                  ],
+                  "requiredRoles": {
+                    "allOf": ["ROLE_WMP", "ROLE_WMP_CLAIMS"],
+                    "anyOf": []
+                  }
                 },
                 {
                   "name": "Tell the customer they can make a claim",
@@ -1374,6 +1378,10 @@
                   ],
                   "dependsOn": ["TASK_RECORD_ELIGIBLE_AREA"],
                   "mandatory": true,
+                  "requiredRoles": {
+                    "allOf": ["ROLE_WMP", "ROLE_WMP_CLAIMS"],
+                    "anyOf": []
+                  },
                   "valueOptions": [
                     {
                       "name": "Notification sent",
