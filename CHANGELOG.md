@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.43.0
+
+### Minor Changes
+
+- 87e8185: Add claims.requiredRoles to the woodland grant definition to restrict platform admin claims access by CW role
+
 ## 1.42.0
 
 ### Minor Changes
