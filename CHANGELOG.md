@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.41.0
+
+### Minor Changes
+
+- b99802d: restrict WMP claim preparation tasks to ROLE_WMP_CLAIMS
+
 ## 1.40.16
 
 ### Patch Changes
