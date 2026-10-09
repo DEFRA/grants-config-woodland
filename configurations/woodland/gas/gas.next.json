@@ -541,6 +541,10 @@
     ]
   },
   "claims": {
+    "requiredRoles": {
+      "allOf": ["ROLE_WMP", "ROLE_WMP_CLAIMS"],
+      "anyOf": []
+    },
     "onClaimApproval": {
       "currentPosition": {
         "phase": "PHASE_CLAIM",

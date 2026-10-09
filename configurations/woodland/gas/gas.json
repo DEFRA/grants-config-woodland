@@ -551,6 +551,12 @@
       }
     ]
   },
+  "claims": {
+    "requiredRoles": {
+      "allOf": ["ROLE_WMP", "ROLE_WMP_CLAIMS"],
+      "anyOf": []
+    }
+  },
   "pages": {
     "claims": {
       "details": {
