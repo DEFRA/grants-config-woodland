@@ -26,4 +26,3 @@ curl -fsSL \
   -o test/testconfig/woodland@0.0.0/grants-ui/allowlist.yaml
 
 "$(dirname "$0")/docker-compose-smoke-test.sh"
-
