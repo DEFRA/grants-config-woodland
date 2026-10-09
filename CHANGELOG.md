@@ -4,6 +4,12 @@
 
 ### Minor Changes
 
+- d9812f8: Create a no change version to bring versioning back in line
+
+## 1.42.0
+
+### Minor Changes
+
 - ba74f46: restrict WMP claim preparation tasks to ROLE_WMP_CLAIMS
 
 ## 1.41.0
