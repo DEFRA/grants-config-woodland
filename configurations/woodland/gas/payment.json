@@ -17,7 +17,7 @@
       "totalAmountPence": "$.claim.totalAmountPence",
       "invoiceLines": [
         {
-          "schemeCode": "WMP",
+          "schemeCode": "PA3",
           "description": "Woodland Management Plan Payment",
           "amountPence": "$.claim.totalAmountPence",
           "accountCode": "SOS710",
