@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.43.2
+
+### Patch Changes
+
+- fc516f2: variant version
+
 ## 1.43.1
 
 ### Patch Changes
