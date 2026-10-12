@@ -14,11 +14,11 @@ export const schemeContract = {
     prefix: 'WMP',
     // Capital item / scheme code shared between the GAS entitlement and payment config
     capitalItem: 'PA3',
-    // GAS-required answers that have no grants-ui input component because a UI
-    // controller computes them (here: totalHectaresForSelectedParcels is summed from
-    // the selected landParcels). applicant is GAS-optional and comes from the
-    // business-details lookup, so it is not listed.
-    derivedFields: ['totalHectaresForSelectedParcels'],
+    // GAS-required answers the UI supplies without a dedicated input component:
+    // totalHectaresForSelectedParcels is summed by a controller from the selected
+    // landParcels, and applicant is populated by the grants-ui backend from the
+    // business-details lookup (metadata.detailsPage.query).
+    derivedFields: ['totalHectaresForSelectedParcels', 'applicant'],
     // grants-ui input fields that gate eligibility (routing to terminal exit pages)
     // and are deliberately not part of the validated submission. GAS's schema is open
     // (no additionalProperties:false) so these are tolerated if ever sent.

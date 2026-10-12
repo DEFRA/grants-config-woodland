@@ -141,10 +141,103 @@
             "type": "object",
             "properties": {
               "business": {
-                "type": "object"
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "object",
+                    "properties": {
+                      "address": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "phone": {
+                    "type": "object",
+                    "properties": {
+                      "mobile": {
+                        "type": "string"
+                      },
+                      "landline": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "address": {
+                    "type": "object",
+                    "properties": {
+                      "line1": {
+                        "type": "string"
+                      },
+                      "line2": {
+                        "type": "string"
+                      },
+                      "line3": {
+                        "type": "string"
+                      },
+                      "line4": {
+                        "type": "string"
+                      },
+                      "line5": {
+                        "type": "string"
+                      },
+                      "street": {
+                        "type": "string"
+                      },
+                      "city": {
+                        "type": "string"
+                      },
+                      "postalCode": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "required": ["name", "address"]
               },
               "customer": {
-                "type": "object"
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "object",
+                    "properties": {
+                      "title": {
+                        "type": "string"
+                      },
+                      "first": {
+                        "type": "string"
+                      },
+                      "middle": {
+                        "type": "string"
+                      },
+                      "last": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "email": {
+                    "type": "object",
+                    "properties": {
+                      "address": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "phone": {
+                    "type": "object",
+                    "properties": {
+                      "mobile": {
+                        "type": "string"
+                      },
+                      "landline": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "required": ["name"]
               }
             },
             "required": ["business", "customer"]
@@ -249,6 +342,7 @@
           }
         },
         "required": [
+          "applicant",
           "businessDetailsUpToDate",
           "guidanceRead",
           "landRegisteredWithRpa",
