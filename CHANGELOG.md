@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.43.3
+
+### Patch Changes
+
+- bfec383: Remove CRNs from existing allowlist
+
 ## 1.43.2
 
 ### Patch Changes
