@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.43.4
+
+### Patch Changes
+
+- b5058d0: Add 17 users to the Woodland prod allowlist
+
 ## 1.43.3
 
 ### Patch Changes
