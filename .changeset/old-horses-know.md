@@ -1,5 +1,5 @@
 ---
-'grants-config-woodland': minor
+'grants-config-woodland': patch
 ---
 
 Remove CRNs from existing allowlist
