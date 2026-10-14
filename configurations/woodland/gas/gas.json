@@ -1,5 +1,8 @@
 {
   "code": "woodland",
+  "admin": {
+    "role": "ROLE_WOODLAND_ADMIN"
+  },
   "metadata": {
     "description": "Woodland Management Plan",
     "startDate": {
