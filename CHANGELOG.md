@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.44.0
+
+### Minor Changes
+
+- 34b593b: Configure ROLE_WOODLAND_ADMIN as the Caseworking role required to administer the Woodland grant in GPA.
+
 ## 1.43.4
 
 ### Patch Changes
