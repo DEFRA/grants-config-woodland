@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.44.1
+
+### Patch Changes
+
+- 28e0664: Use ROLE_WMP_ADMIN for Woodland Management Plan administration, consistent with the other WMP caseworking roles.
+
 ## 1.44.0
 
 ### Minor Changes
