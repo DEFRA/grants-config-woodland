@@ -118,7 +118,7 @@
 
 ### Patch Changes
 
-- 56e99ca: Add CRN 1100134379 to Prod allowlist
+- 56e99ca: Add CRN [removed] to Prod allowlist
 - a865d02: reverting variant version
 
 ## 1.40.2
