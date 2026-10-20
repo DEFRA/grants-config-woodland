@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.44.2
+
+### Patch Changes
+
+- 877a7f6: Adding latest tranche of allowed SBIs
+
 ## 1.44.1
 
 ### Patch Changes
