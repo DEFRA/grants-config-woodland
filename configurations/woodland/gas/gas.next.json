@@ -544,6 +544,9 @@
     ]
   },
   "claims": {
+    "onSubmission": {
+      "processes": ["STORE_CLAIM_CASE"]
+    },
     "requiredRoles": {
       "allOf": ["ROLE_WMP", "ROLE_WMP_CLAIMS"],
       "anyOf": []
