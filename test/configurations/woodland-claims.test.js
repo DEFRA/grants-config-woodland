@@ -1,7 +1,12 @@
 import { readFile } from 'node:fs/promises'
 import { describe, expect, it } from 'vitest'
 const load = async (name) =>
-  JSON.parse(await readFile(new URL(name, import.meta.url), 'utf8'))
+  JSON.parse(
+    await readFile(
+      new URL(`../../configurations/woodland/gas/${name}`, import.meta.url),
+      'utf8'
+    )
+  )
 describe('Woodland next claim delivery', () => {
   it('enables supplementary data delivery while retaining automatic completion', async () => {
     const next = await load('./gas.next.json')
