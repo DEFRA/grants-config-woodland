@@ -548,6 +548,9 @@
       "allOf": ["ROLE_WMP", "ROLE_WMP_CLAIMS"],
       "anyOf": []
     },
+    "onClaimSubmission": {
+      "processes": ["STORE_CLAIM_CASE"]
+    },
     "onClaimApproval": {
       "currentPosition": {
         "phase": "PHASE_CLAIM",
@@ -559,9 +562,6 @@
         "stage": "STAGE_CLAIM_COMPLETE",
         "status": "STATUS_CLAIM_COMPLETE"
       }
-    },
-    "onClaimSubmission": {
-      "processes": ["STORE_CLAIM_CASE"]
     }
   },
   "pages": {
