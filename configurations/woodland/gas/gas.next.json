@@ -48,6 +48,11 @@
       "availableAt": [
         {
           "phase": "PHASE_CLAIM",
+          "stage": "STAGE_PREPARE_CLAIM",
+          "status": "STATUS_PREPARING_CLAIM"
+        },
+        {
+          "phase": "PHASE_CLAIM",
           "stage": "STAGE_AWAITING_CLAIM",
           "status": "STATUS_AWAITING_CLAIM"
         }
@@ -415,6 +420,22 @@
       "questions": {},
       "stages": [
         {
+          "code": "STAGE_PREPARE_CLAIM",
+          "name": "Prepare claim",
+          "description": "Casework is recording the eligible area before the claim is offered to the applicant",
+          "statuses": [
+            {
+              "code": "STATUS_PREPARING_CLAIM",
+              "validFrom": [
+                {
+                  "code": "PHASE_PRE_AWARD:STAGE_AGREEMENT_ACCEPTED:STATUS_AGREEMENT_ACCEPTED",
+                  "processes": []
+                }
+              ]
+            }
+          ]
+        },
+        {
           "code": "STAGE_AWAITING_CLAIM",
           "name": "Claim Review",
           "description": "Claims are reviewed for eligibility and accuracy",
@@ -422,6 +443,10 @@
             {
               "code": "STATUS_AWAITING_CLAIM",
               "validFrom": [
+                {
+                  "code": "PHASE_CLAIM:STAGE_PREPARE_CLAIM:STATUS_PREPARING_CLAIM",
+                  "processes": []
+                },
                 {
                   "code": "PHASE_PRE_AWARD:STAGE_AGREEMENT_ACCEPTED:STATUS_AGREEMENT_ACCEPTED",
                   "processes": []
@@ -510,6 +535,11 @@
               {
                 "code": "PHASE_CLAIM:STAGE_PREPARE_CLAIM:STATUS_PREPARING_CLAIM",
                 "source": "CW",
+                "mappedTo": "PHASE_CLAIM:STAGE_PREPARE_CLAIM:STATUS_PREPARING_CLAIM"
+              },
+              {
+                "code": "PHASE_CLAIM:STAGE_AWAITING_CLAIM:STATUS_AWAITING_CLAIM",
+                "source": "CW",
                 "mappedTo": "PHASE_CLAIM:STAGE_AWAITING_CLAIM:STATUS_AWAITING_CLAIM"
               }
             ]
@@ -519,6 +549,16 @@
       {
         "code": "PHASE_CLAIM",
         "stages": [
+          {
+            "code": "STAGE_PREPARE_CLAIM",
+            "statuses": [
+              {
+                "code": "PHASE_CLAIM:STAGE_AWAITING_CLAIM:STATUS_AWAITING_CLAIM",
+                "source": "CW",
+                "mappedTo": "PHASE_CLAIM:STAGE_AWAITING_CLAIM:STATUS_AWAITING_CLAIM"
+              }
+            ]
+          },
           {
             "code": "STAGE_AWAITING_CLAIM",
             "statuses": [
