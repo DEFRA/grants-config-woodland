@@ -10,7 +10,9 @@ const load = async (name) =>
 describe('Woodland next claim delivery', () => {
   it('enables supplementary data delivery while retaining automatic completion', async () => {
     const next = await load('./gas.next.json')
-    expect(next.claims.onSubmission.processes).toEqual(['STORE_CLAIM_CASE'])
+    expect(next.claims.onClaimSubmission.processes).toEqual([
+      'STORE_CLAIM_CASE'
+    ])
     expect(next.entitlementTemplates[0].claim.requiresApproval).toBe(false)
     expect(next.claims.onClaimApproval).toEqual({
       currentPosition: {
@@ -24,6 +26,6 @@ describe('Woodland next claim delivery', () => {
         status: 'STATUS_CLAIM_COMPLETE'
       }
     })
-    expect((await load('./gas.json')).claims?.onSubmission).toBeUndefined()
+    expect((await load('./gas.json')).claims?.onClaimSubmission).toBeUndefined()
   })
 })
