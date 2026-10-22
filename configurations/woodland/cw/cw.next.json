@@ -618,6 +618,11 @@
                   },
                   {
                     "component": "text",
+                    "label": "Quantity",
+                    "text": "jsonata:$exists(@.quantity) ? $string(@.quantity) : 'Not provided'"
+                  },
+                  {
+                    "component": "text",
                     "label": "Amount",
                     "text": "@.claimAmountPence",
                     "format": "penniesToPounds"
