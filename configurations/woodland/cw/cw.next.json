@@ -617,9 +617,15 @@
                     "format": "formatDateTime"
                   },
                   {
-                    "component": "text",
+                    "component": "status",
                     "label": "Status",
-                    "text": "jsonata:$exists(@.status) ? (@.status = 'SUBMITTED' ? 'Submitted' : @.status) : 'Not provided'"
+                    "text": "jsonata:$exists(@.status) ? @.status : 'Not provided'",
+                    "themeMap": {
+                      "SUBMITTED": "NEUTRAL"
+                    },
+                    "labelsMap": {
+                      "SUBMITTED": "Submitted"
+                    }
                   },
                   {
                     "component": "text",
