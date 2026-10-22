@@ -603,7 +603,8 @@
                   {
                     "component": "text",
                     "label": "Claim reference",
-                    "text": "@.clientClaimRef"
+                    "text": "@.clientClaimRef",
+                    "classes": "tag-no-wrap"
                   },
                   {
                     "component": "text",
@@ -614,7 +615,8 @@
                     "component": "text",
                     "label": "Submitted date",
                     "text": "@.submittedAt",
-                    "format": "formatDateTime"
+                    "format": "formatDateTime",
+                    "classes": "tag-no-wrap"
                   },
                   {
                     "component": "status",
