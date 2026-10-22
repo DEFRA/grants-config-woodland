@@ -618,6 +618,11 @@
                   },
                   {
                     "component": "text",
+                    "label": "Status",
+                    "text": "jsonata:$exists(@.status) ? (@.status = 'SUBMITTED' ? 'Submitted' : @.status) : 'Not provided'"
+                  },
+                  {
+                    "component": "text",
                     "label": "Quantity",
                     "text": "jsonata:$exists(@.quantity) ? $string(@.quantity) : 'Not provided'"
                   },
