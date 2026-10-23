@@ -580,6 +580,69 @@
                 ]
               }
             ]
+          },
+          "claims": {
+            "link": {
+              "text": "Claims",
+              "index": 2.5
+            },
+            "renderIf": "$.supplementaryData.claims[0]",
+            "content": [
+              {
+                "component": "heading",
+                "text": "Claims",
+                "level": 2,
+                "classes": "govuk-!-margin-top-6"
+              },
+              {
+                "component": "table",
+                "caption": "Submitted claims",
+                "captionClasses": "govuk-visually-hidden",
+                "rowsRef": "jsonata:$sort($.supplementaryData.claims, function($l, $r) { $l.submittedAt < $r.submittedAt })",
+                "rows": [
+                  {
+                    "component": "text",
+                    "label": "Claim reference",
+                    "text": "@.clientClaimRef",
+                    "classes": "tag-no-wrap"
+                  },
+                  {
+                    "component": "text",
+                    "label": "Claim type",
+                    "text": "jsonata:@.claimCode = 'ENT_CS_CAPITAL_PA3' ? 'PA3 Woodland Management Plan' : @.claimCode"
+                  },
+                  {
+                    "component": "text",
+                    "label": "Submitted date",
+                    "text": "@.submittedAt",
+                    "format": "formatDateTime",
+                    "classes": "tag-no-wrap"
+                  },
+                  {
+                    "component": "status",
+                    "label": "Status",
+                    "text": "jsonata:$exists(@.status) ? @.status : 'Not provided'",
+                    "themeMap": {
+                      "SUBMITTED": "NEUTRAL"
+                    },
+                    "labelsMap": {
+                      "SUBMITTED": "Submitted"
+                    }
+                  },
+                  {
+                    "component": "text",
+                    "label": "Quantity",
+                    "text": "jsonata:$exists(@.quantity) ? $string(@.quantity) : 'Not provided'"
+                  },
+                  {
+                    "component": "text",
+                    "label": "Amount",
+                    "text": "@.claimAmountPence",
+                    "format": "penniesToPounds"
+                  }
+                ]
+              }
+            ]
           }
         }
       }
