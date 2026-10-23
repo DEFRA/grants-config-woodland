@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.45.1
+
+### Patch Changes
+
+- 1f6543f: Show submitted claims in a conditional Claims tab in Caseworking, including multiple claims with their reference, type, submission date, status, quantity and amount.
+
 ## 1.45.0
 
 ### Minor Changes
