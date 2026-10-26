@@ -1187,7 +1187,7 @@
           ]
         },
         {
-          "name": "Forestry Commission review",
+          "name": "Record Forestry Commission decision",
           "code": "STAGE_FC_REVIEWING",
           "description": "Forestry Commission review of the application",
           "statuses": [
@@ -1197,70 +1197,276 @@
               "theme": "NEUTRAL",
               "description": "The application has been sent to the Forestry Commission for review",
               "interactive": true,
+              "hideTaskGroups": true,
               "transitions": [
                 {
                   "targetPosition": "PHASE_CLAIM:STAGE_PREPARE_CLAIM:STATUS_PREPARING_CLAIM",
-                  "checkTasks": true,
+                  "checkTasks": false,
                   "action": {
-                    "code": "ACTION_APPROVE_FC_REVIEW",
-                    "name": "Record Forestry Commission outcome",
-                    "checkTasks": true,
+                    "code": "ACTION_FC_APPROVE_PLAN",
+                    "name": "Approved the plan",
+                    "hint": "Progress to next stage",
+                    "checkTasks": false,
                     "comment": null
                   }
+                },
+                {
+                  "targetPosition": "PHASE_PRE_AWARD:STAGE_FC_REVIEWING:STATUS_REJECTION_REQUESTED",
+                  "checkTasks": false,
+                  "action": {
+                    "code": "ACTION_FC_REJECT_PLAN",
+                    "name": "Rejected the plan",
+                    "checkTasks": false,
+                    "comment": {
+                      "label": {
+                        "text": "Reason for rejection",
+                        "classes": "govuk-visually-hidden"
+                      },
+                      "helpText": "You must include a reason for why this plan has been rejected.",
+                      "mandatory": true
+                    },
+                    "confirm": {
+                      "details": [
+                        {
+                          "component": "heading",
+                          "text": "Are you sure you want to record this decision as rejected?",
+                          "level": 1,
+                          "classes": "govuk-heading-l"
+                        },
+                        {
+                          "component": "paragraph",
+                          "text": "Rejecting the plan will terminate the agreement."
+                        },
+                        {
+                          "component": "paragraph",
+                          "text": "You will not be able to update or reopen."
+                        }
+                      ],
+                      "yes": {
+                        "component": "container",
+                        "items": [
+                          {
+                            "component": "text",
+                            "text": "Yes"
+                          }
+                        ]
+                      },
+                      "no": {
+                        "component": "container",
+                        "items": [
+                          {
+                            "component": "text",
+                            "text": "No"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                },
+                {
+                  "targetPosition": "PHASE_PRE_AWARD:STAGE_FC_REVIEWING:STATUS_WITHDRAWAL_REQUESTED",
+                  "checkTasks": false,
+                  "action": {
+                    "code": "ACTION_FC_WITHDRAWAL_REQUESTED",
+                    "name": "Withdrawal requested by customer",
+                    "checkTasks": false,
+                    "comment": {
+                      "label": {
+                        "text": "Reason for withdrawal",
+                        "classes": "govuk-visually-hidden"
+                      },
+                      "helpText": "You must include a reason for withdrawing this agreement.",
+                      "mandatory": true
+                    },
+                    "confirm": {
+                      "details": [
+                        {
+                          "component": "heading",
+                          "text": "Are you sure you want to record this decision as withdrawn?",
+                          "level": 1,
+                          "classes": "govuk-heading-l"
+                        },
+                        {
+                          "component": "paragraph",
+                          "text": "Withdrawing will withdraw the application and agreement."
+                        },
+                        {
+                          "component": "paragraph",
+                          "text": "You will not be able to update or reopen."
+                        }
+                      ],
+                      "yes": {
+                        "component": "container",
+                        "items": [
+                          {
+                            "component": "text",
+                            "text": "Yes"
+                          }
+                        ]
+                      },
+                      "no": {
+                        "component": "container",
+                        "items": [
+                          {
+                            "component": "text",
+                            "text": "No"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "name": "Rejection requested",
+              "code": "STATUS_REJECTION_REQUESTED",
+              "theme": "WARN",
+              "description": "Agreement rejection has been requested and is awaiting agreement termination confirmation",
+              "interactive": false,
+              "hideTaskGroups": true,
+              "closes": false,
+              "transitions": [
+                {
+                  "targetPosition": "PHASE_PRE_AWARD:STAGE_FC_REVIEWING:STATUS_AGREEMENT_REJECTED",
+                  "checkTasks": false,
+                  "action": null
+                }
+              ]
+            },
+            {
+              "name": "Rejected by Forestry Commission",
+              "code": "STATUS_AGREEMENT_REJECTED",
+              "theme": "ERROR",
+              "description": "The Forestry Commission rejected the plan and the agreement has been terminated",
+              "interactive": false,
+              "hideTaskGroups": true,
+              "closes": true,
+              "transitions": []
+            },
+            {
+              "name": "Withdrawal requested",
+              "code": "STATUS_WITHDRAWAL_REQUESTED",
+              "theme": "WARN",
+              "description": "Customer withdrawal has been requested and is awaiting agreement withdrawal confirmation",
+              "interactive": false,
+              "hideTaskGroups": true,
+              "closes": false,
+              "transitions": [
+                {
+                  "targetPosition": "PHASE_PRE_AWARD:STAGE_FC_REVIEWING:STATUS_APPLICATION_WITHDRAWN",
+                  "checkTasks": false,
+                  "action": null
+                }
+              ]
+            },
+            {
+              "name": "Withdrawn",
+              "code": "STATUS_APPLICATION_WITHDRAWN",
+              "theme": "WARN",
+              "description": "Application has been withdrawn at the customer's request",
+              "interactive": false,
+              "hideTaskGroups": true,
+              "closes": true,
+              "transitions": []
+            }
+          ],
+          "beforeContent": [
+            {
+              "renderIf": "jsonata:$.position.statusCode = 'STATUS_APPLICATION_AWAITING_FC'",
+              "content": [
+                {
+                  "component": "heading",
+                  "level": 2,
+                  "text": "Record Forestry Commission decision here.",
+                  "classes": "govuk-body"
+                }
+              ]
+            },
+            {
+              "renderIf": "jsonata:$.position.statusCode = 'STATUS_REJECTION_REQUESTED'",
+              "content": [
+                {
+                  "component": "heading",
+                  "level": 3,
+                  "text": "Rejection requested"
+                },
+                {
+                  "component": "paragraph",
+                  "text": "The agreement is being terminated. Refresh the page to check whether the rejection has completed."
+                },
+                {
+                  "component": "url",
+                  "text": "Refresh page",
+                  "href": {
+                    "urlTemplate": "/cases/{caseId}",
+                    "params": {
+                      "caseId": "$._id"
+                    }
+                  },
+                  "classes": "govuk-button"
+                }
+              ]
+            },
+            {
+              "renderIf": "jsonata:$.position.statusCode = 'STATUS_AGREEMENT_REJECTED'",
+              "content": [
+                {
+                  "component": "heading",
+                  "level": 3,
+                  "text": "Plan rejected"
+                },
+                {
+                  "component": "paragraph",
+                  "text": "The Forestry Commission rejected this plan. The agreement has been terminated and cannot be updated or reopened."
+                },
+                {
+                  "component": "paragraph",
+                  "text": "You need to notify the customer that their plan has been rejected."
+                }
+              ]
+            },
+            {
+              "renderIf": "jsonata:$.position.statusCode = 'STATUS_WITHDRAWAL_REQUESTED'",
+              "content": [
+                {
+                  "component": "heading",
+                  "level": 3,
+                  "text": "Withdrawal requested"
+                },
+                {
+                  "component": "paragraph",
+                  "text": "The application and agreement are being withdrawn. Refresh the page to check whether withdrawal has completed."
+                },
+                {
+                  "component": "url",
+                  "text": "Refresh page",
+                  "href": {
+                    "urlTemplate": "/cases/{caseId}",
+                    "params": {
+                      "caseId": "$._id"
+                    }
+                  },
+                  "classes": "govuk-button"
+                }
+              ]
+            },
+            {
+              "renderIf": "jsonata:$.position.statusCode = 'STATUS_APPLICATION_WITHDRAWN'",
+              "content": [
+                {
+                  "component": "heading",
+                  "level": 3,
+                  "text": "Application withdrawn"
+                },
+                {
+                  "component": "paragraph",
+                  "text": "The application and agreement have been withdrawn at the customer's request."
                 }
               ]
             }
           ],
-          "beforeContent": [],
-          "taskGroups": [
-            {
-              "name": "Tasks",
-              "code": "TASK_GROUP_FC_REVIEW",
-              "tasks": [
-                {
-                  "name": "Record Forestry Commission outcome",
-                  "code": "TASK_FC_REVIEW_OUTCOME",
-                  "description": [
-                    {
-                      "component": "heading",
-                      "text": "Forestry Commission review",
-                      "level": 2
-                    },
-                    {
-                      "component": "paragraph",
-                      "text": "The application is being reviewed by the Forestry Commission."
-                    },
-                    {
-                      "component": "paragraph",
-                      "text": "When the Forestry Commission notifies you that its review is complete, record the outcome here."
-                    }
-                  ],
-                  "mandatory": true,
-                  "valueOptions": [
-                    {
-                      "name": "Accepted",
-                      "code": "STATUS_FC_REVIEW_SUCCESSFUL",
-                      "theme": "SUCCESS",
-                      "altName": "Accepted",
-                      "completes": true,
-                      "comment": null
-                    },
-                    {
-                      "name": "Rejected",
-                      "code": "STATUS_FC_REVIEW_UNSUCCESSFUL",
-                      "theme": "ERROR",
-                      "altName": "Rejected",
-                      "completes": false,
-                      "comment": {
-                        "label": "Why did the Forestry Commission reject this application?",
-                        "mandatory": true
-                      }
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
+          "taskGroups": []
         },
         {
           "name": "Application completed",
