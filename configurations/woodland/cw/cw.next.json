@@ -1198,6 +1198,7 @@
               "description": "The application has been sent to the Forestry Commission for review",
               "interactive": true,
               "hideTaskGroups": true,
+              "cancelHref": "/cases",
               "transitions": [
                 {
                   "targetPosition": "PHASE_CLAIM:STAGE_PREPARE_CLAIM:STATUS_PREPARING_CLAIM",
