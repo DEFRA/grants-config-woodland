@@ -632,7 +632,7 @@
                   {
                     "component": "text",
                     "label": "Quantity",
-                    "text": "jsonata:$exists(@.quantity) ? $string(@.quantity) : 'Not provided'"
+                    "text": "jsonata:$exists(@.quantity) ? $string(@.quantity) & (@.unit ? ' ' & $lowercase(@.unit) : '') : 'Not provided'"
                   },
                   {
                     "component": "text",
