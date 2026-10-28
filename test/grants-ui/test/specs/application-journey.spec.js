@@ -16,8 +16,8 @@ const gasConfig = JSON.parse(
   )
 )
 
-const CRN = '1100943757'
-const SBI = '113593357'
+const CRN = '9000000013'
+const SBI = '800000014'
 const GRANT_CODE = 'woodland'
 
 test.describe('Woodland Management Plan application', () => {
