@@ -2,4 +2,4 @@
 'grants-config-woodland': patch
 ---
 
-Changes on user data and avoid running tests if images aren't reachable
+Changes on user data to point to newly stubbed data
