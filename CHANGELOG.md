@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.46.0
+
+### Minor Changes
+
+- 8f84ea8: Source allowlist from external
+
 ## 1.45.1
 
 ### Patch Changes
