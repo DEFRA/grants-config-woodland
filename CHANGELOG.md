@@ -1,5 +1,12 @@
 # grants-config-woodland
 
+## 1.48.0
+
+### Minor Changes
+
+- 62ace57: Replace the Forestry Commission outcome task with a three-way decision page (Approve / Reject / Withdraw) in the CW next workflow. Add a matching STAGE_FC_REVIEWING stage to the GAS next config with external status mappings for CW decisions and Agreement Service termination/withdrawal responses. Extend the agreement definition so accepted agreements can be terminated or withdrawn. Add legacy GAS mappings from STAGE_AGREEMENT_ACCEPTED for in-flight cases at Forestry Commission review.
+- 4e62ef6: Restrict WMP casework phases and stages to specific roles: PHASE_PRE_AWARD requires ROLE_WMP and ROLE_WMP_ASSESSOR, and STAGE_FC_REVIEWING and PHASE_CLAIM require ROLE_WMP and ROLE_WMP_CLAIMS.
+
 ## 1.47.0
 
 ### Minor Changes
