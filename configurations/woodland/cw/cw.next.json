@@ -652,6 +652,10 @@
     {
       "code": "PHASE_PRE_AWARD",
       "name": "Pre-award",
+      "requiredRoles": {
+        "allOf": ["ROLE_WMP", "ROLE_WMP_ASSESSOR"],
+        "anyOf": []
+      },
       "stages": [
         {
           "code": "STAGE_REVIEWING_APPLICATION",
@@ -1190,6 +1194,10 @@
           "name": "Record Forestry Commission decision",
           "code": "STAGE_FC_REVIEWING",
           "description": "Forestry Commission review of the application",
+          "requiredRoles": {
+            "allOf": ["ROLE_WMP", "ROLE_WMP_CLAIMS"],
+            "anyOf": []
+          },
           "statuses": [
             {
               "name": "Awaiting Forestry Commission review",
@@ -1527,6 +1535,10 @@
     {
       "code": "PHASE_CLAIM",
       "name": "Claim Phase",
+      "requiredRoles": {
+        "allOf": ["ROLE_WMP", "ROLE_WMP_CLAIMS"],
+        "anyOf": []
+      },
       "stages": [
         {
           "code": "STAGE_PREPARE_CLAIM",
