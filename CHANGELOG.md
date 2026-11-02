@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.48.2
+
+### Patch Changes
+
+- 512b8c6: Show the quantity unit alongside submitted Woodland claims in Caseworking.
+
 ## 1.48.1
 
 ### Patch Changes
