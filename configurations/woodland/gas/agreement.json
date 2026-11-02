@@ -1,6 +1,7 @@
 {
   "agreementNumberPrefix": "WMP",
   "code": "woodland",
+  "serviceTitle": "Woodland Management Plan",
   "processDefinitions": {
     "CALCULATE_WMP_AGREEMENT_DATES": {
       "type": "endpoint",
