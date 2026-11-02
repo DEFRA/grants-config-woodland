@@ -396,6 +396,66 @@
           ]
         },
         {
+          "code": "STAGE_FC_REVIEWING",
+          "name": "Forestry Commission review",
+          "description": "Forestry Commission decision on the accepted agreement",
+          "statuses": [
+            {
+              "code": "STATUS_APPLICATION_AWAITING_FC",
+              "validFrom": [
+                {
+                  "code": "PHASE_PRE_AWARD:STAGE_AGREEMENT_ACCEPTED:STATUS_AGREEMENT_ACCEPTED",
+                  "processes": []
+                }
+              ]
+            },
+            {
+              "code": "STATUS_REJECTION_REQUESTED",
+              "validFrom": [
+                {
+                  "code": "STATUS_APPLICATION_AWAITING_FC",
+                  "processes": ["REQUEST_AGREEMENT_TERMINATION"]
+                },
+                {
+                  "code": "PHASE_PRE_AWARD:STAGE_AGREEMENT_ACCEPTED:STATUS_AGREEMENT_ACCEPTED",
+                  "processes": ["REQUEST_AGREEMENT_TERMINATION"]
+                }
+              ]
+            },
+            {
+              "code": "STATUS_AGREEMENT_REJECTED",
+              "validFrom": [
+                {
+                  "code": "STATUS_REJECTION_REQUESTED",
+                  "processes": ["APPLY_AGREEMENT_TERMINATION"]
+                }
+              ]
+            },
+            {
+              "code": "STATUS_WITHDRAWAL_REQUESTED",
+              "validFrom": [
+                {
+                  "code": "STATUS_APPLICATION_AWAITING_FC",
+                  "processes": ["REQUEST_APPLICATION_WITHDRAWAL"]
+                },
+                {
+                  "code": "PHASE_PRE_AWARD:STAGE_AGREEMENT_ACCEPTED:STATUS_AGREEMENT_ACCEPTED",
+                  "processes": ["REQUEST_APPLICATION_WITHDRAWAL"]
+                }
+              ]
+            },
+            {
+              "code": "STATUS_APPLICATION_WITHDRAWN",
+              "validFrom": [
+                {
+                  "code": "STATUS_WITHDRAWAL_REQUESTED",
+                  "processes": ["WITHDRAW_AGREEMENT"]
+                }
+              ]
+            }
+          ]
+        },
+        {
           "code": "STAGE_APPLICATION_AMENDMENT",
           "name": "Application amendment",
           "description": "Application has been returned to the customer for amendments",
@@ -449,6 +509,10 @@
                 },
                 {
                   "code": "PHASE_PRE_AWARD:STAGE_AGREEMENT_ACCEPTED:STATUS_AGREEMENT_ACCEPTED",
+                  "processes": []
+                },
+                {
+                  "code": "PHASE_PRE_AWARD:STAGE_FC_REVIEWING:STATUS_APPLICATION_AWAITING_FC",
                   "processes": []
                 }
               ]
@@ -541,6 +605,51 @@
                 "code": "PHASE_CLAIM:STAGE_AWAITING_CLAIM:STATUS_AWAITING_CLAIM",
                 "source": "CW",
                 "mappedTo": "PHASE_CLAIM:STAGE_AWAITING_CLAIM:STATUS_AWAITING_CLAIM"
+              },
+              {
+                "code": "PHASE_PRE_AWARD:STAGE_FC_REVIEWING:STATUS_APPLICATION_AWAITING_FC",
+                "source": "CW",
+                "mappedTo": "PHASE_PRE_AWARD:STAGE_FC_REVIEWING:STATUS_APPLICATION_AWAITING_FC"
+              },
+              {
+                "code": "PHASE_PRE_AWARD:STAGE_FC_REVIEWING:STATUS_REJECTION_REQUESTED",
+                "source": "CW",
+                "mappedTo": "PHASE_PRE_AWARD:STAGE_FC_REVIEWING:STATUS_REJECTION_REQUESTED"
+              },
+              {
+                "code": "PHASE_PRE_AWARD:STAGE_FC_REVIEWING:STATUS_WITHDRAWAL_REQUESTED",
+                "source": "CW",
+                "mappedTo": "PHASE_PRE_AWARD:STAGE_FC_REVIEWING:STATUS_WITHDRAWAL_REQUESTED"
+              }
+            ]
+          },
+          {
+            "code": "STAGE_FC_REVIEWING",
+            "statuses": [
+              {
+                "code": "PHASE_CLAIM:STAGE_PREPARE_CLAIM:STATUS_PREPARING_CLAIM",
+                "source": "CW",
+                "mappedTo": "PHASE_CLAIM:STAGE_AWAITING_CLAIM:STATUS_AWAITING_CLAIM"
+              },
+              {
+                "code": "PHASE_PRE_AWARD:STAGE_FC_REVIEWING:STATUS_REJECTION_REQUESTED",
+                "source": "CW",
+                "mappedTo": "PHASE_PRE_AWARD:STAGE_FC_REVIEWING:STATUS_REJECTION_REQUESTED"
+              },
+              {
+                "code": "terminated",
+                "source": "AS",
+                "mappedTo": "PHASE_PRE_AWARD:STAGE_FC_REVIEWING:STATUS_AGREEMENT_REJECTED"
+              },
+              {
+                "code": "PHASE_PRE_AWARD:STAGE_FC_REVIEWING:STATUS_WITHDRAWAL_REQUESTED",
+                "source": "CW",
+                "mappedTo": "PHASE_PRE_AWARD:STAGE_FC_REVIEWING:STATUS_WITHDRAWAL_REQUESTED"
+              },
+              {
+                "code": "withdrawn",
+                "source": "AS",
+                "mappedTo": "PHASE_PRE_AWARD:STAGE_FC_REVIEWING:STATUS_APPLICATION_WITHDRAWN"
               }
             ]
           }

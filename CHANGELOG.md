@@ -1,5 +1,36 @@
 # grants-config-woodland
 
+## 1.48.1
+
+### Patch Changes
+
+- 70fd449: Set the Woodland agreement serviceTitle to "Woodland Management Plan", so the service navigation on GAS-driven agreement pages no longer says "Farm payments".
+
+  Requires the fg-gas-backend FGP-1531 change to be deployed first: earlier GAS versions reject agreement definitions with a serviceTitle.
+
+## 1.48.0
+
+### Minor Changes
+
+- 62ace57: Replace the Forestry Commission outcome task with a three-way decision page (Approve / Reject / Withdraw) in the CW next workflow. Add a matching STAGE_FC_REVIEWING stage to the GAS next config with external status mappings for CW decisions and Agreement Service termination/withdrawal responses. Extend the agreement definition so accepted agreements can be terminated or withdrawn. Add legacy GAS mappings from STAGE_AGREEMENT_ACCEPTED for in-flight cases at Forestry Commission review.
+- 4e62ef6: Restrict WMP casework phases and stages to specific roles: PHASE_PRE_AWARD requires ROLE_WMP and ROLE_WMP_ASSESSOR, and STAGE_FC_REVIEWING and PHASE_CLAIM require ROLE_WMP and ROLE_WMP_CLAIMS.
+
+## 1.47.0
+
+### Minor Changes
+
+- 804996a: Replace the Forestry Commission outcome task with a three-way decision page (Approve / Reject / Withdraw) in the CW next workflow. Add a matching STAGE_FC_REVIEWING stage to the GAS next config with external status mappings for CW decisions and Agreement Service termination/withdrawal responses. Extend the agreement definition so accepted agreements can be terminated or withdrawn. Add legacy GAS mappings from STAGE_AGREEMENT_ACCEPTED for in-flight cases at Forestry Commission review.
+
+### Patch Changes
+
+- dfd7058: Changes on user data and avoid running tests if images aren't reachable
+
+## 1.46.0
+
+### Minor Changes
+
+- 8f84ea8: Source allowlist from external
+
 ## 1.45.1
 
 ### Patch Changes

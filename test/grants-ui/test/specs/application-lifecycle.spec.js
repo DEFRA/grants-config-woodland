@@ -10,8 +10,8 @@ import {
 } from '../utils/gas.js'
 import { Mongo } from '../utils/mongo.js'
 
-const CRN = '1100943838'
-const SBI = '107173507'
+const CRN = '9000000014'
+const SBI = '800000012'
 const GRANT_CODE = 'woodland'
 
 test.describe('Woodland Management Plan application lifecycle', () => {
