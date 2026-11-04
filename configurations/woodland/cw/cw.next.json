@@ -1615,10 +1615,10 @@
                   "mandatory": true,
                   "valueOptions": [
                     {
-                      "name": "Created",
+                      "name": "Completed",
                       "code": "STATUS_RECORDED",
                       "theme": "SUCCESS",
-                      "altName": "Completed",
+                      "altName": "Created",
                       "completes": true,
                       "comment": null
                     },
@@ -1666,10 +1666,10 @@
                   },
                   "valueOptions": [
                     {
-                      "name": "Notification sent",
+                      "name": "Completed",
                       "code": "STATUS_NOTIFICATION_SENT",
                       "theme": "SUCCESS",
-                      "altName": "Completed",
+                      "altName": "Notification sent",
                       "completes": true,
                       "comment": {
                         "label": "Enter the unique ID email reference (for example EML:12345) from the CRM to confirm the draft agreement has been sent.",
