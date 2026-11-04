@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.49.0
+
+### Minor Changes
+
+- 1d7212c: FGP-1576: Terminate accepted agreements when customers withdraw during Forestry Commission review. Use fromStatus on the two terminated response mappings to preserve rejection and withdrawal as separate application outcomes. Requires GAS support for fromStatus before this config is activated.
+
 ## 1.48.2
 
 ### Patch Changes
