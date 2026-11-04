@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.49.1
+
+### Patch Changes
+
+- ab5ee5c: Correct Woodland claim preparation outcome labels so completed tasks show Completed on the task list and the radios show Created or Notification sent.
+
 ## 1.49.0
 
 ### Minor Changes
