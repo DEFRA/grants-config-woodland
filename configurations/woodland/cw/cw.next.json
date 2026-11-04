@@ -1284,7 +1284,7 @@
                         "text": "Reason for withdrawal",
                         "classes": "govuk-visually-hidden"
                       },
-                      "helpText": "You must include a reason for withdrawing this agreement.",
+                      "helpText": "You must include a reason for withdrawing this application.",
                       "mandatory": true
                     },
                     "confirm": {
@@ -1297,7 +1297,7 @@
                         },
                         {
                           "component": "paragraph",
-                          "text": "Withdrawing will withdraw the application and agreement."
+                          "text": "Withdrawing will withdraw the application and terminate the agreement."
                         },
                         {
                           "component": "paragraph",
