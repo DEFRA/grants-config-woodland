@@ -1357,7 +1357,7 @@
               "name": "Withdrawal requested",
               "code": "STATUS_WITHDRAWAL_REQUESTED",
               "theme": "WARN",
-              "description": "Customer withdrawal has been requested and is awaiting agreement withdrawal confirmation",
+              "description": "Customer withdrawal has been requested and is awaiting agreement termination confirmation",
               "interactive": false,
               "hideTaskGroups": true,
               "closes": false,
@@ -1445,7 +1445,7 @@
                 },
                 {
                   "component": "paragraph",
-                  "text": "The application and agreement are being withdrawn. Refresh the page to check whether withdrawal has completed."
+                  "text": "The application is being withdrawn and the agreement is being terminated. Refresh the page to check whether withdrawal has completed."
                 },
                 {
                   "component": "url",
@@ -1470,7 +1470,7 @@
                 },
                 {
                   "component": "paragraph",
-                  "text": "The application and agreement have been withdrawn at the customer's request."
+                  "text": "The application has been withdrawn and the agreement has been terminated at the customer's request."
                 }
               ]
             }

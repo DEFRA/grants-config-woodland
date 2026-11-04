@@ -436,11 +436,11 @@
               "validFrom": [
                 {
                   "code": "STATUS_APPLICATION_AWAITING_FC",
-                  "processes": ["REQUEST_APPLICATION_WITHDRAWAL"]
+                  "processes": ["REQUEST_AGREEMENT_TERMINATION"]
                 },
                 {
                   "code": "PHASE_PRE_AWARD:STAGE_AGREEMENT_ACCEPTED:STATUS_AGREEMENT_ACCEPTED",
-                  "processes": ["REQUEST_APPLICATION_WITHDRAWAL"]
+                  "processes": ["REQUEST_AGREEMENT_TERMINATION"]
                 }
               ]
             },
@@ -449,7 +449,7 @@
               "validFrom": [
                 {
                   "code": "STATUS_WITHDRAWAL_REQUESTED",
-                  "processes": ["WITHDRAW_AGREEMENT"]
+                  "processes": ["APPLY_AGREEMENT_TERMINATION"]
                 }
               ]
             }
@@ -639,6 +639,7 @@
               {
                 "code": "terminated",
                 "source": "AS",
+                "fromStatus": "STATUS_REJECTION_REQUESTED",
                 "mappedTo": "PHASE_PRE_AWARD:STAGE_FC_REVIEWING:STATUS_AGREEMENT_REJECTED"
               },
               {
@@ -647,8 +648,9 @@
                 "mappedTo": "PHASE_PRE_AWARD:STAGE_FC_REVIEWING:STATUS_WITHDRAWAL_REQUESTED"
               },
               {
-                "code": "withdrawn",
+                "code": "terminated",
                 "source": "AS",
+                "fromStatus": "STATUS_WITHDRAWAL_REQUESTED",
                 "mappedTo": "PHASE_PRE_AWARD:STAGE_FC_REVIEWING:STATUS_APPLICATION_WITHDRAWN"
               }
             ]
