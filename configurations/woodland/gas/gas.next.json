@@ -171,7 +171,8 @@
           },
           "totalHectaresForSelectedParcels": {
             "type": "number",
-            "minimum": 0.5
+            "minimum": 0.5,
+            "fgMaxDecimalPlaces": 4
           },
           "guidanceRead": {
             "type": "boolean",
