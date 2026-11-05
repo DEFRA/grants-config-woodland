@@ -29,6 +29,14 @@
           "minValue": 0.5,
           "maxValue": null
         },
+        "originalTotalHectares": {
+          "input": false,
+          "label": "Original Total area of eligible woodland",
+          "value": "$.application.answers.totalHectaresForSelectedParcels",
+          "unitType": "decimal",
+          "decimalPlaces": 4,
+          "unit": "HA"
+        },
         "actionCode": {
           "input": false,
           "value": "PA3",
