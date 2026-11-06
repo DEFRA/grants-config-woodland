@@ -33,11 +33,12 @@ BASE_COMPOSE=${BASE}compose.grants-ui.yml
 
 docker compose version
 
+# compose.land-grants.yml is left out on purpose: the woodland journey reads parcels from the
+# DAL stub and never calls land-grants-api, so this stack does not pull that image.
 COMPOSE_COMMAND="docker compose \
   -f ${BASE}compose.infra.yml \
   -f ${BASE_COMPOSE} \
   -f ${BASE}compose.ha.yml \
-  -f ${BASE}compose.land-grants.yml \
   -f ${BASE}compose.ci.yml \
   -f $(dirname "$0")/compose.localconfig.yml"
 
