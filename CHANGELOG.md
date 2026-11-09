@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.49.3
+
+### Patch Changes
+
+- 4a97ae6: add total hectares to entitlement template
+
 ## 1.49.2
 
 ### Patch Changes
