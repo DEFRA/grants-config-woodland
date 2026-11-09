@@ -816,7 +816,7 @@ pages:
         id: 1483e488-c18d-443d-a866-73f51d1479b9
         type: Html
         content: |
-          <p class="govuk-body">The Foresty Commission have confirmed that your WMP has been agreed. You can now make your claim.</p>
+          <p class="govuk-body">The Forestry Commission have confirmed that your WMP has been agreed. You can now make your claim.</p>
           <p class="govuk-inset-text">Total claim amount: <span class="govuk-!-font-weight-bold">{{ (totalClaimAmountPence / 100) | formatCurrency }}</span></p>
           <details class="govuk-details">
             <summary class="govuk-details__summary">
