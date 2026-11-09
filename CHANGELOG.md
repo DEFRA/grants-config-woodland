@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.49.2
+
+### Patch Changes
+
+- d4a3269: feat(TGC-1843): Updated wording for WMP
+
 ## 1.49.1
 
 ### Patch Changes
