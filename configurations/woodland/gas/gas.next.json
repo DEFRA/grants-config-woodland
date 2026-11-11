@@ -32,7 +32,7 @@
         "originalTotalHectares": {
           "input": false,
           "label": "Original Total area of eligible woodland",
-          "value": "$.application.answers.totalHectaresForSelectedParcels",
+          "value": "jsonata: $.agreement.items[code='PA3'].quantity",
           "unitType": "decimal",
           "decimalPlaces": 4,
           "unit": "HA"
