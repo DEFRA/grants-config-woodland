@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.49.5
+
+### Patch Changes
+
+- 11c5a74: take original total hectares from the agreement's PA3 quantity
+
 ## 1.49.4
 
 ### Patch Changes
