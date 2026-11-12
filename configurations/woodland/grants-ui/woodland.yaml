@@ -5,10 +5,6 @@ metadata:
   referenceNumberPrefix: WMP
   shortName: Woodland Management Plan
   description: Create or improve a woodland management plan for your woodland.
-  notificationBanner:
-    enabled: true
-    titleText: Important
-    text: This service will be unavailable from 4:30pm on Friday 13 November to 9:00am on Monday 16 November.
   submission:
     grantCode: woodland
   grantRedirectRules:
