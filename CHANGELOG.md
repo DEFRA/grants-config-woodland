@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.49.6
+
+### Patch Changes
+
+- 8c03625:
+
 ## 1.49.5
 
 ### Patch Changes
