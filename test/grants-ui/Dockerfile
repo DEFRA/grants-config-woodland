@@ -1,7 +1,7 @@
 # Build from the repository root so the GAS schema (configurations/woodland/gas/gas.json)
 # can be copied in; the spec validates submitted applications against it.
 # Example: docker build -f test/grants-ui/Dockerfile .
-FROM mcr.microsoft.com/playwright:v1.59.1-noble
+FROM mcr.microsoft.com/playwright:v1.65.0-noble
 
 ENV TZ="Europe/London"
 

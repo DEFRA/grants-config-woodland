@@ -5,7 +5,7 @@
   "description": "Woodland journey tests for grants-ui",
   "type": "module",
   "engines": {
-    "node": ">=24.15.0 <25.0.0",
+    "node": ">=26.13.1 <27.0.0",
     "npm": ">=11.12.1"
   },
   "author": "Defra DDTS",
@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@axe-core/playwright": "4.11.3",
-    "@playwright/test": "1.59.1",
+    "@playwright/test": "1.65.0",
     "ajv": "8.20.0",
     "mockserver-client": "5.15.0",
     "mongodb": "7.5.0"
