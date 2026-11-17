@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.49.8
+
+### Patch Changes
+
+- 7773580: TGC-1869 - Upgrade nodejs
+
 ## 1.49.7
 
 ### Patch Changes
