@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.49.7
+
+### Patch Changes
+
+- 37bfa40: TGC-1873 - Fix support email on check details page
+
 ## 1.49.6
 
 ### Patch Changes
