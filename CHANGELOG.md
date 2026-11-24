@@ -1,5 +1,134 @@
 # grants-config-woodland
 
+## 1.49.9
+
+### Patch Changes
+
+- 6b128d7: TGC-1917: Woodland Management Plan - Add 20 users to Woodland Management Plan (Tranche 26)
+
+## 1.49.8
+
+### Patch Changes
+
+- 7773580: TGC-1869 - Upgrade nodejs
+
+## 1.49.7
+
+### Patch Changes
+
+- 37bfa40: TGC-1873 - Fix support email on check details page
+
+## 1.49.6
+
+### Patch Changes
+
+- 8c03625:
+
+## 1.49.5
+
+### Patch Changes
+
+- 11c5a74: take original total hectares from the agreement's PA3 quantity
+
+## 1.49.4
+
+### Patch Changes
+
+- 7e423d0:
+
+## 1.49.3
+
+### Patch Changes
+
+- 4a97ae6: add total hectares to entitlement template
+
+## 1.49.2
+
+### Patch Changes
+
+- d4a3269: feat(TGC-1843): Updated wording for WMP
+
+## 1.49.1
+
+### Patch Changes
+
+- ab5ee5c: Correct Woodland claim preparation outcome labels so completed tasks show Completed on the task list and the radios show Created or Notification sent.
+
+## 1.49.0
+
+### Minor Changes
+
+- 1d7212c: FGP-1576: Terminate accepted agreements when customers withdraw during Forestry Commission review. Use fromStatus on the two terminated response mappings to preserve rejection and withdrawal as separate application outcomes. Requires GAS support for fromStatus before this config is activated.
+
+## 1.48.2
+
+### Patch Changes
+
+- 512b8c6: Show the quantity unit alongside submitted Woodland claims in Caseworking.
+
+## 1.48.1
+
+### Patch Changes
+
+- 70fd449: Set the Woodland agreement serviceTitle to "Woodland Management Plan", so the service navigation on GAS-driven agreement pages no longer says "Farm payments".
+
+  Requires the fg-gas-backend FGP-1531 change to be deployed first: earlier GAS versions reject agreement definitions with a serviceTitle.
+
+## 1.48.0
+
+### Minor Changes
+
+- 62ace57: Replace the Forestry Commission outcome task with a three-way decision page (Approve / Reject / Withdraw) in the CW next workflow. Add a matching STAGE_FC_REVIEWING stage to the GAS next config with external status mappings for CW decisions and Agreement Service termination/withdrawal responses. Extend the agreement definition so accepted agreements can be terminated or withdrawn. Add legacy GAS mappings from STAGE_AGREEMENT_ACCEPTED for in-flight cases at Forestry Commission review.
+- 4e62ef6: Restrict WMP casework phases and stages to specific roles: PHASE_PRE_AWARD requires ROLE_WMP and ROLE_WMP_ASSESSOR, and STAGE_FC_REVIEWING and PHASE_CLAIM require ROLE_WMP and ROLE_WMP_CLAIMS.
+
+## 1.47.0
+
+### Minor Changes
+
+- 804996a: Replace the Forestry Commission outcome task with a three-way decision page (Approve / Reject / Withdraw) in the CW next workflow. Add a matching STAGE_FC_REVIEWING stage to the GAS next config with external status mappings for CW decisions and Agreement Service termination/withdrawal responses. Extend the agreement definition so accepted agreements can be terminated or withdrawn. Add legacy GAS mappings from STAGE_AGREEMENT_ACCEPTED for in-flight cases at Forestry Commission review.
+
+### Patch Changes
+
+- dfd7058: Changes on user data and avoid running tests if images aren't reachable
+
+## 1.46.0
+
+### Minor Changes
+
+- 8f84ea8: Source allowlist from external
+
+## 1.45.1
+
+### Patch Changes
+
+- 1f6543f: Show submitted claims in a conditional Claims tab in Caseworking, including multiple claims with their reference, type, submission date, status, quantity and amount.
+
+## 1.45.0
+
+### Minor Changes
+
+- 681ab00: Stop the woodland claim being offered to the applicant before Casework has completed the claim-prep task, in gas.next.json only.
+
+  Approving the Forestry Commission review moves the Casework case to PHASE_CLAIM:STAGE_PREPARE_CLAIM:STATUS_PREPARING_CLAIM, but GAS mapped that straight to PHASE_CLAIM:STAGE_AWAITING_CLAIM:STATUS_AWAITING_CLAIM. Because the entitlement was both available and claimable at STATUS_AWAITING_CLAIM, the claim appeared in Grants UI as soon as the entitlement was created in Grant Ops. If the applicant claimed at that point, GAS moved to STATUS_CLAIM_COMPLETE and Casework rejected the update ("transition does not exist"), leaving the two services holding different states for the case.
+
+  Changes, all in configurations/woodland/gas/gas.next.json:
+
+  - Add GAS stage PHASE_CLAIM:STAGE_PREPARE_CLAIM with status STATUS_PREPARING_CLAIM, valid from PHASE_PRE_AWARD:STAGE_AGREEMENT_ACCEPTED:STATUS_AGREEMENT_ACCEPTED.
+  - Map Casework's STATUS_PREPARING_CLAIM to that new status instead of STATUS_AWAITING_CLAIM.
+  - Add STAGE_PREPARE_CLAIM to the PHASE_CLAIM section of externalStatusMap, so that an application sitting at the new status still acts on Casework's ACTION_CLAIM_PREP_COMPLETE. Mappings are resolved against the application's current phase and stage, so without this entry the event would be dropped.
+  - Allow STATUS_AWAITING_CLAIM from either STATUS_PREPARING_CLAIM or STATUS_AGREEMENT_ACCEPTED, and keep a mapping for Casework's STATUS_AWAITING_CLAIM at STAGE_AGREEMENT_ACCEPTED, so a caseworker who completes the claim-prep task before GAS has seen STATUS_PREPARING_CLAIM is still handled.
+  - Make the PA3 entitlement available at both STATUS_PREPARING_CLAIM and STATUS_AWAITING_CLAIM, so the entitlement can be created during claim prep and for records already at STATUS_AWAITING_CLAIM. claimableAt and claims.onClaimApproval stay on STATUS_AWAITING_CLAIM, so the claim only opens once Casework has completed the task.
+
+  Only environments running CONFIGURATION_VARIANT=next are affected. gas.json, cw.json and cw.next.json are unchanged, and no GAS or Casework code changes are needed.
+
+  Released as a minor so that existing woodland applications and cases, which roll forward within the same major, pick up the fix. Records already diverged (GAS at STATUS_AWAITING_CLAIM or STATUS_CLAIM_COMPLETE while Casework is at STATUS_PREPARING_CLAIM) are not repaired by this change and still need a data fix.
+
+## 1.44.2
+
+### Patch Changes
+
+- 877a7f6: Adding latest tranche of allowed SBIs
+
 ## 1.44.1
 
 ### Patch Changes

@@ -1,6 +1,7 @@
 {
   "agreementNumberPrefix": "WMP",
   "code": "woodland",
+  "serviceTitle": "Woodland Management Plan",
   "processDefinitions": {
     "CALCULATE_WMP_AGREEMENT_DATES": {
       "type": "endpoint",
@@ -116,10 +117,21 @@
       }
     },
     "accepted": {
-      "page": "accepted"
+      "page": "accepted",
+      "on": {
+        "terminate": {
+          "target": "terminated"
+        },
+        "withdraw": {
+          "target": "withdrawn"
+        }
+      }
     },
     "withdrawn": {
       "page": "withdrawn"
+    },
+    "terminated": {
+      "page": "terminated"
     }
   },
   "pages": {
@@ -130,7 +142,8 @@
       "print": true,
       "watermarks": {
         "offered": "DRAFT",
-        "withdrawn": "WITHDRAWN"
+        "withdrawn": "WITHDRAWN",
+        "terminated": "TERMINATED"
       },
       "components": [
         {
@@ -828,6 +841,56 @@
                     }
                   },
                   "text": "View and print your withdrawn agreement (opens in new tab)",
+                  "target": "_blank",
+                  "rel": "noopener noreferrer"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "terminated": {
+      "title": "Your agreement has been terminated",
+      "watermarks": {
+        "terminated": "TERMINATED"
+      },
+      "components": [
+        {
+          "component": "grid-row",
+          "components": [
+            {
+              "component": "grid-column",
+              "width": "two-thirds",
+              "components": [
+                {
+                  "component": "notification-banner",
+                  "title": "This agreement has been terminated",
+                  "text": "The Forestry Commission rejected this plan. The agreement has been terminated and cannot be updated or reopened."
+                },
+                {
+                  "component": "summary-list",
+                  "rows": [
+                    {
+                      "label": "Agreement number",
+                      "text": "$.agreement.agreementNumber"
+                    },
+                    {
+                      "label": "Agreement start date",
+                      "text": "$.agreement.startDate",
+                      "format": "dateLong"
+                    }
+                  ]
+                },
+                {
+                  "component": "url",
+                  "href": {
+                    "urlTemplate": "/agreements/{agreementNumber}/document",
+                    "params": {
+                      "agreementNumber": "$.agreement.agreementNumber"
+                    }
+                  },
+                  "text": "View and print your terminated agreement (opens in new tab)",
                   "target": "_blank",
                   "rel": "noopener noreferrer"
                 }
