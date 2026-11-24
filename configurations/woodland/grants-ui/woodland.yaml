@@ -285,7 +285,7 @@ pages:
             Monday to Friday, 8:30am to 5pm (except bank holidays)
           </p>
           <p class="govuk-body"><a href="https://www.gov.uk/call-charges" class="govuk-link" rel="noreferrer noopener" target="_blank">Find out about call charges (opens in a new tab)</a></p>
-          <p class="govuk-body">Email: <a class="govuk-link" href="mailto:support@defra.gov.uk">support@defra.gov.uk</a></p>
+          <p class="govuk-body">Email: <a class="govuk-link" href="mailto:ruralpayments@defra.gov.uk">ruralpayments@defra.gov.uk</a></p>
           <p class="govuk-body">The RPA responds to email queries within 10 working days.</p>
 
   # Task list page
@@ -816,7 +816,7 @@ pages:
         id: 1483e488-c18d-443d-a866-73f51d1479b9
         type: Html
         content: |
-          <p class="govuk-body">Your WMP agreed with the Forestry Commission covers a total eligible area of {{ totalEligibleArea }} {{ unit | formatAreaUnit }} of woodland.</p>
+          <p class="govuk-body">The Forestry Commission have confirmed that your WMP has been agreed. You can now make your claim.</p>
           <p class="govuk-inset-text">Total claim amount: <span class="govuk-!-font-weight-bold">{{ (totalClaimAmountPence / 100) | formatCurrency }}</span></p>
           <details class="govuk-details">
             <summary class="govuk-details__summary">
