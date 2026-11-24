@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.49.10
+
+### Patch Changes
+
+- e9e921b: TGC-1917: Woodland Management Plan - Add 20 users to Woodland Management Plan (tranche 26, env var not updated during release)
+
 ## 1.49.9
 
 ### Patch Changes
