@@ -13,10 +13,7 @@ if git rev-parse "$tag" >/dev/null 2>&1; then
   echo "Tag $tag already exists — skipping tagging & GitHub release."
 else
   echo "Tag does not exist — running release-it for $tag..."
-  (
-    cd "$pkg"
-    npx release-it@19.0.4 --no-increment --ci || echo "Release-it failed for $tag"
-  )
+  npx release-it@19.2.4 --no-increment --ci || echo "Release-it failed for $tag"
 fi
 
 echo "Finished processing $tag"
