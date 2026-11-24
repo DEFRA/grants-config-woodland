@@ -1,3 +1,4 @@
-Date       | Ticket   | Tranche | Description
----------- | -------- | ------- | -------------------------------------------------------------------
-23/11/2026 | TGC-1917 | 26      | Woodland Management Plan - Add 20 users to Woodland Management Plan
+Date       | Ticket   | Tranche | Description                                                         | Notes
+---------- | -------- | ------- | ------------------------------------------------------------------- | ------------------------------------
+23/11/2026 | TGC-1917 | 26      | Woodland Management Plan - Add 20 users to Woodland Management Plan |
+24/11/2026 | TGC-1917 | 26      | Woodland Management Plan - Add 20 users to Woodland Management Plan | (Env var not updated during release)
