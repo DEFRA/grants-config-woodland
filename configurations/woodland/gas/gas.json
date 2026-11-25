@@ -121,7 +121,7 @@
           },
           "hectaresTenOrOverYearsOld": {
             "type": "number",
-            "minimum": 0.4
+            "minimum": 0.5
           },
           "hectaresUnderTenYearsOld": {
             "type": "number",

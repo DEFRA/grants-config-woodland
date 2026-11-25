@@ -332,16 +332,16 @@ test.describe('Woodland Management Plan application', () => {
           'The total area of woodland must be at least 0.5ha'
         )
 
-        // over-10-years value below 0.4ha minimum
+        // over-10-years value below 0.5ha minimum
         await page
           .getByLabel('Enter total area of woodland over 10 years old')
-          .fill('0.1')
+          .fill('0.4')
         await page
           .getByLabel('Enter total area of new woodland under 10 years old')
           .fill('0.5')
         await page.getByRole('button', { name: 'Save and continue' }).click()
         await expect(page.locator('.govuk-error-summary')).toContainText(
-          'The area of woodland over 10 years old (0.1 ha) does not meet the minimum required area of (0.4 ha)'
+          'The area of woodland over 10 years old (0.4 ha) does not meet the minimum required area of (0.5 ha)'
         )
 
         // combined total exceeds total land parcel area
