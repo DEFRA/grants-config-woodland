@@ -134,7 +134,7 @@
           },
           "hectaresTenOrOverYearsOld": {
             "type": "number",
-            "minimum": 0.4
+            "minimum": 0.5
           },
           "hectaresUnderTenYearsOld": {
             "type": "number",
@@ -499,6 +499,10 @@
                 {
                   "code": "PHASE_PRE_AWARD:STAGE_AGREEMENT_ACCEPTED:STATUS_AGREEMENT_ACCEPTED",
                   "processes": []
+                },
+                {
+                  "code": "PHASE_PRE_AWARD:STAGE_FC_REVIEWING:STATUS_APPLICATION_AWAITING_FC",
+                  "processes": []
                 }
               ]
             }
@@ -638,7 +642,7 @@
               {
                 "code": "PHASE_CLAIM:STAGE_PREPARE_CLAIM:STATUS_PREPARING_CLAIM",
                 "source": "CW",
-                "mappedTo": "PHASE_CLAIM:STAGE_AWAITING_CLAIM:STATUS_AWAITING_CLAIM"
+                "mappedTo": "PHASE_CLAIM:STAGE_PREPARE_CLAIM:STATUS_PREPARING_CLAIM"
               },
               {
                 "code": "PHASE_PRE_AWARD:STAGE_FC_REVIEWING:STATUS_REJECTION_REQUESTED",

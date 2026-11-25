@@ -1,5 +1,17 @@
 # grants-config-woodland
 
+## 1.49.12
+
+### Patch Changes
+
+- 7b3a436: Keep the Woodland Management Plan GAS next workflow in claim preparation after Forestry Commission approval. Map Casework's preparing-claim event to STATUS_PREPARING_CLAIM and allow that transition from Forestry Commission review, so claiming remains unavailable until Casework completes preparation.
+
+## 1.49.11
+
+### Patch Changes
+
+- 27f3e30: Raise the minimum area of woodland aged ten years or over to 0.5 hectares to match Land Grants API eligibility validation.
+
 ## 1.49.10
 
 ### Patch Changes
