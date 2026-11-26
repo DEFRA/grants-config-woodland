@@ -101,9 +101,8 @@ fi
 
 active_pa3_version() {
     eval "${COMPOSE_COMMAND} exec -T land-grants-backend-postgres sh -c 'psql -U \"\$POSTGRES_USER\" -d \"\$POSTGRES_DB\" -tA'" <<'SQL'
-SELECT ac.semantic_version
-FROM actions_config ac JOIN actions a ON a.code = ac.code
-WHERE a.code = 'PA3' AND a.enabled = TRUE AND ac.is_active = TRUE;
+SELECT semantic_version FROM actions_config
+WHERE code = 'PA3' AND is_active = TRUE;
 SQL
 }
 
