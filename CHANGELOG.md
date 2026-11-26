@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.50.0
+
+### Minor Changes
+
+- 91dd4da: Update test setup and change expectation
+
 ## 1.49.12
 
 ### Patch Changes
