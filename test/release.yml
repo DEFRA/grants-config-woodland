@@ -1,6 +1,13 @@
-name: woodland
-version: 0.0.0
-notes: For journey tests
-environments:
-  - name: local
-    status: active
+releases:
+  - name: woodland
+    version: 0.0.0
+    notes: For journey tests
+    environments:
+      - name: local
+        status: active
+  - name: land-grants
+    version: 0.0.0
+    notes: For journey tests
+    environments:
+      - name: local
+        status: active

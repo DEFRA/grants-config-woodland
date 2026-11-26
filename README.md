@@ -185,6 +185,23 @@ To test the application run:
 npm run test
 ```
 
+Run the Woodland journey tests against the local Docker stack with:
+
+```bash
+./test/run-all-tests.sh
+```
+
+The harness loads the current Woodland checkout and the latest released tag of
+`grants-config-land-grants` through the config broker. It logs the resolved tag
+and commit, and waits for the expected PA3 configuration to become active before
+running the journey tests. Git, curl and jq are required alongside Docker.
+
+To reproduce a run with a particular Land Grants release:
+
+```bash
+LAND_GRANTS_TAG=0.36.0 ./test/run-all-tests.sh
+```
+
 ### Production
 
 To mimic the application running in `production` mode locally run:

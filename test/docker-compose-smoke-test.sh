@@ -91,6 +91,40 @@ until curl -skf https://localhost:4000/health >/dev/null 2>&1; do
     sleep 3
 done
 
+# Health checks can pass before the config-broker update has been consumed.
+# Require the expected active PA3 version, rather than accepting seeded actions.
+: "${LAND_GRANTS_PA3_VERSION:?Run test/run-all-tests.sh to prepare the Land Grants config}"
+if [[ ! "$LAND_GRANTS_PA3_VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+    echo "Error: Invalid PA3 version: $LAND_GRANTS_PA3_VERSION"
+    exit 1
+fi
+
+active_pa3_version() {
+    eval "${COMPOSE_COMMAND} exec -T land-grants-backend-postgres sh -c 'psql -U \"\$POSTGRES_USER\" -d \"\$POSTGRES_DB\" -tA'" <<'SQL'
+SELECT semantic_version FROM actions_config
+WHERE code = 'PA3' AND is_active = TRUE;
+SQL
+}
+
+echo "Waiting for Land Grants API to activate PA3 $LAND_GRANTS_PA3_VERSION..."
+ATTEMPTS=0
+ACTIVE_PA3_VERSION=""
+until [ "$ACTIVE_PA3_VERSION" = "$LAND_GRANTS_PA3_VERSION" ]; do
+    if [ ${ATTEMPTS} -eq ${MAX_ATTEMPTS} ]; then
+        echo "Error: Timed out waiting for PA3 $LAND_GRANTS_PA3_VERSION (active: ${ACTIVE_PA3_VERSION:-unavailable})."
+        eval "${COMPOSE_COMMAND} logs --no-color --tail=100 grants-config-broker land-grants-backend"
+        eval "${COMPOSE_COMMAND} down -v"
+        exit 1
+    fi
+    ACTIVE_PA3_VERSION=$(active_pa3_version 2>/dev/null | tr -d '[:space:]') || ACTIVE_PA3_VERSION=""
+    if [ "$ACTIVE_PA3_VERSION" != "$LAND_GRANTS_PA3_VERSION" ]; then
+        printf 'a'
+        ATTEMPTS=$(($ATTEMPTS+1))
+        sleep 3
+    fi
+done
+echo " PA3 $LAND_GRANTS_PA3_VERSION is active."
+
 echo "All services are healthy!"
 echo "Service Status:"
 eval "${COMPOSE_COMMAND} ps"
