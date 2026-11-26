@@ -1,5 +1,11 @@
 # grants-config-woodland
 
+## 1.50.1
+
+### Patch Changes
+
+- 6bd728e: Add explicit Woodland Management Plan agreement and payment definitions for the next configuration variant. These copy the standard definitions unchanged so GAS can register them when strict variant selection is enabled.
+
 ## 1.50.0
 
 ### Minor Changes
