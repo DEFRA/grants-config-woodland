@@ -150,68 +150,17 @@ jobs:
       - name: Trigger required checks on release PR, then merge to hotfix branch, deploy to CDP and delete release branch
         if: ${{ !startsWith(inputs.description, 'Create new hotfix config version') }}
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 #9.0.0
+        env:
+          PR_NUMBER: ${{ steps.changesets.outputs.pr-number }}
+          RELEASE_MSG: ${{ env.RELEASE_MSG }}
         with:
           script: |
-            const prNumber = Number("${{ steps.changesets.outputs.pr-number }}");
-            const { data: releasePR } = await github.rest.pulls.get({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              pull_number: prNumber,
-            });
-
-            if (!releasePR) return;
-
-            await github.rest.checks.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              name: 'validate-changeset-check',
-              head_sha: releasePR.head.sha,
-              status: 'completed',
-              conclusion: 'success',
-              output: {
-                title: 'Required check triggered',
-                summary: `Check created for PR #${releasePR.number}`
-              }
-            })
-
-            await github.rest.checks.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              name: 'Run Pull Request Checks',
-              head_sha: releasePR.head.sha,
-              status: 'completed',
-              conclusion: 'success',
-              output: {
-                title: 'Required check triggered',
-                summary: `Check created for PR #${releasePR.number}`
-              }
-            })
-
-            await github.rest.pulls.merge({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              pull_number: releasePR.number,
-              merge_method: "squash"
-            });
-
-            await github.rest.actions.createWorkflowDispatch({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
+            const { mergeReleasePR } = require('@defra/grants-config-utils/release/merge-release-pr')
+            await mergeReleasePR({ github, context, core, dispatch: {
               workflow_id: 'publish-hotfix.yml',
               ref: context.ref.replace('refs/heads/', ''),
-              headers: {
-                'X-GitHub-Api-Version': '2022-11-28'
-              },
-              inputs: {
-                description: process.env.RELEASE_MSG
-              }
-            });
-
-            await github.rest.git.deleteRef({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              ref: `heads/${releasePR.head.ref}`
-            });
+              inputs: { description: process.env.RELEASE_MSG }
+            }})
 
       - name: SonarCloud Scan
         uses: SonarSource/sonarqube-scan-action@59202af334b4ba7b5db01b701b8e79f8b3bef0f4 #8.5.0
